@@ -1,6 +1,7 @@
 #include "header.hpp"
 
 void Game::InicializarGame(){
+	printf("Hellow");
 	music.stop();
 	VolumeS.setColor(sf::Color::Transparent);
 	fundo.loadFromFile("assets/Game/pista1.png");
