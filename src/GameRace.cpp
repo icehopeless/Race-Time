@@ -4,7 +4,7 @@ void Game::InicializarGame(){
 	printf("Hellow");
 	music.stop();
 	VolumeS.setColor(sf::Color::Transparent);
-	fundo.loadFromFile("assets/Game/pista1.png");
+	fundo.loadFromFile("../assets/Game/pista1.png");
 	Fundo.setTexture(fundo,true);
 	startButtonS.setColor(sf::Color::Transparent);
 	settingButtonS.setColor(sf::Color::Transparent);

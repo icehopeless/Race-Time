@@ -11,20 +11,20 @@ void Menu::Start() {
 	window.create(sf::VideoMode(1280, 720), "Race Time",sf::Style::Titlebar | sf::Style::Close);
 	window.setPosition(sf::Vector2i(0, 0));
 	sf::Image Icon = sf::Image { };
-	Icon.loadFromFile("assets/Icon/Icon.jpg");
+	Icon.loadFromFile("../assets/Icon/Icon.jpg");
 	window.setIcon(Icon.getSize().x, Icon.getSize().y, Icon.getPixelsPtr());
 
 	Volume.setPosition(140, 60);
 	VolumeS.setPosition(140, 60);
 
-	fundo.loadFromFile("assets/1.png");
+	fundo.loadFromFile("../assets/1.png");
 	Fundo.setTexture(fundo);
-	music.openFromFile("assets/Home.wav");
+	music.openFromFile("../assets/Home.wav");
 	Sound = 4;
 	music.setVolume(Sound);
 	VolumeUp = false;
 	VolumeDown = false;
-	startButton.loadFromFile("assets/Start.png");
+	startButton.loadFromFile("../assets/Start.png");
 	startButtonS.setTexture(startButton);
 	startButtonS.setScale(0.6, 0.6);
 	startButtonS.setPosition(510, 400);
@@ -33,7 +33,7 @@ void Menu::Start() {
 	ModoGame = 1;
 	CarSelectP1 = 1;
 	CarSelectP2 = rand() % 5;
-	settingButton.loadFromFile("assets/Setting.png");
+	settingButton.loadFromFile("../assets/Setting.png");
 	settingButtonS.setTexture(settingButton);
 	settingButtonS.setScale(0.5, 0.5);
 	settingButtonS.setPosition(490, 550);
@@ -64,9 +64,9 @@ void Menu::StartMenu() {
 	VolumeS.setColor(sf::Color::Transparent);
 	texture4S.setColor(sf::Color::Transparent);
 	texture3S.setColor(sf::Color::Transparent);
-	fundo.loadFromFile("assets/1.png");
+	fundo.loadFromFile("../assets/1.png");
 	Fundo.setTexture(fundo);
-	startButton.loadFromFile("assets/Start.png");
+	startButton.loadFromFile("../assets/Start.png");
 	startButtonS.setTexture(startButton);
 	startButtonS.setScale(0.6, 0.6);
 	startButtonS.setPosition(510, 400);
@@ -80,7 +80,7 @@ void Menu::StartMenu() {
 
 
 	//***********************************************************
-	settingButton.loadFromFile("assets/Setting.png");
+	settingButton.loadFromFile("../assets/Setting.png");
 	settingButtonS.setTexture(settingButton);
 	settingButtonS.setScale(0.5, 0.5);
 	settingButtonS.setPosition(490, 550);
@@ -175,24 +175,24 @@ void Menu::eventsMenu() {
 
 void Menu::Setconfiguration() {
 
-	fundo.loadFromFile("assets/2.png");
-	texture3.loadFromFile("assets/Settings/Home.png");
+	fundo.loadFromFile("../assets/2.png");
+	texture3.loadFromFile("../assets/Settings/Home.png");
 	texture3S.setTexture(texture3);
 	texture3S.setScale(0.6, 0.6);
 	texture3S.setPosition(110, 580);
 
-	texture4.loadFromFile("assets/Settings/Cars.png");
+	texture4.loadFromFile("../assets/Settings/Cars.png");
 	texture4S.setTexture(texture4);
 	texture4S.setScale(0.6, 0.6);
 	texture4S.setPosition(922, 580);
 
-	startButton.loadFromFile("assets/Settings/1Player.png");
+	startButton.loadFromFile("../assets/Settings/1Player.png");
 	startButtonS.setTexture(startButton, true);
 
-	settingButton.loadFromFile("assets/Settings/2Players.png");
+	settingButton.loadFromFile("../assets/Settings/2Players.png");
 	settingButtonS.setTexture(settingButton, true);
 
-	VolumeT.loadFromFile("assets/Settings/ButtonVol.png");
+	VolumeT.loadFromFile("../assets/Settings/ButtonVol.png");
 	VolumeS.setTexture(VolumeT);
 	VolumeS.setColor(sf::Color::White);
 	VolumeS.setScale(0.08, 0.08);
