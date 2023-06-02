@@ -4,7 +4,6 @@
 #include "Loja.cpp"
 
 
-
 int main()
 {
 	Menu * start = new Menu();

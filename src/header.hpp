@@ -6,6 +6,10 @@
 #include <SFML/Audio.hpp>
 #include <time.h>
 #include<vector>
+#define car2price 10
+#define car3price 20
+#define car4price 30
+#define car5price 40
 using namespace std;
 class Menu {
 protected:
@@ -66,6 +70,8 @@ protected:
 	sf::RectangleShape arrowMouseR;
 	sf::RectangleShape arrowMouseL;
 	sf::RectangleShape SelectCar;
+	sf::RectangleShape buyCar;
+
 	sf::Texture arrowL;
 	sf::Sprite arrowLS;
 	int contSction = 1;
@@ -75,8 +81,27 @@ protected:
 	sf::Texture arrowR;
 	sf::Sprite arrowRS;
 
+	int money = 0;
+	sf::Texture moneyicon;
+	sf::Sprite moneyiconS;
+
+
 	sf::Texture vitrine;
 	sf::Sprite vitrineS;
+
+	////////Carros bloqueados//////////
+	
+	bool carblocked = true;
+	bool car1blocked = false;
+	bool car2blocked = true;
+	bool car3blocked = true;
+	bool car4blocked = true;
+	bool car5blocked = true;
+
+
+	sf::Texture blocked;
+	sf::Sprite blockedS;
+
 protected:
 
 	void loopEvents();

@@ -147,6 +147,8 @@ void Menu::eventsMenu() {
 
 	if (SelecionadoEnter == true) {
 		if (counterKeyboard == 1) {
+			keyMenu = false;
+			keyGame = true;
 
 		}
 		if (counterKeyboard == 2) {
@@ -160,6 +162,8 @@ void Menu::eventsMenu() {
 
 	if (Mouse_Left == true) {
 		if (StartMouse.getGlobalBounds().contains(mouse_coord)) {
+			keyMenu = false;
+			keyGame = true;
 
 		}
 		if (SettingMouse.getGlobalBounds().contains(mouse_coord)) {
@@ -431,6 +435,7 @@ void Menu::Eventsconfiguration() {
 			keySettings = false;
 			ZeraCounters();
 		}
+		//shop
 		if (counterVertical == 1 && counterKeyboard == 1) {
 			keyShop = true;
 			CarSelectP1 = 1;
@@ -438,12 +443,14 @@ void Menu::Eventsconfiguration() {
 			keySettings = false;
 			ZeraCounters();
 		}
+		//oneplayer
 		if (counterVertical == 2 && counterKeyboard == 0) {
 			keyMenu = true;
 			keySettings = false;
 			ModoGame = 1;
 			ZeraCounters();
 		}
+		//two player
 		if (counterVertical == 2 && counterKeyboard == 1) {
 			keyMenu = true;
 			keySettings = false;
