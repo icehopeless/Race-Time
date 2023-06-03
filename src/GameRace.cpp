@@ -3,16 +3,22 @@
 void Game::InicializarGame(){
 	music.stop();
 	VolumeS.setColor(sf::Color::Transparent);
-	fundo.loadFromFile("assets/Game/pista1.png");
+	fundo.loadFromFile("../assets/Game/pista1.png");
 	Fundo.setTexture(fundo,true);
 	startButtonS.setColor(sf::Color::Transparent);
 	settingButtonS.setColor(sf::Color::Transparent);
 	texture3S.setColor(sf::Color::Transparent);
 	texture4S.setColor(sf::Color::Transparent);
-	car[0].loadFromFile("assets/Cars/Spt1.png");
-	car[1].loadFromFile("assets/Cars/Spt2.png");
+	car[0].loadFromFile("../assets/Cars/Spt1.png");
+	car[1].loadFromFile("../assets/Cars/Spt2.png");
 	spritecars.setTexture(car[texturaRecorrente]);
 	spritecars.setScale(0.3,0.3);
+	ArrowRS.setColor(sf::Color::Transparent);
+	ArrowLS.setColor(sf::Color::Transparent);
+	ArrowRS2.setColor(sf::Color::Transparent);
+	ArrowLS2.setColor(sf::Color::Transparent);
+	vitrineS2.setColor(sf::Color::Transparent);
+	vitrineS.setColor(sf::Color::Transparent);
 
 	colison1.setSize(sf::Vector2f(1200, 110));
 	carrohit.setSize(sf::Vector2f(80, 110));

@@ -8,24 +8,24 @@ Menu::~Menu() {
 }
 void Menu::Start() {
 	texturaRecorrente =0;
-	c =0;
+	c = 0;
 	window.create(sf::VideoMode(1280, 720), "Race Time",sf::Style::Titlebar | sf::Style::Close);
 	window.setPosition(sf::Vector2i(0, 0));
 	sf::Image Icon = sf::Image { };
-	Icon.loadFromFile("assets/Icon/Icon.jpg");
+	Icon.loadFromFile("../assets/Icon/Icon.jpg");
 	window.setIcon(Icon.getSize().x, Icon.getSize().y, Icon.getPixelsPtr());
 	counterResu = 3;
 	Volume.setPosition(450, 390);
 	VolumeS.setPosition(450,390);
 	spritecars.setPosition(400,400);
-	fundo.loadFromFile("assets/1.png");
+	fundo.loadFromFile("../assets/1.png");
 	Fundo.setTexture(fundo);
-	music.openFromFile("assets/Home.wav");
+	music.openFromFile("../assets/Home.wav");
 	Sound = 4;
 	music.setVolume(Sound);
 	VolumeUp = false;
 	VolumeDown = false;
-	startButton.loadFromFile("assets/Start.png");
+	startButton.loadFromFile("../assets/Start.png");
 	startButtonS.setTexture(startButton);
 	startButtonS.setScale(0.6, 0.6);
 	startButtonS.setPosition(510, 400);
@@ -34,7 +34,7 @@ void Menu::Start() {
 
 	CarSelectP1 = 1;
 	CarSelectP2 = rand() % 5;
-	settingButton.loadFromFile("assets/Setting.png");
+	settingButton.loadFromFile("../assets/Setting.png");
 	settingButtonS.setTexture(settingButton);
 	settingButtonS.setScale(0.5, 0.5);
 	settingButtonS.setPosition(490, 550);
@@ -65,17 +65,17 @@ void Menu::ZeraCounters() {
 
 void Menu::StartMenu() {
 
-	fundo.loadFromFile("assets/1.png");
+	fundo.loadFromFile("../assets/1.png");
 	Fundo.setTexture(fundo);
-	startButton.loadFromFile("assets/Start.png");
+	startButton.loadFromFile("../assets/Start.png");
 	startButtonS.setTexture(startButton);
 	startButtonS.setScale(0.6, 0.6);
 	startButtonS.setPosition(510, 400);
 	StartMouse.setPosition(480, 400);
 	StartMouse.setSize(sf::Vector2f(300, 110));
 	//*********************************************************
-	arrowRS.setColor(sf::Color::Transparent);
-	arrowLS.setColor(sf::Color::Transparent);
+	ArrowRS.setColor(sf::Color::Transparent);
+	ArrowLS.setColor(sf::Color::Transparent);
 	vitrineS.setColor(sf::Color::Transparent);
 	VolumeS.setColor(sf::Color::Transparent);
 	texture4S.setColor(sf::Color::Transparent);
@@ -86,7 +86,7 @@ void Menu::StartMenu() {
 	texture5S.setColor(sf::Color::Transparent);
 	Reso.setFillColor(sf::Color::Transparent);
 	//***********************************************************
-	settingButton.loadFromFile("assets/Setting.png");
+	settingButton.loadFromFile("../assets/Setting.png");
 	settingButtonS.setTexture(settingButton);
 	settingButtonS.setScale(0.5, 0.5);
 	settingButtonS.setPosition(490, 550);
@@ -158,7 +158,7 @@ void Menu::eventsMenu() {
 
 	if (SelecionadoEnter == true) {
 		if (counterKeyboard == 1) {
-			keyGame = true;
+			keyShop = true;
 			keyMenu = false;
 		}
 		if (counterKeyboard == 2) {
@@ -172,7 +172,7 @@ void Menu::eventsMenu() {
 
 	if (Mouse_Left == true) {
 		if (StartMouse.getGlobalBounds().contains(mouse_coord)) {
-			keyGame = true;
+			keyShop = true;
 			keyMenu = false;
 		}
 		if (SettingMouse.getGlobalBounds().contains(mouse_coord)) {
@@ -187,15 +187,15 @@ void Menu::eventsMenu() {
 void Menu::Setconfiguration() {
 	SetaEsquerada.setSize(sf::Vector2f(110, 120));
 	SetaDireita.setSize(sf::Vector2f(110, 120));
-	fundo.loadFromFile("assets/2.png");
-	texture3.loadFromFile("assets/Settings/Home.png");
+	fundo.loadFromFile("../assets/2.png");
+	texture3.loadFromFile("../assets/Settings/Home.png");
 	texture3S.setTexture(texture3);
 	texture3S.setScale(0.6, 0.6);
 	texture3S.setPosition(110, 580);
 
-	texture4.loadFromFile("assets/Settings/quit.png");
+	texture4.loadFromFile("../assets/Settings/quit.png");
 	texture4S.setTexture(texture4);
-	texture5.loadFromFile("assets/Settings/resolution.png");
+	texture5.loadFromFile("../assets/Settings/resolution.png");
 	texture5S.setTexture(texture5);
 
 	texture5S.setScale(0.3, 0.3);
@@ -205,14 +205,14 @@ void Menu::Setconfiguration() {
 	texture3S.setColor(sf::Color::White);
 	texture5S.setColor(sf::Color::White);
 
-	VolumeT.loadFromFile("assets/Settings/ButtonVol.png");
+	VolumeT.loadFromFile("../assets/Settings/ButtonVol.png");
 	VolumeS.setTexture(VolumeT);
 	VolumeS.setColor(sf::Color::White);
 	VolumeS.setScale(0.08, 0.08);
 	Volume.setRadius(32);
 
-	ArrowR.loadFromFile("assets/Settings/arrowR.png");
-	ArrowL.loadFromFile("assets/Settings/arrowL.png");
+	ArrowR.loadFromFile("../assets/Settings/arrowR.png");
+	ArrowL.loadFromFile("../assets/Settings/arrowL.png");
 	ArrowLS.setTexture(ArrowL);
 	ArrowRS.setTexture(ArrowR);
 
@@ -234,7 +234,7 @@ void Menu::Setconfiguration() {
 	CampMouse3.setSize(sf::Vector2f(300, 110));
 	CampMouse4.setSize(sf::Vector2f(300, 110));
 	texture5S.setPosition(300, 275);
-	font->loadFromFile("assets/Font/VintageTimes.ttf");
+	font->loadFromFile("../assets/Font/VintageTimes.ttf");
 
 	SetaDireita.setPosition(567, 287);
 	SetaEsquerada.setPosition(767, 287);
@@ -387,6 +387,12 @@ void Menu::loopEvents() {
 		if (event.type == sf::Event::Closed) {
 			window.close();
 		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && KeyDown == false) {
+			KeyA = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && KeyDown == false) {
+			KeyD = true;
+		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && KeyDown == false) {
 			KeyDown = true;
 		}
@@ -401,6 +407,9 @@ void Menu::loopEvents() {
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && SelecionadoEnter == false) {
 			SelecionadoEnter = true;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && SelecionadoEnter == false) {
+			Space = true;
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && Mouse_Left == false) {
 			Mouse_Left = true;
@@ -442,12 +451,13 @@ void Menu::drawMenu() {
 	window.draw(texture4S);
 	window.draw(texture5S);
 	window.draw(VolumeS);
-	window.draw(arrowRS);
-	window.draw(arrowLS);
-	window.draw(vitrineS);
-	window.draw(spritecars);
 	window.draw(ArrowRS);
 	window.draw(ArrowLS);
+	window.draw(ArrowRS2);
+	window.draw(ArrowLS2);
+	window.draw(vitrineS);
+	window.draw(vitrineS2);
+	window.draw(spritecars);
 	window.draw(Reso);
 
 	window.display();

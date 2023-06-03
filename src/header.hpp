@@ -34,12 +34,6 @@ protected:
 	sf::Texture VolumeT;
 	sf::Sprite VolumeS;
 
-	sf::Texture ArrowR;
-	sf::Sprite  ArrowRS;
-
-	sf::Texture ArrowL;
-	sf::Sprite  ArrowLS;
-
 	sf::CircleShape Volume;
 	sf::Vector2i pos_mouse;
 	sf::Vector2f mouse_coord;
@@ -60,7 +54,10 @@ protected:
 	bool VolumeUp;
 	bool VolumeDown;
 	bool SelecionadoEnter;
+	bool Space;
 	bool Mouse_Left;
+	bool KeyA;
+	bool KeyD;
 
 	int Sound,k;
 	bool keySettings;
@@ -81,20 +78,37 @@ protected:
 	int counterResu;
 
 // ||||||||||||||||||||||||||||||||||||||||||||LOJA|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+	
+	int CarSelectP1;
+	int CarSelectP2;
+	
+	//p1
 	sf::RectangleShape arrowMouseR;
 	sf::RectangleShape arrowMouseL;
 	sf::RectangleShape SelectCar;
-	sf::Texture arrowL;
-	sf::Sprite arrowLS;
-	int contSction = 1;
-	int CarSelectP1;
-	int CarSelectP2;
-	bool escolhafinalizada = false;
-	sf::Texture arrowR;
-	sf::Sprite arrowRS;
-
+	sf::Texture ArrowR;
+	sf::Sprite  ArrowRS;
+	sf::Texture ArrowL;
+	sf::Sprite  ArrowLS;
 	sf::Texture vitrine;
+	sf::Texture vitrine2;
 	sf::Sprite vitrineS;
+	int CarP1;
+
+	//p2
+	sf::RectangleShape arrowMouseR2;
+	sf::RectangleShape arrowMouseL2;
+	sf::RectangleShape SelectCar2;
+	sf::Sprite ArrowRS2;
+	sf::Sprite ArrowLS2;
+	sf::Sprite vitrineS2;
+	int CarP2;
+
+	int contSction = 1;
+	bool escolhafinalizada1 = false;
+	bool escolhafinalizada2 = false;
+
+	
 
 
 // ||||||||||||||||||||||||||||||||||||||||||||||||||Game||||||||||||||||||||||||||||||||||||||||||||||||||||
