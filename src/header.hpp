@@ -34,12 +34,15 @@ protected:
 	sf::Texture VolumeT;
 	sf::Sprite VolumeS;
 
+<<<<<<< HEAD
 	sf::Texture ArrowR;
 	sf::Sprite  ArrowRS;
 
 	sf::Texture ArrowL;
 	sf::Sprite  ArrowLS;
 
+=======
+>>>>>>> 18f9739b6bdd83469f89cdafc5bc796d76798ea5
 	sf::CircleShape Volume;
 	sf::Vector2i pos_mouse;
 	sf::Vector2f mouse_coord;
@@ -50,11 +53,14 @@ protected:
 	sf::RectangleShape CampMouse3;
 	sf::RectangleShape CampMouse4;
 
+<<<<<<< HEAD
 	sf::Texture SoundAumente;
 	sf::Sprite SoundSpriteR;
 
 	sf::Texture SoundAbaixa;
 	sf::Sprite SoundSpriteL;
+=======
+>>>>>>> 18f9739b6bdd83469f89cdafc5bc796d76798ea5
 	sf::Font *font;
 	sf::Text Reso;
 
@@ -65,7 +71,10 @@ protected:
 	bool VolumeUp;
 	bool VolumeDown;
 	bool SelecionadoEnter;
+	bool Space;
 	bool Mouse_Left;
+	bool KeyA;
+	bool KeyD;
 
 	int Sound,k;
 	bool keySettings;
@@ -84,25 +93,60 @@ protected:
 	sf::RectangleShape SetaDireita;
 
 	int counterResu;
+<<<<<<< HEAD
 	sf::RectangleShape SoundEsquerada;
 	sf::RectangleShape SoundDireita;
 
+=======
+>>>>>>> 18f9739b6bdd83469f89cdafc5bc796d76798ea5
 
 // ||||||||||||||||||||||||||||||||||||||||||||LOJA|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+	
+	int CarSelectP1;
+	int CarSelectP2;
+	
+	//p1
 	sf::RectangleShape arrowMouseR;
 	sf::RectangleShape arrowMouseL;
 	sf::RectangleShape SelectCar;
-	sf::Texture arrowL;
-	sf::Sprite arrowLS;
-	int contSction = 1;
-	int CarSelectP1;
-	int CarSelectP2;
-	bool escolhafinalizada = false;
-	sf::Texture arrowR;
-	sf::Sprite arrowRS;
-
+	sf::Texture ArrowR;
+	sf::Sprite  ArrowRS;
+	sf::Texture ArrowL;
+	sf::Sprite  ArrowLS;
 	sf::Texture vitrine;
+	sf::Texture vitrine2;
 	sf::Sprite vitrineS;
+<<<<<<< HEAD
+=======
+	int CarP1;
+
+	//p2
+	sf::RectangleShape arrowMouseR2;
+	sf::RectangleShape arrowMouseL2;
+	sf::RectangleShape SelectCar2;
+	sf::Sprite ArrowRS2;
+	sf::Sprite ArrowLS2;
+	sf::Sprite vitrineS2;
+	int CarP2;
+
+	int contSction = 1;
+	bool escolhafinalizada1 = false;
+	bool escolhafinalizada2 = false;
+
+	
+
+
+// ||||||||||||||||||||||||||||||||||||||||||||||||||Game||||||||||||||||||||||||||||||||||||||||||||||||||||
+	sf::RectangleShape colison1;
+	sf::RectangleShape carrohit;
+	sf::Texture car[2];
+	sf::Sprite spritecars;
+	int texturaRecorrente,c;
+	sf::FloatRect ColisonBounds ;
+		sf::FloatRect carBounds ;
+
+protected:
+>>>>>>> 18f9739b6bdd83469f89cdafc5bc796d76798ea5
 
 
 // ||||||||||||||||||||||||||||||||||||||||||||||||||Game||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -147,8 +191,11 @@ private:
 	void EventsGame();
 
 public :
+<<<<<<< HEAD
 	sf::Sprite spritecars;
 	int texturaRecorrente,c;
+=======
+>>>>>>> 18f9739b6bdd83469f89cdafc5bc796d76798ea5
 	void MovimentCar();
 	void run_game();
 };
