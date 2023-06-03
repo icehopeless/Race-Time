@@ -2,14 +2,11 @@
 
 #include<stdio.h>
 #include<iostream>
+#include<sstream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <time.h>
 #include<vector>
-#define car2price 10
-#define car3price 20
-#define car4price 30
-#define car5price 40
 using namespace std;
 class Menu {
 protected:
@@ -31,8 +28,18 @@ protected:
 	sf::Texture texture4;
 	sf::Sprite texture4S;
 
+	sf::Texture texture5;
+	sf::Sprite texture5S;
+
 	sf::Texture VolumeT;
 	sf::Sprite VolumeS;
+
+	sf::Texture ArrowR;
+	sf::Sprite  ArrowRS;
+
+	sf::Texture ArrowL;
+	sf::Sprite  ArrowLS;
+
 	sf::CircleShape Volume;
 	sf::Vector2i pos_mouse;
 	sf::Vector2f mouse_coord;
@@ -42,6 +49,9 @@ protected:
 
 	sf::RectangleShape CampMouse3;
 	sf::RectangleShape CampMouse4;
+
+	sf::Font *font;
+	sf::Text Reso;
 
 	bool  KeyDown;
 	bool KeyUP;
@@ -53,7 +63,6 @@ protected:
 	bool Mouse_Left;
 
 	int Sound,k;
-	int ModoGame;
 	bool keySettings;
 	bool keyMenu;
 	bool keyShop;
@@ -65,13 +74,16 @@ protected:
 
 	bool destruirGame;
 	bool destruirLoja;
+	string resolutionNumber;
+	sf::RectangleShape SetaEsquerada;
+	sf::RectangleShape SetaDireita;
+
+	int counterResu;
 
 // ||||||||||||||||||||||||||||||||||||||||||||LOJA|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 	sf::RectangleShape arrowMouseR;
 	sf::RectangleShape arrowMouseL;
 	sf::RectangleShape SelectCar;
-	sf::RectangleShape buyCar;
-
 	sf::Texture arrowL;
 	sf::Sprite arrowLS;
 	int contSction = 1;
@@ -81,26 +93,14 @@ protected:
 	sf::Texture arrowR;
 	sf::Sprite arrowRS;
 
-	int money = 0;
-	sf::Texture moneyicon;
-	sf::Sprite moneyiconS;
-
-
 	sf::Texture vitrine;
 	sf::Sprite vitrineS;
 
-	////////Carros bloqueados//////////
-	
-	bool carblocked = true;
-	bool car1blocked = false;
-	bool car2blocked = true;
-	bool car3blocked = true;
-	bool car4blocked = true;
-	bool car5blocked = true;
 
-
-	sf::Texture blocked;
-	sf::Sprite blockedS;
+// ||||||||||||||||||||||||||||||||||||||||||||||||||Game||||||||||||||||||||||||||||||||||||||||||||||||||||
+	sf::RectangleShape colison1;
+	sf::Texture car[3];
+	sf::Sprite spritecars;
 
 protected:
 
@@ -129,7 +129,10 @@ private:
 	void InicializarGame();
 	void DrawGame();
 	void game();
+	void EventsGame();
+
 public :
+	void MovimentCar();
 	void run_game();
 };
 
@@ -138,7 +141,6 @@ class Loja:public Menu{
 public:
 	void Section1();
 	void Section2();
-	void SelectOnePlayer();
 	void SelectTwoPlayer();
 	void InicializarLoja();
 	void loja();
@@ -153,11 +155,14 @@ public :
  * COISAS DO JOGO
  */
 
-class Carros{
+class Carros:public Menu{
 public:
+
 	string nome;
 	int vel;
 	sf::Texture Textura;
 	sf::Sprite SpriteCar;
+public:
+
 
 };
