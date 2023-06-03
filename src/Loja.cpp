@@ -29,99 +29,6 @@ void Loja::InicializarLoja() {
 
 }
 
-void Loja::SelectOnePlayer() {
-	if (arrowMouseL.getGlobalBounds().contains(mouse_coord)) {
-		arrowLS.setColor(sf::Color::Blue);
-		arrowRS.setColor(sf::Color::White);
-	} else {
-		arrowLS.setColor(sf::Color::White);
-	}
-	if (arrowMouseR.getGlobalBounds().contains(mouse_coord)) {
-		arrowRS.setColor(sf::Color::Blue);
-		arrowLS.setColor(sf::Color::White);
-	} else {
-		arrowRS.setColor(sf::Color::White);
-	}
-
-	if (KeyRight == true) {
-		CarSelectP1++;
-		arrowRS.setColor(sf::Color::Blue);
-		arrowLS.setColor(sf::Color::White);
-		if (CarSelectP1 > 5) {
-			CarSelectP1 = 1;
-		}
-		KeyRight = false;
-	}
-
-	if (KeyLeft == true) {
-		CarSelectP1--;
-		arrowLS.setColor(sf::Color::Blue);
-		arrowRS.setColor(sf::Color::White);
-		if (CarSelectP1 < 1) {
-			CarSelectP1 = 5;
-		}
-		KeyLeft = false;
-	}
-	if (Mouse_Left == true) {
-		if (arrowMouseR.getGlobalBounds().contains(mouse_coord)) {
-			CarSelectP1++;
-			if (CarSelectP1 > 5) {
-				CarSelectP1 = 1;
-			}
-		}
-
-		if (arrowMouseL.getGlobalBounds().contains(mouse_coord)) {
-			CarSelectP1--;
-			if (CarSelectP1 < 1) {
-				CarSelectP1 = 5;
-			}
-		}
-
-		if (SelectCar.getGlobalBounds().contains(mouse_coord)) {
-			contSction = 1;
-			keyShop = false;
-			keyMenu = true;
-			escolhafinalizada = false;
-
-		}
-
-
-		Mouse_Left = false;
-	}
-
-	if (CarSelectP1 == 1) {
-		vitrine.loadFromFile("assets/Cars/V1.png");
-		vitrineS.setTexture(vitrine);
-		vitrineS.setScale(0.7, 0.7);
-		vitrineS.setPosition(360, 210);
-	}
-	if (CarSelectP1 == 2) {
-		vitrine.loadFromFile("assets/Cars/V2.png");
-		vitrineS.setTexture(vitrine, true);
-		vitrineS.setScale(0.3, 0.3);
-	}
-	if (CarSelectP1 == 3) {
-		vitrine.loadFromFile("assets/Cars/V3.png");
-		vitrineS.setTexture(vitrine, true);
-		vitrineS.setScale(0.7, 0.7);
-	}
-	if (CarSelectP1 == 4) {
-		vitrine.loadFromFile("assets/Cars/V4.png");
-		vitrineS.setTexture(vitrine, true);
-		vitrineS.setScale(0.7, 0.7);
-	}
-	if (CarSelectP1 == 5) {
-		vitrineS.setScale(0.3, 0.3);
-		vitrine.loadFromFile("assets/Cars/V5.png");
-		vitrineS.setTexture(vitrine, true);
-	}
-
-	if (SelecionadoEnter == true) {
-		keyShop = false;
-		keyMenu = true;
-	}
-}
-
 
 void Loja::Section1(){
 	if (arrowMouseL.getGlobalBounds().contains(mouse_coord)) {
@@ -327,13 +234,8 @@ void Loja::SelectTwoPlayer() {
 void Loja::EventsLoja() {
 
 
-	if (ModoGame == 1) {
-		SelectOnePlayer();
-	}
-
-	if (ModoGame == 2) {
 		SelectTwoPlayer();
-	}
+
 
 }
 

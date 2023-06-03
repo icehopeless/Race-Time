@@ -1,21 +1,21 @@
 #include "header.hpp"
 Menu::Menu() {
+	font = new sf::Font();
 	Start();
 }
 Menu::~Menu() {
-
+	delete font;
 }
 void Menu::Start() {
 
-	ModoGame = 0;
 	window.create(sf::VideoMode(1280, 720), "Race Time",sf::Style::Titlebar | sf::Style::Close);
 	window.setPosition(sf::Vector2i(0, 0));
 	sf::Image Icon = sf::Image { };
 	Icon.loadFromFile("assets/Icon/Icon.jpg");
 	window.setIcon(Icon.getSize().x, Icon.getSize().y, Icon.getPixelsPtr());
-
-	Volume.setPosition(140, 60);
-	VolumeS.setPosition(140, 60);
+	counterResu = 3;
+	Volume.setPosition(450, 390);
+	VolumeS.setPosition(450,390);
 
 	fundo.loadFromFile("assets/1.png");
 	Fundo.setTexture(fundo);
@@ -30,7 +30,7 @@ void Menu::Start() {
 	startButtonS.setPosition(510, 400);
 	StartMouse.setPosition(480, 400);
 	StartMouse.setSize(sf::Vector2f(300, 110));
-	ModoGame = 1;
+
 	CarSelectP1 = 1;
 	CarSelectP2 = rand() % 5;
 	settingButton.loadFromFile("assets/Setting.png");
@@ -53,6 +53,8 @@ void Menu::Start() {
 	keyGame = false;
 	k = 1;
 	counterKeyboard = 0;
+
+
 }
 void Menu::ZeraCounters() {
 	counterKeyboard = 0;
@@ -61,9 +63,7 @@ void Menu::ZeraCounters() {
 }
 
 void Menu::StartMenu() {
-	VolumeS.setColor(sf::Color::Transparent);
-	texture4S.setColor(sf::Color::Transparent);
-	texture3S.setColor(sf::Color::Transparent);
+
 	fundo.loadFromFile("assets/1.png");
 	Fundo.setTexture(fundo);
 	startButton.loadFromFile("assets/Start.png");
@@ -76,9 +76,14 @@ void Menu::StartMenu() {
 	arrowRS.setColor(sf::Color::Transparent);
 	arrowLS.setColor(sf::Color::Transparent);
 	vitrineS.setColor(sf::Color::Transparent);
-
-
-
+	VolumeS.setColor(sf::Color::Transparent);
+	texture4S.setColor(sf::Color::Transparent);
+	texture5S.setColor(sf::Color::Transparent);
+	texture3S.setColor(sf::Color::Transparent);
+	ArrowLS.setColor(sf::Color::Transparent);
+	ArrowRS.setColor(sf::Color::Transparent);
+	texture5S.setColor(sf::Color::Transparent);
+	Reso.setFillColor(sf::Color::Transparent);
 	//***********************************************************
 	settingButton.loadFromFile("assets/Setting.png");
 	settingButtonS.setTexture(settingButton);
@@ -87,10 +92,15 @@ void Menu::StartMenu() {
 	SettingMouse.setPosition(490, 550);
 	SettingMouse.setSize(sf::Vector2f(300, 110));
 
+	if(counterKeyboard == 0){
+	startButtonS.setColor(sf::Color::White);
+	settingButtonS.setColor(sf::Color::White);
+	}
 }
 
 void Menu::eventsMenu() {
 	StartMenu();
+
 	if (StartMouse.getGlobalBounds().contains(mouse_coord)) {
 		startButtonS.setColor(sf::Color::Magenta);
 		settingButtonS.setColor(sf::Color::White);
@@ -147,7 +157,8 @@ void Menu::eventsMenu() {
 
 	if (SelecionadoEnter == true) {
 		if (counterKeyboard == 1) {
-
+			keyGame = true;
+			keyMenu = false;
 		}
 		if (counterKeyboard == 2) {
 			keyMenu = false;
@@ -160,13 +171,12 @@ void Menu::eventsMenu() {
 
 	if (Mouse_Left == true) {
 		if (StartMouse.getGlobalBounds().contains(mouse_coord)) {
-
+			keyGame = true;
+			keyMenu = false;
 		}
 		if (SettingMouse.getGlobalBounds().contains(mouse_coord)) {
 			keyMenu = false;
 			keySettings = true;
-
-			ZeraCounters();
 		}
 		Mouse_Left = false;
 	}
@@ -174,218 +184,99 @@ void Menu::eventsMenu() {
 }
 
 void Menu::Setconfiguration() {
-
+	SetaEsquerada.setSize(sf::Vector2f(110, 120));
+	SetaDireita.setSize(sf::Vector2f(110, 120));
 	fundo.loadFromFile("assets/2.png");
 	texture3.loadFromFile("assets/Settings/Home.png");
 	texture3S.setTexture(texture3);
 	texture3S.setScale(0.6, 0.6);
 	texture3S.setPosition(110, 580);
 
-	texture4.loadFromFile("assets/Settings/Cars.png");
+	texture4.loadFromFile("assets/Settings/quit.png");
 	texture4S.setTexture(texture4);
+	texture5.loadFromFile("assets/Settings/resolution.png");
+	texture5S.setTexture(texture5);
+
+	texture5S.setScale(0.3, 0.3);
 	texture4S.setScale(0.6, 0.6);
 	texture4S.setPosition(922, 580);
-
-	startButton.loadFromFile("assets/Settings/1Player.png");
-	startButtonS.setTexture(startButton, true);
-
-	settingButton.loadFromFile("assets/Settings/2Players.png");
-	settingButtonS.setTexture(settingButton, true);
+	texture4S.setColor(sf::Color::White);
+	texture3S.setColor(sf::Color::White);
+	texture5S.setColor(sf::Color::White);
 
 	VolumeT.loadFromFile("assets/Settings/ButtonVol.png");
 	VolumeS.setTexture(VolumeT);
 	VolumeS.setColor(sf::Color::White);
 	VolumeS.setScale(0.08, 0.08);
-
-	startButtonS.setPosition(250, 370);
-	startButtonS.setScale(0.4, 0.4);
-
 	Volume.setRadius(32);
-	settingButtonS.setPosition(790, 370);
-	settingButtonS.setScale(0.4, 0.4);
 
-	StartMouse.setPosition(200, 340);
-	SettingMouse.setPosition(740, 340);
+	ArrowR.loadFromFile("assets/Settings/arrowR.png");
+	ArrowL.loadFromFile("assets/Settings/arrowL.png");
+	ArrowLS.setTexture(ArrowL);
+	ArrowRS.setTexture(ArrowR);
+
+	ArrowLS.setScale(0.3,0.3);
+	ArrowRS.setScale(0.3,0.3);
+	ArrowLS.setColor(sf::Color::White);
+	ArrowRS.setColor(sf::Color::White);
+	ArrowLS.setPosition(560, 287);
+	ArrowRS.setPosition(760, 287);
+
+	startButtonS.setColor(sf::Color::Transparent);
+	settingButtonS.setColor(sf::Color::Transparent);
 
 	CampMouse3.setPosition(90, 570);
 	CampMouse4.setPosition(872, 570);
 
-	StartMouse.setSize(sf::Vector2f(300, 110));
-	SettingMouse.setSize(sf::Vector2f(300, 110));
+	SetaDireita.setSize(sf::Vector2f(30, 30));
+	SetaEsquerada.setSize(sf::Vector2f(30, 30));
 	CampMouse3.setSize(sf::Vector2f(300, 110));
 	CampMouse4.setSize(sf::Vector2f(300, 110));
-}
-void Menu::EventsconfigurationHorizontal() {
+	texture5S.setPosition(300, 275);
+	font->loadFromFile("assets/Font/VintageTimes.ttf");
 
-	if (KeyRight == true) {
+	SetaDireita.setPosition(567, 287);
+	SetaEsquerada.setPosition(767, 287);
 
-		if (counterKeyboard < 1) {
-			counterKeyboard++;
-			if (counterKeyboard == 0 && counterVertical == 2) {
-				texture3S.setColor(sf::Color::White);
-				settingButtonS.setColor(sf::Color::White);
-				texture4S.setColor(sf::Color::White);
-				startButtonS.setColor(sf::Color::Magenta);
-			}
-			if (counterKeyboard == 1 && counterVertical == 2) {
-				texture3S.setColor(sf::Color::White);
-				texture4S.setColor(sf::Color::White);
-				settingButtonS.setColor(sf::Color::Magenta);
-				startButtonS.setColor(sf::Color::White);
-			}
-			if (counterKeyboard == 0 && counterVertical == 1) {
-				texture3S.setColor(sf::Color::Magenta);
-				settingButtonS.setColor(sf::Color::White);
-				texture4S.setColor(sf::Color::White);
-				startButtonS.setColor(sf::Color::White);
-			}
-			if (counterKeyboard == 1 && counterVertical == 1) {
-				texture3S.setColor(sf::Color::White);
-				texture4S.setColor(sf::Color::Magenta);
-				settingButtonS.setColor(sf::Color::White);
-				startButtonS.setColor(sf::Color::White);
-			}
-		}
-		KeyRight = false;
-	}
+	Reso.setFont(*font);
+	Reso.setCharacterSize(30);
+	Reso.setFillColor(sf::Color::Cyan);
+	Reso.setPosition(620, 287);
 
-	if (KeyLeft == true) {
-		if (counterKeyboard > 0) {
-			counterKeyboard--;
-			if (counterKeyboard == 0 && counterVertical == 2) {
-				texture3S.setColor(sf::Color::White);
-				settingButtonS.setColor(sf::Color::White);
-				texture4S.setColor(sf::Color::White);
-				startButtonS.setColor(sf::Color::Magenta);
-			}
-			if (counterKeyboard == 1 && counterVertical == 2) {
-				texture3S.setColor(sf::Color::White);
-				texture4S.setColor(sf::Color::White);
-				settingButtonS.setColor(sf::Color::Magenta);
-				startButtonS.setColor(sf::Color::White);
-			}
 
-			if (counterKeyboard == 0 && counterVertical == 1) {
-				texture3S.setColor(sf::Color::Magenta);
-				settingButtonS.setColor(sf::Color::White);
-				texture4S.setColor(sf::Color::White);
-				startButtonS.setColor(sf::Color::White);
-			}
-			if (counterKeyboard == 1 && counterVertical == 1) {
-				texture3S.setColor(sf::Color::White);
-				texture4S.setColor(sf::Color::Magenta);
-				settingButtonS.setColor(sf::Color::White);
-				startButtonS.setColor(sf::Color::White);
-			}
-		}
-		KeyLeft = false;
-	}
-}
-
-void Menu::EventsconfigurationVertical() {
-	if (KeyUP == true) {
-		if (counterVertical < 2) {
-			counterVertical++;
-			if (counterVertical == 1) {
-				texture3S.setColor(sf::Color::Magenta);
-				settingButtonS.setColor(sf::Color::White);
-				startButtonS.setColor(sf::Color::White);
-				texture4S.setColor(sf::Color::White);
-			}
-			if (counterVertical == 2 && counterKeyboard == 0) {
-				texture3S.setColor(sf::Color::White);
-				texture4S.setColor(sf::Color::White);
-				settingButtonS.setColor(sf::Color::White);
-				startButtonS.setColor(sf::Color::Magenta);
-			}
-			if (counterVertical == 2 && counterKeyboard == 1) {
-				texture3S.setColor(sf::Color::White);
-				texture4S.setColor(sf::Color::White);
-				settingButtonS.setColor(sf::Color::Magenta);
-				startButtonS.setColor(sf::Color::White);
-			}
-		}
-		KeyUP = false;
-	}
-
-	if (KeyDown == true) {
-		if (counterVertical > 1) {
-			counterVertical--;
-			if (counterVertical == 1 && counterKeyboard == 0) {
-				texture3S.setColor(sf::Color::Magenta);
-				settingButtonS.setColor(sf::Color::White);
-				startButtonS.setColor(sf::Color::White);
-				texture4S.setColor(sf::Color::White);
-			}
-			if (counterVertical == 1 && counterKeyboard == 1) {
-				texture3S.setColor(sf::Color::White);
-				settingButtonS.setColor(sf::Color::White);
-				startButtonS.setColor(sf::Color::White);
-				texture4S.setColor(sf::Color::Magenta);
-			}
-			if (counterVertical == 2) {
-				texture3S.setColor(sf::Color::White);
-				texture4S.setColor(sf::Color::White);
-				settingButtonS.setColor(sf::Color::White);
-				startButtonS.setColor(sf::Color::Magenta);
-			}
-		}
-		KeyDown = false;
-	}
 
 }
+
 
 void Menu::EventosMouseConfig() {
-	if (StartMouse.getGlobalBounds().contains(mouse_coord)) {
-		startButtonS.setColor(sf::Color::Magenta);
-		settingButtonS.setColor(sf::Color::White);
-		texture3S.setColor(sf::Color::White);
-		texture4S.setColor(sf::Color::White);
-		counterKeyboard = 0;
-		counterVertical = 2;
-	}
 
-	if (SettingMouse.getGlobalBounds().contains(mouse_coord)) {
-		startButtonS.setColor(sf::Color::White);
-		settingButtonS.setColor(sf::Color::Magenta);
-		texture3S.setColor(sf::Color::White);
-		texture4S.setColor(sf::Color::White);
-		counterKeyboard = 1;
-		counterVertical = 2;
-	}
+
 
 	if (CampMouse3.getGlobalBounds().contains(mouse_coord)) {
-		startButtonS.setColor(sf::Color::White);
-		settingButtonS.setColor(sf::Color::White);
 		texture3S.setColor(sf::Color::Magenta);
 		texture4S.setColor(sf::Color::White);
-		counterKeyboard = 0;
-		counterVertical = 1;
 	}
 
 	if (CampMouse4.getGlobalBounds().contains(mouse_coord)) {
-		startButtonS.setColor(sf::Color::White);
-		settingButtonS.setColor(sf::Color::White);
 		texture3S.setColor(sf::Color::White);
 		texture4S.setColor(sf::Color::Magenta);
-		counterKeyboard = 1;
-		counterVertical = 1;
+	}
+	if (SetaDireita.getGlobalBounds().contains(mouse_coord)) {
+			texture3S.setColor(sf::Color::White);
+			texture4S.setColor(sf::Color::White);
+			ArrowLS.setColor(sf::Color::Magenta);
+			ArrowRS.setColor(sf::Color::White);
+	}
+
+	if (SetaEsquerada.getGlobalBounds().contains(mouse_coord)) {
+			texture3S.setColor(sf::Color::White);
+			texture4S.setColor(sf::Color::White);
+			ArrowRS.setColor(sf::Color::Magenta);
+			ArrowLS.setColor(sf::Color::White);
 	}
 
 	if (Mouse_Left == true) {
-		if (StartMouse.getGlobalBounds().contains(mouse_coord)) {
-			keyMenu = true;
-			ModoGame = 1;
-			keySettings = false;
-			ZeraCounters();
 
-		}
-		if (SettingMouse.getGlobalBounds().contains(mouse_coord)) {
-			keyMenu = true;
-			ModoGame = 2;
-			keySettings = false;
-			ZeraCounters();
-		}
 		if (CampMouse3.getGlobalBounds().contains(mouse_coord)) {
 			keyMenu = true;
 			keySettings = false;
@@ -393,66 +284,65 @@ void Menu::EventosMouseConfig() {
 
 		}
 		if (CampMouse4.getGlobalBounds().contains(mouse_coord)) {
-			keyShop = true;
-			CarSelectP1 = 1;
-			CarSelectP2 = 2;
-			keySettings = false;
-			ZeraCounters();
+			window.close();
+		}
+
+		if (SetaEsquerada.getGlobalBounds().contains(mouse_coord)) {
+			counterResu++;
+		}
+
+		if (SetaDireita.getGlobalBounds().contains(mouse_coord)) {
+			counterResu--;
 		}
 
 		Mouse_Left = false;
 	}
 
-	if (Mouse_Left == true) {
-		if (Volume.getGlobalBounds().contains(mouse_coord)) {
-			Volume.setPosition(100, 100);
-		}
-		Mouse_Left = false;
-	}
 
 }
 void Menu::Eventsconfiguration() {
 
 	Setconfiguration();
-	if (counterVertical == 0) {
-		startButtonS.setColor(sf::Color::White);
-		settingButtonS.setColor(sf::Color::White);
-		texture4S.setColor(sf::Color::White);
-		texture3S.setColor(sf::Color::White);
-	}
 
-	EventsconfigurationVertical();
-	EventsconfigurationHorizontal();
 	EventosMouseConfig();
 
-	if (SelecionadoEnter == true) {
-		if (counterVertical == 1 && counterKeyboard == 0) {
-			keyMenu = true;
-			keySettings = false;
-			ZeraCounters();
-		}
-		if (counterVertical == 1 && counterKeyboard == 1) {
-			keyShop = true;
-			CarSelectP1 = 1;
-			CarSelectP2 = 2;
-			keySettings = false;
-			ZeraCounters();
-		}
-		if (counterVertical == 2 && counterKeyboard == 0) {
-			keyMenu = true;
-			keySettings = false;
-			ModoGame = 1;
-			ZeraCounters();
-		}
-		if (counterVertical == 2 && counterKeyboard == 1) {
-			keyMenu = true;
-			keySettings = false;
-			ModoGame = 2;
-			ZeraCounters();
-		}
-
-		SelecionadoEnter = false;
+	if(counterResu < 1){
+		counterResu= 1;
 	}
+
+	if(counterResu == 1){
+		Reso.setString("800X600");
+		window.setSize(sf::Vector2u(800,600));
+	}
+
+	if(counterResu == 2){
+		Reso.setString("1024X768");
+		window.setSize(sf::Vector2u(1024,768));
+	}
+
+	if(counterResu== 3){
+		Reso.setString("1280X720");
+		window.setSize(sf::Vector2u(1280,720));
+	}
+
+	if(counterResu== 4){
+		Reso.setString("1360X780");
+		window.setSize(sf::Vector2u(1360,780));
+	}
+	if(counterResu == 5){
+			Reso.setString("1600X900");
+			window.setSize(sf::Vector2u(1600,900));
+	}
+	if(counterResu== 6){
+			Reso.setString("1920X1080");
+			window.setSize(sf::Vector2u(1980,1080));
+	}
+	if(counterResu> 6){
+		counterResu= 6;
+	}
+
+
+
 
 	if (VolumeUp == true) {
 		k++;
@@ -471,16 +361,20 @@ void Menu::Eventsconfiguration() {
 		VolumeDown = false;
 	}
 
-	if(Volume.getPosition().x > 540){
-		Volume.setPosition(540,Volume.getPosition().y);
-		VolumeS.setPosition(540,Volume.getPosition().y);
+	if(Volume.getPosition().x > 800){
+		Volume.setPosition(800,Volume.getPosition().y);
+		VolumeS.setPosition(800,Volume.getPosition().y);
 	}
 
-	if(Volume.getPosition().x < 80){
-			Volume.setPosition(80,Volume.getPosition().y);
-			VolumeS.setPosition(80,Volume.getPosition().y);
-		}
+	if(Volume.getPosition().x < 350){
+			Volume.setPosition(350,Volume.getPosition().y);
+			VolumeS.setPosition(350,Volume.getPosition().y);
+	}
+
+
 }
+
+
 void Menu::loopEvents() {
 
 	sf::Event event;
@@ -520,11 +414,15 @@ void Menu::loopEvents() {
 	}
 }
 void Menu::ChamarGame(){
-
+/*
 	Game * startGame = new Game();
 	startGame->run_game();
 	delete startGame;
 	startGame = nullptr;
+	*/
+
+	Game * start;
+	start->run_game();
 }
 
 void Menu::ChamarLoja(){
@@ -541,10 +439,15 @@ void Menu::drawMenu() {
 	window.draw(settingButtonS);
 	window.draw(texture3S);
 	window.draw(texture4S);
+	window.draw(texture5S);
 	window.draw(VolumeS);
 	window.draw(arrowRS);
 	window.draw(arrowLS);
 	window.draw(vitrineS);
+	window.draw(spritecars);
+	window.draw(ArrowRS);
+	window.draw(ArrowLS);
+	window.draw(Reso);
 	window.display();
 
 
