@@ -512,8 +512,6 @@ void Menu::EventsKeyboard(){
 }
 
 void Menu::Eventsconfiguration() {
-	cout << counterVertical << " | " << counterKeyboard << endl;
-	fflush(stdout);
 	Setconfiguration();
 	EventsKeyboard();
 	EventosMouseConfig();
