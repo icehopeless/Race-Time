@@ -50,6 +50,11 @@ protected:
 	sf::RectangleShape CampMouse3;
 	sf::RectangleShape CampMouse4;
 
+	sf::Texture SoundAumente;
+	sf::Sprite SoundSpriteR;
+
+	sf::Texture SoundAbaixa;
+	sf::Sprite SoundSpriteL;
 	sf::Font *font;
 	sf::Text Reso;
 
@@ -79,6 +84,9 @@ protected:
 	sf::RectangleShape SetaDireita;
 
 	int counterResu;
+	sf::RectangleShape SoundEsquerada;
+	sf::RectangleShape SoundDireita;
+
 
 // ||||||||||||||||||||||||||||||||||||||||||||LOJA|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 	sf::RectangleShape arrowMouseR;
@@ -98,22 +106,20 @@ protected:
 
 
 // ||||||||||||||||||||||||||||||||||||||||||||||||||Game||||||||||||||||||||||||||||||||||||||||||||||||||||
-	sf::RectangleShape colison1;
-	sf::Texture car[3];
-	sf::Sprite spritecars;
 
+ bool liberagamer;
 protected:
-
+	void AleterarCor();
 	void loopEvents();
 	void Start();
 	void drawMenu();
 	void eventsMenu();
 	void Setconfiguration();
 	void Eventsconfiguration();
-	void EventsconfigurationHorizontal();
-	void EventsconfigurationVertical();
+	void EventsKeyboard();
 	void ZeraCounters();
 	void EventosMouseConfig();
+	void drawConfig();
 	void StartMenu();
 	void ChamarGame();
 	void ChamarLoja();
@@ -125,6 +131,15 @@ public:
 
 
 class Game:public Menu{
+
+private:
+	sf::RectangleShape colison1;
+		sf::RectangleShape carrohit;
+		sf::Texture car[2];
+
+
+		sf::FloatRect ColisonBounds ;
+			sf::FloatRect carBounds ;
 private:
 	void InicializarGame();
 	void DrawGame();
@@ -132,6 +147,8 @@ private:
 	void EventsGame();
 
 public :
+	sf::Sprite spritecars;
+	int texturaRecorrente,c;
 	void MovimentCar();
 	void run_game();
 };
