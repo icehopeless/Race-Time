@@ -7,7 +7,8 @@ Menu::~Menu() {
 	delete font;
 }
 void Menu::Start() {
-
+	texturaRecorrente =0;
+	c =0;
 	window.create(sf::VideoMode(1280, 720), "Race Time",sf::Style::Titlebar | sf::Style::Close);
 	window.setPosition(sf::Vector2i(0, 0));
 	sf::Image Icon = sf::Image { };
@@ -16,7 +17,7 @@ void Menu::Start() {
 	counterResu = 3;
 	Volume.setPosition(450, 390);
 	VolumeS.setPosition(450,390);
-
+	spritecars.setPosition(400,400);
 	fundo.loadFromFile("assets/1.png");
 	Fundo.setTexture(fundo);
 	music.openFromFile("assets/Home.wav");
@@ -448,6 +449,7 @@ void Menu::drawMenu() {
 	window.draw(ArrowRS);
 	window.draw(ArrowLS);
 	window.draw(Reso);
+
 	window.display();
 
 
@@ -468,7 +470,7 @@ void Menu::run_menu() {
 		}else if (keyShop == true) {
 			ChamarLoja();
 		}
-
+		c++;
 		drawMenu();
 	}
 }

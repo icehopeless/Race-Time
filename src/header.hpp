@@ -99,8 +99,12 @@ protected:
 
 // ||||||||||||||||||||||||||||||||||||||||||||||||||Game||||||||||||||||||||||||||||||||||||||||||||||||||||
 	sf::RectangleShape colison1;
-	sf::Texture car[3];
+	sf::RectangleShape carrohit;
+	sf::Texture car[2];
 	sf::Sprite spritecars;
+	int texturaRecorrente,c;
+	sf::FloatRect ColisonBounds ;
+		sf::FloatRect carBounds ;
 
 protected:
 

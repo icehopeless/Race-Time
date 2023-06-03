@@ -1,7 +1,6 @@
 #include "header.hpp"
 
 void Game::InicializarGame(){
-	printf("Hellow");
 	music.stop();
 	VolumeS.setColor(sf::Color::Transparent);
 	fundo.loadFromFile("assets/Game/pista1.png");
@@ -10,9 +9,20 @@ void Game::InicializarGame(){
 	settingButtonS.setColor(sf::Color::Transparent);
 	texture3S.setColor(sf::Color::Transparent);
 	texture4S.setColor(sf::Color::Transparent);
-	car.loadFromFile("assets/Cars/SuperB.png");
-	spritecars.setTexture(car);
-	spritecars.setScale(3,3);
+	car[0].loadFromFile("assets/Cars/Spt1.png");
+	car[1].loadFromFile("assets/Cars/Spt2.png");
+	spritecars.setTexture(car[texturaRecorrente]);
+	spritecars.setScale(0.3,0.3);
+
+	colison1.setSize(sf::Vector2f(1200, 110));
+	carrohit.setSize(sf::Vector2f(80, 110));
+	carrohit.setFillColor(sf::Color::Black);
+	carrohit.setPosition(spritecars.getPosition().x, spritecars.getPosition().y+30);
+
+	 ColisonBounds = colison1.getGlobalBounds();
+	 carBounds = carrohit.getGlobalBounds();
+
+
 }
 void Game::run_game(){
 	InicializarGame();
@@ -29,29 +39,76 @@ void Game::DrawGame(){
 
 }
 void Game::MovimentCar(){
-	 int vel = 70;
-	 int velR = 12;
-	if(KeyDown == true){
-		spritecars.setPosition(spritecars.getPosition().x - vel, spritecars.getPosition().y);
-		KeyDown= false;
-	}
+	cout << c;
+	fflush(stdout);
 
 	if(KeyUP == true){
-			spritecars.setPosition(spritecars.getPosition().x + vel, spritecars.getPosition().y);
-			KeyUP= false;
+		spritecars.setRotation(90);
+		carrohit.setRotation(90);
+		spritecars.move(40,0);
+		if(c == 2 || c > 2){
+			c =0;
+			if(texturaRecorrente == 1){
+				texturaRecorrente=0;
+			}else{
+				texturaRecorrente++;
+			}
+		}
+		KeyUP=false;
+	}
+
+	if(KeyRight == true){
+			spritecars.setRotation(180);
+			carrohit.setRotation(180);
+			spritecars.move(0,40);
+			if(c == 2 || c > 2){
+				c =0;
+				if(texturaRecorrente == 1){
+					texturaRecorrente=0;
+				}else{
+					texturaRecorrente++;
+				}
+			}
+			KeyRight=false;
 		}
 
 	if(KeyLeft == true){
-		spritecars.setRotation(spritecars.getRotation() - velR);
-			spritecars.setPosition(spritecars.getPosition().x, spritecars.getPosition().y - vel);
-			KeyLeft = false;
+			spritecars.setRotation(360);
+			carrohit.setRotation(360);
+			spritecars.move(0,-40);
+			if(c == 2 || c > 2){
+				c =0;
+				if(texturaRecorrente == 1){
+					texturaRecorrente=0;
+				}else{
+					texturaRecorrente++;
+				}
+			}
+			KeyLeft=false;
 		}
 
-	if(KeyRight == true){
-			spritecars.setRotation(spritecars.getRotation() + velR);
-			spritecars.setPosition(spritecars.getPosition().x - vel, spritecars.getPosition().y + vel);
-			KeyRight= false;
-		}
+	if(KeyDown == true){
+				spritecars.setRotation(270);
+				carrohit.setRotation(270);
+				spritecars.move(-40,0);
+				if(c == 2 || c > 2){
+					c =0;
+					if(texturaRecorrente == 1){
+						texturaRecorrente=0;
+					}else{
+						texturaRecorrente++;
+					}
+				}
+				KeyDown=false;
+			}
+
+	if (carBounds.intersects( ColisonBounds)) {
+		spritecars.setPosition(spritecars.getPosition().x , spritecars.getPosition().y + 110);
+
+			}
+
+
+
 }
 
 
