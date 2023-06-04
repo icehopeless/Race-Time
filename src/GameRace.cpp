@@ -3,20 +3,20 @@
 void Game::InicializarGame(){
 	music.stop();
 	VolumeS.setColor(sf::Color::Transparent);
-	fundo.loadFromFile("../assets/Game/pista1.png");
+	fundo.loadFromFile("assets/Game/pista1.png");
 	Fundo.setTexture(fundo,true);
 	startButtonS.setColor(sf::Color::Transparent);
 	settingButtonS.setColor(sf::Color::Transparent);
 	texture3S.setColor(sf::Color::Transparent);
 	texture4S.setColor(sf::Color::Transparent);
-<<<<<<< HEAD
+
 	car[0].loadFromFile("assets/Cars/Spt1.png");
 	car[1].loadFromFile("assets/Cars/Spt2.png");
 	spritecars.setTexture(car[texturaRecorrente]);
 	spritecars.setScale(0.3,0.3);
-=======
-	car[0].loadFromFile("../assets/Cars/Spt1.png");
-	car[1].loadFromFile("../assets/Cars/Spt2.png");
+
+	car[0].loadFromFile("assets/Cars/Spt1.png");
+	car[1].loadFromFile("assets/Cars/Spt2.png");
 	spritecars.setTexture(car[texturaRecorrente]);
 	spritecars.setScale(0.3,0.3);
 	ArrowRS.setColor(sf::Color::Transparent);
@@ -25,7 +25,7 @@ void Game::InicializarGame(){
 	ArrowLS2.setColor(sf::Color::Transparent);
 	vitrineS2.setColor(sf::Color::Transparent);
 	vitrineS.setColor(sf::Color::Transparent);
->>>>>>> 18f9739b6bdd83469f89cdafc5bc796d76798ea5
+
 
 	colison1.setSize(sf::Vector2f(1200, 110));
 	carrohit.setSize(sf::Vector2f(80, 110));
@@ -39,11 +39,6 @@ void Game::InicializarGame(){
 }
 void Game::run_game(){
 	InicializarGame();
-<<<<<<< HEAD
-	DrawGame();
-=======
-
->>>>>>> 18f9739b6bdd83469f89cdafc5bc796d76798ea5
 	MovimentCar();
 }
 
@@ -52,19 +47,17 @@ void Game::game(){
 	Carros carroBot;
 
 }
-void Game::DrawGame(){
-	window.draw(spritecars);
-}
+
 void Game::MovimentCar(){
-	cout << c;
+	cout << l;
 	fflush(stdout);
 
 	if(KeyUP == true){
 		spritecars.setRotation(90);
 		carrohit.setRotation(90);
 		spritecars.move(40,0);
-		if(c == 2 || c > 2){
-			c =0;
+		if(l == 2 || l > 2){
+			l =0;
 			if(texturaRecorrente == 1){
 				texturaRecorrente=0;
 			}else{
@@ -78,8 +71,8 @@ void Game::MovimentCar(){
 			spritecars.setRotation(180);
 			carrohit.setRotation(180);
 			spritecars.move(0,40);
-			if(c == 2 || c > 2){
-				c =0;
+			if(l == 2 || l > 2){
+				l =0;
 				if(texturaRecorrente == 1){
 					texturaRecorrente=0;
 				}else{
@@ -93,8 +86,8 @@ void Game::MovimentCar(){
 			spritecars.setRotation(360);
 			carrohit.setRotation(360);
 			spritecars.move(0,-40);
-			if(c == 2 || c > 2){
-				c =0;
+			if(l == 2 || l > 2){
+				l =0;
 				if(texturaRecorrente == 1){
 					texturaRecorrente=0;
 				}else{
@@ -108,8 +101,8 @@ void Game::MovimentCar(){
 				spritecars.setRotation(270);
 				carrohit.setRotation(270);
 				spritecars.move(-40,0);
-				if(c == 2 || c > 2){
-					c =0;
+				if(l == 2 || l > 2){
+					l =0;
 					if(texturaRecorrente == 1){
 						texturaRecorrente=0;
 					}else{
@@ -127,81 +120,3 @@ void Game::MovimentCar(){
 
 
 }
-void Game::MovimentCar(){
-	cout << c;
-	fflush(stdout);
-
-	if(KeyUP == true){
-		spritecars.setRotation(90);
-		carrohit.setRotation(90);
-		spritecars.move(40,0);
-		if(c == 2 || c > 2){
-			c =0;
-			if(texturaRecorrente == 1){
-				texturaRecorrente=0;
-			}else{
-				texturaRecorrente++;
-			}
-		}
-		KeyUP=false;
-	}
-
-	if(KeyRight == true){
-			spritecars.setRotation(180);
-			carrohit.setRotation(180);
-			spritecars.move(0,40);
-			if(c == 2 || c > 2){
-				c =0;
-				if(texturaRecorrente == 1){
-					texturaRecorrente=0;
-				}else{
-					texturaRecorrente++;
-				}
-			}
-			KeyRight=false;
-		}
-
-	if(KeyLeft == true){
-			spritecars.setRotation(360);
-			carrohit.setRotation(360);
-			spritecars.move(0,-40);
-			if(c == 2 || c > 2){
-				c =0;
-				if(texturaRecorrente == 1){
-					texturaRecorrente=0;
-				}else{
-					texturaRecorrente++;
-				}
-			}
-			KeyLeft=false;
-		}
-
-	if(KeyDown == true){
-				spritecars.setRotation(270);
-				carrohit.setRotation(270);
-				spritecars.move(-40,0);
-				if(c == 2 || c > 2){
-					c =0;
-					if(texturaRecorrente == 1){
-						texturaRecorrente=0;
-					}else{
-						texturaRecorrente++;
-					}
-				}
-				KeyDown=false;
-			}
-
-	if (carBounds.intersects( ColisonBounds)) {
-		spritecars.setPosition(spritecars.getPosition().x , spritecars.getPosition().y + 110);
-
-			}
-
-
-
-<<<<<<< HEAD
-=======
-}
-
-
-
->>>>>>> 18f9739b6bdd83469f89cdafc5bc796d76798ea5

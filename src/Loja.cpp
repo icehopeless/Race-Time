@@ -10,17 +10,17 @@ void Loja::InicializarLoja() {
 	SelectCar.setPosition(130, 270);
 
 	//Textures and Sprites p1
-	ArrowR.loadFromFile("../assets/Loja/SetR.png");
-	ArrowL.loadFromFile("../assets/Loja/SetL.png");
+	ArrowR.loadFromFile("assets/Loja/SetR.png");
+	ArrowL.loadFromFile("assets/Loja/SetL.png");
 	ArrowRS.setTexture(ArrowR);
 	ArrowLS.setTexture(ArrowL);
 	ArrowRS.setColor(sf::Color::White);
 	ArrowLS.setColor(sf::Color::White);
 
-	ArrowRS.setScale(0.2, 0.2);
-	ArrowRS.setPosition(350, 320);
-	ArrowLS.setScale(0.2, 0.2);
-	ArrowLS.setPosition(-25,320);
+	ArrowRS.setScale(0.3, 0.3);
+	ArrowRS.setPosition(370, 360);
+	ArrowLS.setScale(0.3, 0.3);
+	ArrowLS.setPosition(0,360);
 	vitrineS.setColor(sf::Color::White);
 
 
@@ -37,47 +37,25 @@ void Loja::InicializarLoja() {
 	//Textures and Sprites p2
 	ArrowRS2.setTexture(ArrowR);
 	ArrowLS2.setTexture(ArrowL);
-	ArrowRS2.setScale(0.2, 0.2);
-	ArrowRS2.setPosition(1170, 320);
-	ArrowLS2.setScale(0.2, 0.2);
-	ArrowLS2.setPosition(800,320);
+	ArrowRS2.setScale(0.3, 0.3);
+	ArrowRS2.setPosition(1070, 360);
+	ArrowLS2.setScale(0.3, 0.3);
+	ArrowLS2.setPosition(700,360);
 	vitrineS2.setColor(sf::Color::White);
-	
-	
+
+	ArrowRS2.setColor(sf::Color::White);
+	ArrowLS2.setColor(sf::Color::White);
 
 
 	VolumeS.setColor(sf::Color::Transparent);
-	fundo.loadFromFile("../assets/Loja/Loja.png");
+	fundo.loadFromFile("assets/Loja/Loja.png");
 	Fundo.setTexture(fundo, true);
-	startButtonS.setColor(sf::Color::White);
+	startButtonS.setColor(sf::Color::Transparent);
 	settingButtonS.setColor(sf::Color::Transparent);
 	texture3S.setColor(sf::Color::Transparent);
 	texture4S.setColor(sf::Color::Transparent);
 	startButtonS.setPosition(550, 570);
-<<<<<<< HEAD
-	arrowR.loadFromFile("assets/Loja/SetR.png");
-	arrowL.loadFromFile("assets/Loja/SetL.png");
-	arrowRS.setTexture(arrowR);
-	arrowLS.setTexture(arrowL);
 
-	arrowRS.setScale(0.6, 0.6);
-	arrowLS.setScale(0.6, 0.6);
-
-	arrowRS.setPosition(980, 260);
-	arrowLS.setPosition(-100, 260);
-	vitrineS.setColor(sf::Color::White);
-	arrowMouseL.setPosition(47, 310);
-	arrowMouseL.setSize(sf::Vector2f(110, 120));
-	arrowMouseR.setPosition(1121, 310);
-	arrowMouseR.setSize(sf::Vector2f(110, 120));
-
-=======
-
-
-
-
-	
->>>>>>> 18f9739b6bdd83469f89cdafc5bc796d76798ea5
 }
 
 
@@ -151,34 +129,34 @@ void Loja::Section1(){
 
 
 			if (CarSelectP1 == 1) {
-				vitrine.loadFromFile("../assets/Cars/V1.png");
+				vitrine.loadFromFile("assets/Cars/V1.png");
 				vitrineS.setTexture(vitrine);
-				vitrineS.setScale(0.3, 0.3);
-				vitrineS.setPosition(110, 296);
+				vitrineS.setScale(0.34, 0.34);
+				vitrineS.setPosition(156, 326);
 			}
 			if (CarSelectP1 == 2) {
-				vitrine.loadFromFile("../assets/Cars/V2.png");
+				vitrine.loadFromFile("assets/Cars/V2.png");
 				vitrineS.setTexture(vitrine, true);
-				vitrineS.setScale(0.3, 0.3);
-				vitrineS.setPosition(110, 296);
+				vitrineS.setScale(0.14, 0.14);
+				vitrineS.setPosition(146, 326);
 			}
 			if (CarSelectP1 == 3) {
-				vitrine.loadFromFile("../assets/Cars/V3.png");
+				vitrine.loadFromFile("assets/Cars/V3.png");
 				vitrineS.setTexture(vitrine, true);
-				vitrineS.setScale(0.3, 0.3);
-				vitrineS.setPosition(110, 296);
+				vitrineS.setScale(0.34, 0.34);
+				vitrineS.setPosition(136, 326);
 			}
 			if (CarSelectP1 == 4) {
-				vitrine.loadFromFile("../assets/Cars/V4.png");
+				vitrine.loadFromFile("assets/Cars/V4.png");
 				vitrineS.setTexture(vitrine, true);
-				vitrineS.setScale(0.3, 0.3);
-				vitrineS.setPosition(110, 296);
+				vitrineS.setScale(0.34, 0.34);
+				vitrineS.setPosition(156, 326);
 			}
 			if (CarSelectP1 == 5) {
-				vitrineS.setScale(0.3, 0.3);
-				vitrine.loadFromFile("../assets/Cars/V5.png");
+				vitrineS.setScale(0.14, 0.14);
+				vitrine.loadFromFile("assets/Cars/V5.png");
 				vitrineS.setTexture(vitrine, true);
-				vitrineS.setPosition(110, 296);
+				vitrineS.setPosition(156, 326);
 			}
 
 }
@@ -229,34 +207,34 @@ void Loja::Section2(){
 		}
 
 		if (CarSelectP2 == 1) {
-			vitrine2.loadFromFile("../assets/Cars/V1.png");
+			vitrine2.loadFromFile("assets/Cars/V1.png");
 			vitrineS2.setTexture(vitrine2);
-			vitrineS2.setScale(0.3, 0.3);
-			vitrineS2.setPosition(940, 296);
+			vitrineS2.setScale(0.34, 0.34);
+			vitrineS2.setPosition(840, 326);
 		}
 		if (CarSelectP2 == 2) {
-			vitrine2.loadFromFile("../assets/Cars/V2.png");
+			vitrine2.loadFromFile("assets/Cars/V2.png");
 			vitrineS2.setTexture(vitrine2, true);
-			vitrineS2.setScale(0.3, 0.3);
-			vitrineS2.setPosition(940, 296);
+			vitrineS2.setScale(0.14, 0.14);
+			vitrineS2.setPosition(840, 326);
 		}
 		if (CarSelectP2 == 3) {
-			vitrine2.loadFromFile("../assets/Cars/V3.png");
+			vitrine2.loadFromFile("assets/Cars/V3.png");
 			vitrineS2.setTexture(vitrine2, true);
-			vitrineS2.setScale(0.3, 0.3);
-			vitrineS2.setPosition(940, 296);
+			vitrineS2.setScale(0.34, 0.34);
+			vitrineS2.setPosition(840, 326);
 		}
 		if (CarSelectP2 == 4) {
-			vitrine2.loadFromFile("../assets/Cars/V4.png");
+			vitrine2.loadFromFile("assets/Cars/V4.png");
 			vitrineS2.setTexture(vitrine2, true);
-			vitrineS2.setScale(0.3, 0.3);
-			vitrineS2.setPosition(940, 296);
+			vitrineS2.setScale(0.34, 0.34);
+			vitrineS2.setPosition(840, 326);
 		}
 		if (CarSelectP2 == 5) {
-			vitrine2.loadFromFile("../assets/Cars/V5.png");
+			vitrine2.loadFromFile("assets/Cars/V5.png");
 			vitrineS2.setTexture(vitrine2, true);
-			vitrineS2.setScale(0.3, 0.3);
-			vitrineS2.setPosition(940, 296);
+			vitrineS2.setScale(0.14, 0.14);
+			vitrineS2.setPosition(840, 326);
 		}
 
 	
@@ -293,14 +271,7 @@ void Loja::SelectTwoPlayer() {
 }
 
 void Loja::EventsLoja() {
-<<<<<<< HEAD
-
-
 		SelectTwoPlayer();
-
-=======
-		SelectTwoPlayer();
->>>>>>> 18f9739b6bdd83469f89cdafc5bc796d76798ea5
 
 }
 
