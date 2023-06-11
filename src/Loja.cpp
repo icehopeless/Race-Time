@@ -1,19 +1,13 @@
 #include "header.hpp"
 
 void Loja::InicializarLoja() {
-	//retangles Shapes p1
-	arrowMouseL.setPosition(20, 330);
-	arrowMouseL.setSize(sf::Vector2f(50, 50));
-	arrowMouseR.setPosition(398, 330);
-	arrowMouseR.setSize(sf::Vector2f(50, 50));
-	SelectCar.setSize(sf::Vector2f(200, 150));
-	SelectCar.setPosition(130, 270);
+
 
 	//Textures and Sprites p1
 	ArrowR.loadFromFile("assets/Loja/SetR.png");
 	ArrowL.loadFromFile("assets/Loja/SetL.png");
-	ArrowRS.setTexture(ArrowR);
-	ArrowLS.setTexture(ArrowL);
+	ArrowRS.setTexture(ArrowR,true);
+	ArrowLS.setTexture(ArrowL,true);
 	ArrowRS.setColor(sf::Color::White);
 	ArrowLS.setColor(sf::Color::White);
 
@@ -22,15 +16,6 @@ void Loja::InicializarLoja() {
 	ArrowLS.setScale(0.3, 0.3);
 	ArrowLS.setPosition(0,360);
 	vitrineS.setColor(sf::Color::White);
-
-
-	///////retangle shapes p2
-	arrowMouseL2.setPosition(845, 330);
-	arrowMouseL2.setSize(sf::Vector2f(50, 50));
-	arrowMouseR2.setPosition(1210, 330);
-	arrowMouseR2.setSize(sf::Vector2f(50, 50));
-	SelectCar2.setSize(sf::Vector2f(200, 150));
-	SelectCar2.setPosition(955, 270);
 
 
 
@@ -247,23 +232,12 @@ void Loja::SelectTwoPlayer() {
 
 		
 
-	if(escolhafinalizada1 == true){
-		arrowMouseR.setPosition(4000.0, 4000.0);
-		arrowMouseL.setPosition(4000.0, 4000.0);
-		SelectCar.setPosition(4000.0, 4000.0);
-		
-	}
 
-	if(escolhafinalizada2 == true){
-		arrowMouseR2.setPosition(4000.0, 4000.0);
-		arrowMouseL2.setPosition(4000.0, 4000.0);
-		SelectCar2.setPosition(4000.0, 4000.0);
-		
-	}
 	
+
 	if (escolhafinalizada1 == true && escolhafinalizada2 == true) {
 		keyShop = false;
-		keyGame = true;
+		keyLevels = true;
 		escolhafinalizada1 = false;
 		escolhafinalizada2 = false;
 	}

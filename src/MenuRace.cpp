@@ -1,24 +1,27 @@
 #include "header.hpp"
 Menu::Menu() {
 	font = new sf::Font();
+	Contagem = new sf::Text();
+
 	Start();
 }
 Menu::~Menu() {
+	delete Contagem;
 	delete font;
 }
 void Menu::Start() {
 	liberagamer = true;
-	window.create(sf::VideoMode(1280, 720), "Race Time",sf::Style::Titlebar | sf::Style::Close);
+	window.create(sf::VideoMode(1280, 720), "Mystic Time",sf::Style::Titlebar | sf::Style::Close);
 	window.setPosition(sf::Vector2i(0, 0));
 	sf::Image Icon = sf::Image { };
 	Icon.loadFromFile("assets/Icon/Icon.jpg");
 	window.setIcon(Icon.getSize().x, Icon.getSize().y, Icon.getPixelsPtr());
 	counterResu = 3;
 	Volume.setPosition(450, 390);
-	VolumeS.setPosition(450,390);
+	VolumeS.setPosition(450, 390);
 	fundo.loadFromFile("assets/1.png");
 	Fundo.setTexture(fundo);
-	music.openFromFile("assets/Home.wav");
+	music.openFromFile("assets/Sounds/Menu/Home.wav");
 	Sound = 4;
 	music.setVolume(Sound);
 	VolumeUp = false;
@@ -27,8 +30,8 @@ void Menu::Start() {
 	startButtonS.setTexture(startButton);
 	startButtonS.setScale(0.6, 0.6);
 	startButtonS.setPosition(510, 400);
-	StartMouse.setPosition(480, 400);
-	StartMouse.setSize(sf::Vector2f(300, 110));
+	CampMouse1.setPosition(480, 400);
+	CampMouse1.setSize(sf::Vector2f(300, 110));
 
 	CarSelectP1 = 1;
 	CarSelectP2 = rand() % 5;
@@ -36,8 +39,8 @@ void Menu::Start() {
 	settingButtonS.setTexture(settingButton);
 	settingButtonS.setScale(0.5, 0.5);
 	settingButtonS.setPosition(490, 550);
-	SettingMouse.setPosition(490, 550);
-	SettingMouse.setSize(sf::Vector2f(300, 110));
+	CampMouse2.setPosition(490, 550);
+	CampMouse2.setSize(sf::Vector2f(300, 110));
 
 	KeyDown = false;
 	KeyUP = false;
@@ -50,10 +53,15 @@ void Menu::Start() {
 	keySettings = false;
 	keyShop = false;
 	keyGame = false;
+	keyLevels = false;
 	k = 1;
 	counterKeyboard = 0;
-	counterVertical =0;
-
+	counterVertical = 0;
+	 l =0;
+	 SOundGo = 1000;
+	Contador.loadFromFile("assets/Sounds/Game/GO.wav");
+	Go.setBuffer(Contador);
+	Go.setVolume(SOundGo);
 
 }
 void Menu::ZeraCounters() {
@@ -70,8 +78,8 @@ void Menu::StartMenu() {
 	startButtonS.setTexture(startButton);
 	startButtonS.setScale(0.6, 0.6);
 	startButtonS.setPosition(510, 400);
-	StartMouse.setPosition(480, 400);
-	StartMouse.setSize(sf::Vector2f(300, 110));
+	CampMouse1.setPosition(480, 400);
+	CampMouse1.setSize(sf::Vector2f(300, 110));
 	//*********************************************************
 	arrowRS.setColor(sf::Color::Transparent);
 	arrowLS.setColor(sf::Color::Transparent);
@@ -89,33 +97,33 @@ void Menu::StartMenu() {
 	settingButtonS.setTexture(settingButton);
 	settingButtonS.setScale(0.5, 0.5);
 	settingButtonS.setPosition(490, 550);
-	SettingMouse.setPosition(490, 550);
-	SettingMouse.setSize(sf::Vector2f(300, 110));
+	CampMouse2.setPosition(490, 550);
+	CampMouse2.setSize(sf::Vector2f(300, 110));
 
-	if(counterKeyboard == 0){
-	startButtonS.setColor(sf::Color::White);
-	settingButtonS.setColor(sf::Color::White);
+	if (counterKeyboard == 0) {
+		startButtonS.setColor(sf::Color::White);
+		settingButtonS.setColor(sf::Color::White);
 	}
 }
 
 void Menu::eventsMenu() {
 	StartMenu();
 
-	if (StartMouse.getGlobalBounds().contains(mouse_coord)) {
+	if (CampMouse1.getGlobalBounds().contains(mouse_coord)) {
 		startButtonS.setColor(sf::Color::Magenta);
 		settingButtonS.setColor(sf::Color::White);
 		counterKeyboard = 1;
-	} else if (!StartMouse.getGlobalBounds().contains(mouse_coord)
+	} else if (!CampMouse1.getGlobalBounds().contains(mouse_coord)
 			&& counterKeyboard == 0) {
 		startButtonS.setColor(sf::Color::White);
 
 	}
 
-	if (SettingMouse.getGlobalBounds().contains(mouse_coord)) {
+	if (CampMouse2.getGlobalBounds().contains(mouse_coord)) {
 		settingButtonS.setColor(sf::Color::Magenta);
 		startButtonS.setColor(sf::Color::White);
 		counterKeyboard = 2;
-	} else if (!SettingMouse.getGlobalBounds().contains(mouse_coord)
+	} else if (!CampMouse2.getGlobalBounds().contains(mouse_coord)
 			&& counterKeyboard == 0) {
 		settingButtonS.setColor(sf::Color::White);
 
@@ -170,11 +178,11 @@ void Menu::eventsMenu() {
 	}
 
 	if (Mouse_Left == true) {
-		if (StartMouse.getGlobalBounds().contains(mouse_coord)) {
+		if (CampMouse1.getGlobalBounds().contains(mouse_coord)) {
 			keyShop = true;
 			keyMenu = false;
 		}
-		if (SettingMouse.getGlobalBounds().contains(mouse_coord)) {
+		if (CampMouse2.getGlobalBounds().contains(mouse_coord)) {
 			keyMenu = false;
 			keySettings = true;
 			ZeraCounters();
@@ -185,9 +193,6 @@ void Menu::eventsMenu() {
 }
 
 void Menu::Setconfiguration() {
-
-
-
 
 	fundo.loadFromFile("assets/2.png");
 	texture3.loadFromFile("assets/Settings/Home.png");
@@ -218,8 +223,8 @@ void Menu::Setconfiguration() {
 	ArrowLS.setTexture(ArrowL);
 	ArrowRS.setTexture(ArrowR);
 
-	ArrowLS.setScale(0.3,0.3);
-	ArrowRS.setScale(0.3,0.3);
+	ArrowLS.setScale(0.3, 0.3);
+	ArrowRS.setScale(0.3, 0.3);
 
 	ArrowLS.setColor(sf::Color::White);
 	ArrowRS.setColor(sf::Color::White);
@@ -233,21 +238,20 @@ void Menu::Setconfiguration() {
 	CampMouse3.setPosition(60, 570);
 	CampMouse4.setPosition(872, 570);
 
-	SetaDireita.setSize(sf::Vector2f(30, 30));
-	SetaEsquerada.setSize(sf::Vector2f(30, 30));
+	CampMouse6.setSize(sf::Vector2f(30, 30));
+	CampMouse5.setSize(sf::Vector2f(30, 30));
 	CampMouse3.setSize(sf::Vector2f(350, 110));
 	CampMouse4.setSize(sf::Vector2f(300, 110));
 	texture5S.setPosition(300, 275);
 	font->loadFromFile("assets/Font/VintageTimes.ttf");
 
-	SetaDireita.setPosition(767, 287);
-	SetaEsquerada.setPosition(567, 287);
+	CampMouse6.setPosition(767, 287);
+	CampMouse5.setPosition(567, 287);
 
 	Reso.setFont(*font);
 	Reso.setCharacterSize(30);
 	Reso.setFillColor(sf::Color::Cyan);
 	Reso.setPosition(620, 287);
-
 	SoundAumente.loadFromFile("assets/Settings/Sound_Menu.png");
 	SoundSpriteR.setTexture(SoundAumente, true);
 	SoundSpriteR.setScale(0.05, 0.05);
@@ -258,36 +262,32 @@ void Menu::Setconfiguration() {
 	SoundSpriteL.setPosition(250, 370);
 	SoundSpriteR.setColor(sf::Color::Cyan);
 	SoundSpriteL.setColor(sf::Color::Cyan);
-	SoundEsquerada.setSize(sf::Vector2f(70, 60));
-	SoundDireita.setSize(sf::Vector2f(70, 60));
-	SoundEsquerada.setPosition(250, 390);
-	SoundDireita.setPosition(900, 390);
-
-
-
+	CampMouse7.setSize(sf::Vector2f(70, 60));
+	CampMouse8.setSize(sf::Vector2f(70, 60));
+	CampMouse7.setPosition(250, 390);
+	CampMouse8.setPosition(900, 390);
 
 }
 void Menu::drawConfig() {
 
-
 	window.draw(SoundSpriteR);
-
 
 	window.draw(SoundSpriteL);
 
-	SoundEsquerada.setPosition(250, 390);
-	SoundDireita.setPosition(900, 390);
+	CampMouse7.setPosition(250, 390);
+	CampMouse8.setPosition(900, 390);
 
 	window.draw(texture3S);
 	window.draw(texture4S);
 	window.draw(texture5S);
-
+	window.draw(Reso);
 	window.draw(ArrowRS);
 	window.draw(ArrowLS);
 
+
 }
-void Menu::AleterarCor(){
-	if(counterVertical == 1 && counterKeyboard == 1){
+void Menu::AleterarCor() {
+	if (counterVertical == 1 && counterKeyboard == 1) {
 		texture3S.setColor(sf::Color::Magenta);
 		texture4S.setColor(sf::Color::White);
 		ArrowRS.setColor(sf::Color::White);
@@ -299,7 +299,7 @@ void Menu::AleterarCor(){
 		ArrowRS.setColor(sf::Color::White);
 		ArrowLS.setColor(sf::Color::White);
 	}
-	if(counterVertical == 2  && counterKeyboard == 1){
+	if (counterVertical == 2 && counterKeyboard == 1) {
 		texture3S.setColor(sf::Color::White);
 		texture4S.setColor(sf::Color::White);
 		ArrowRS.setColor(sf::Color::White);
@@ -307,7 +307,7 @@ void Menu::AleterarCor(){
 		SoundSpriteR.setColor(sf::Color::Cyan);
 		SoundSpriteL.setColor(sf::Color::Magenta);
 	}
-	if(counterVertical == 2  && counterKeyboard == 2){
+	if (counterVertical == 2 && counterKeyboard == 2) {
 		texture3S.setColor(sf::Color::White);
 		texture4S.setColor(sf::Color::White);
 		ArrowRS.setColor(sf::Color::White);
@@ -315,20 +315,20 @@ void Menu::AleterarCor(){
 		SoundSpriteR.setColor(sf::Color::Magenta);
 		SoundSpriteL.setColor(sf::Color::Cyan);
 	}
-	if(counterVertical == 3  && counterKeyboard == 1){
+	if (counterVertical == 3 && counterKeyboard == 1) {
 		texture3S.setColor(sf::Color::White);
 		texture4S.setColor(sf::Color::White);
 		ArrowLS.setColor(sf::Color::Magenta);
 		ArrowRS.setColor(sf::Color::White);
-		SoundSpriteR.setColor(sf::Color::White);
+		SoundSpriteR.setColor(sf::Color::Cyan);
 		SoundSpriteL.setColor(sf::Color::Cyan);
 	}
-	if(counterVertical == 3  && counterKeyboard == 2){
+	if (counterVertical == 3 && counterKeyboard == 2) {
 		texture3S.setColor(sf::Color::White);
 		texture4S.setColor(sf::Color::White);
 		ArrowLS.setColor(sf::Color::White);
 		ArrowRS.setColor(sf::Color::Magenta);
-		SoundSpriteR.setColor(sf::Color::White);
+		SoundSpriteR.setColor(sf::Color::Cyan);
 		SoundSpriteL.setColor(sf::Color::Cyan);
 	}
 }
@@ -339,8 +339,9 @@ void Menu::EventosMouseConfig() {
 		texture4S.setColor(sf::Color::White);
 		ArrowRS.setColor(sf::Color::White);
 		ArrowLS.setColor(sf::Color::White);
-		counterKeyboard = 1;
-		counterVertical = 1;
+		SoundSpriteR.setColor(sf::Color::Cyan);
+		SoundSpriteL.setColor(sf::Color::Cyan);
+
 	}
 
 	if (CampMouse4.getGlobalBounds().contains(mouse_coord)) {
@@ -348,51 +349,48 @@ void Menu::EventosMouseConfig() {
 		texture4S.setColor(sf::Color::Magenta);
 		ArrowRS.setColor(sf::Color::White);
 		ArrowLS.setColor(sf::Color::White);
-		counterKeyboard = 2;
-		counterVertical = 1;
+		SoundSpriteR.setColor(sf::Color::Cyan);
+		SoundSpriteL.setColor(sf::Color::Cyan);
+
 	}
-	if (SetaDireita.getGlobalBounds().contains(mouse_coord)) {
+	if (CampMouse6.getGlobalBounds().contains(mouse_coord)) {
 		texture3S.setColor(sf::Color::White);
-				texture4S.setColor(sf::Color::White);
-				ArrowLS.setColor(sf::Color::White);
-				ArrowRS.setColor(sf::Color::Magenta);
-				SoundSpriteR.setColor(sf::Color::White);
-				SoundSpriteL.setColor(sf::Color::Cyan);
-		counterKeyboard = 2;
-		counterVertical = 3;
+		texture4S.setColor(sf::Color::White);
+		ArrowLS.setColor(sf::Color::White);
+		ArrowRS.setColor(sf::Color::Magenta);
+		SoundSpriteR.setColor(sf::Color::White);
+		SoundSpriteL.setColor(sf::Color::Cyan);
+
 	}
 
-	if (SetaEsquerada.getGlobalBounds().contains(mouse_coord)) {
+	if (CampMouse5.getGlobalBounds().contains(mouse_coord)) {
 		texture3S.setColor(sf::Color::White);
-				texture4S.setColor(sf::Color::White);
-				ArrowLS.setColor(sf::Color::Magenta);
-				ArrowRS.setColor(sf::Color::White);
-				SoundSpriteR.setColor(sf::Color::White);
-				SoundSpriteL.setColor(sf::Color::Cyan);
-		counterKeyboard = 1;
-		counterVertical = 3;
+		texture4S.setColor(sf::Color::White);
+		ArrowLS.setColor(sf::Color::Magenta);
+		ArrowRS.setColor(sf::Color::White);
+		SoundSpriteR.setColor(sf::Color::White);
+		SoundSpriteL.setColor(sf::Color::Cyan);
+
 	}
 
-	if(SoundDireita.getGlobalBounds().contains(mouse_coord)){
+	if (CampMouse8.getGlobalBounds().contains(mouse_coord)) {
 		texture3S.setColor(sf::Color::White);
-				texture4S.setColor(sf::Color::White);
-				ArrowRS.setColor(sf::Color::White);
-				ArrowLS.setColor(sf::Color::White);
-				SoundSpriteR.setColor(sf::Color::Magenta);
-				SoundSpriteL.setColor(sf::Color::Cyan);
-		counterKeyboard = 2;
-		counterVertical = 2;
+		texture4S.setColor(sf::Color::White);
+		ArrowRS.setColor(sf::Color::White);
+		ArrowLS.setColor(sf::Color::White);
+		SoundSpriteR.setColor(sf::Color::Magenta);
+		SoundSpriteL.setColor(sf::Color::Cyan);
+
 	}
 
-	if(SoundEsquerada.getGlobalBounds().contains(mouse_coord)){
+	if (CampMouse7.getGlobalBounds().contains(mouse_coord)) {
 		texture3S.setColor(sf::Color::White);
-				texture4S.setColor(sf::Color::White);
-				ArrowRS.setColor(sf::Color::White);
-				ArrowLS.setColor(sf::Color::White);
-				SoundSpriteR.setColor(sf::Color::Cyan);
-				SoundSpriteL.setColor(sf::Color::Magenta);
-		counterKeyboard = 1;
-		counterVertical = 2;
+		texture4S.setColor(sf::Color::White);
+		ArrowRS.setColor(sf::Color::White);
+		ArrowLS.setColor(sf::Color::White);
+		SoundSpriteR.setColor(sf::Color::Cyan);
+		SoundSpriteL.setColor(sf::Color::Magenta);
+
 	}
 	if (Mouse_Left == true) {
 
@@ -406,117 +404,128 @@ void Menu::EventosMouseConfig() {
 			window.close();
 		}
 
-		if (SetaDireita.getGlobalBounds().contains(mouse_coord)) {
+		if (CampMouse6.getGlobalBounds().contains(mouse_coord)) {
 			counterResu++;
 		}
 
-		if (SetaEsquerada.getGlobalBounds().contains(mouse_coord)) {
+		if (CampMouse5.getGlobalBounds().contains(mouse_coord)) {
 			counterResu--;
 		}
-		if(SoundEsquerada.getGlobalBounds().contains(mouse_coord)){
+		if (CampMouse7.getGlobalBounds().contains(mouse_coord)) {
 			k--;
-					Volume.setPosition(Volume.getPosition().x - 7,Volume.getPosition().y);
+			Volume.setPosition(Volume.getPosition().x - 7,
+					Volume.getPosition().y);
 
-					VolumeS.setPosition(Volume.getPosition().x - 7,Volume.getPosition().y);
-					music.setVolume((Sound* 0) + k);
+			VolumeS.setPosition(Volume.getPosition().x - 7,
+					Volume.getPosition().y);
+			music.setVolume((Sound * 0) + k);
+			Go.setVolume((SOundGo * 0) + k);
 		}
-		if(SoundDireita.getGlobalBounds().contains(mouse_coord)){
+		if (CampMouse8.getGlobalBounds().contains(mouse_coord)) {
 			k++;
-					Volume.setPosition(Volume.getPosition().x + 7,Volume.getPosition().y);
+			Volume.setPosition(Volume.getPosition().x + 7,
+					Volume.getPosition().y);
 
-					VolumeS.setPosition(Volume.getPosition().x + 7,Volume.getPosition().y);
-					music.setVolume(Sound + k);
+			VolumeS.setPosition(Volume.getPosition().x + 7,
+					Volume.getPosition().y);
+			music.setVolume(Sound + k);
+			Go.setVolume(SOundGo + k);
 
 		}
 		Mouse_Left = false;
 	}
 
-
 }
 
-void Menu::EventsKeyboard(){
+void Menu::EventsKeyboard() {
 	AleterarCor();
-	if(KeyUP == true){
+	if (KeyUP == true) {
 		counterVertical++;
-		if(counterVertical > 3){
+		if (counterVertical > 3) {
 			counterVertical = 3;
 		}
-		if(counterVertical == 1 && counterKeyboard == 0){
+		if (counterVertical == 1 && counterKeyboard == 0) {
 			counterKeyboard = 1;
 		}
 		KeyUP = false;
 	}
 
-	if(KeyDown == true){
+	if (KeyDown == true) {
 		counterVertical--;
-		if(counterVertical < 1){
+		if (counterVertical < 1) {
 			counterVertical = 1;
 		}
-		if(counterVertical == 1 && counterKeyboard == 3){
-				counterKeyboard = 2;
+		if (counterVertical == 1 && counterKeyboard == 3) {
+			counterKeyboard = 2;
 		}
 
 		KeyDown = false;
 	}
 
-	if(KeyRight == true){
+	if (KeyRight == true) {
 		counterKeyboard++;
-		if(counterKeyboard == 1 && counterVertical == 0){
+		if (counterKeyboard == 1 && counterVertical == 0) {
 			counterVertical = 1;
 		}
-		if(counterKeyboard > 2){
+		if (counterKeyboard > 2) {
 			counterKeyboard = 2;
 		}
 
 		KeyRight = false;
 	}
 
-	if(KeyLeft == true){
+	if (KeyLeft == true) {
 		counterKeyboard--;
-		if(counterKeyboard < 1){
+		if (counterKeyboard < 1) {
 			counterKeyboard = 1;
 		}
 		KeyLeft = false;
 	}
 	if (SelecionadoEnter == true) {
 
-			if (counterKeyboard == 1 && counterVertical == 1) {
-				keyMenu = true;
-				keySettings = false;
-				ZeraCounters();
+		if (counterKeyboard == 1 && counterVertical == 1) {
+			keyMenu = true;
+			keySettings = false;
+			ZeraCounters();
 
-			}
-			if (counterKeyboard == 2 && counterVertical == 1) {
-				window.close();
-			}
-
-			if (counterKeyboard == 2 && counterVertical == 3) {
-				counterResu++;
-			}
-
-			if (counterKeyboard == 1 && counterVertical == 3) {
-				counterResu--;
-			}
-
-			if (SelecionadoEnter == true && counterVertical == 2 && counterKeyboard == 2) {
-					k++;
-					Volume.setPosition(Volume.getPosition().x + 7,Volume.getPosition().y);
-
-					VolumeS.setPosition(Volume.getPosition().x + 7,Volume.getPosition().y);
-					music.setVolume(Sound + k);
-				}
-				if (SelecionadoEnter == true && counterVertical == 2 && counterKeyboard == 1) {
-					k--;
-					Volume.setPosition(Volume.getPosition().x - 7,Volume.getPosition().y);
-
-					VolumeS.setPosition(Volume.getPosition().x - 7,Volume.getPosition().y);
-					music.setVolume((Sound* 0) + k);
-				}
-
-
-			SelecionadoEnter = false;
+		}
+		if (counterKeyboard == 2 && counterVertical == 1) {
+			window.close();
 		}
 
+		if (counterKeyboard == 2 && counterVertical == 3) {
+			counterResu++;
+		}
+
+		if (counterKeyboard == 1 && counterVertical == 3) {
+			counterResu--;
+		}
+
+		if (SelecionadoEnter == true && counterVertical == 2
+				&& counterKeyboard == 2) {
+			k++;
+			Volume.setPosition(Volume.getPosition().x + 7,
+					Volume.getPosition().y);
+
+			VolumeS.setPosition(Volume.getPosition().x + 7,
+					Volume.getPosition().y);
+			music.setVolume(Sound + k);
+			Go.setVolume(SOundGo + k);
+		}
+		if (SelecionadoEnter == true && counterVertical == 2
+				&& counterKeyboard == 1) {
+			k--;
+			Volume.setPosition(Volume.getPosition().x - 7,
+					Volume.getPosition().y);
+
+			VolumeS.setPosition(Volume.getPosition().x - 7,
+					Volume.getPosition().y);
+			music.setVolume((Sound * 0) + k);
+			Go.setVolume((SOundGo * 0) + k);
+		}
+
+		SelecionadoEnter = false;
+	}
 
 }
 
@@ -525,53 +534,53 @@ void Menu::Eventsconfiguration() {
 	EventsKeyboard();
 	EventosMouseConfig();
 
-	if(counterResu < 1){
-		counterResu= 1;
+	if (counterResu < 1) {
+		counterResu = 1;
 	}
 
-	if(counterResu == 1){
+	if (counterResu == 1) {
 		Reso.setString("800X600");
-		window.setSize(sf::Vector2u(800,600));
+		window.setSize(sf::Vector2u(800, 600));
 	}
 
-	if(counterResu == 2){
+	if (counterResu == 2) {
 		Reso.setString("1024X768");
-		window.setSize(sf::Vector2u(1024,768));
+		window.setSize(sf::Vector2u(1024, 768));
 	}
 
-	if(counterResu== 3){
+	if (counterResu == 3) {
 		Reso.setString("1280X720");
-		window.setSize(sf::Vector2u(1280,720));
+		window.setSize(sf::Vector2u(1280, 720));
 	}
 
-	if(counterResu== 4){
+	if (counterResu == 4) {
 		Reso.setString("1360X780");
-		window.setSize(sf::Vector2u(1360,780));
+		window.setSize(sf::Vector2u(1360, 780));
 	}
-	if(counterResu == 5){
-			Reso.setString("1600X900");
-			window.setSize(sf::Vector2u(1600,900));
+	if (counterResu == 5) {
+		Reso.setString("1600X900");
+		window.setSize(sf::Vector2u(1600, 900));
 	}
-	if(counterResu== 6){
-			Reso.setString("1920X1080");
-			window.setSize(sf::Vector2u(1980,1080));
+	if (counterResu == 6) {
+		Reso.setString("1920X1080");
+		window.setSize(sf::Vector2u(1980, 1080));
 	}
-	if(counterResu> 6){
-		counterResu= 6;
-	}
-
-	if(Volume.getPosition().x > 800){
-		Volume.setPosition(800,Volume.getPosition().y);
-		VolumeS.setPosition(800,Volume.getPosition().y);
+	if (counterResu > 6) {
+		counterResu = 6;
 	}
 
-	if(Volume.getPosition().x < 350){
-			Volume.setPosition(350,Volume.getPosition().y);
-			VolumeS.setPosition(350,Volume.getPosition().y);
+	if (Volume.getPosition().x > 800) {
+		Volume.setPosition(800, Volume.getPosition().y);
+		VolumeS.setPosition(800, Volume.getPosition().y);
 	}
+
+	if (Volume.getPosition().x < 350) {
+		Volume.setPosition(350, Volume.getPosition().y);
+		VolumeS.setPosition(350, Volume.getPosition().y);
+	}
+
 
 }
-
 
 void Menu::loopEvents() {
 
@@ -587,52 +596,63 @@ void Menu::loopEvents() {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && KeyDown == false) {
 			KeyA = true;
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && SelecionadoEnter == false) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)
+				&& SelecionadoEnter == false) {
 			Space = true;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && KeyDown == false) {
 			KeyD = true;
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && KeyDown == false) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)
+				&& KeyDown == false) {
 			KeyDown = true;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && KeyUP == false) {
 			KeyUP = true;
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && KeyLeft == false) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
+				&& KeyLeft == false) {
 			KeyLeft = true;
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && KeyRight == false) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
+				&& KeyRight == false) {
 			KeyRight = true;
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && SelecionadoEnter == false) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)
+				&& SelecionadoEnter == false) {
 			SelecionadoEnter = true;
 		}
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && Mouse_Left == false) {
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)
+				&& Mouse_Left == false) {
 			Mouse_Left = true;
 		}
 
 	}
 }
-void Menu::ChamarGame(){
-/*
-	Game * startGame = new Game();
-	startGame->run_game();
-	delete startGame;
-	startGame = nullptr;
-	*/
+void Menu::ChamarGame() {
+	/*
+	 Game * startGame = new Game();
+	 startGame->run_game();
+	 delete startGame;
+	 startGame = nullptr;
+	 */
 
-
-	Game * start;
+	Game *start;
 	start->run_game();
 
 }
 
-void Menu::ChamarLoja(){
+void Menu::ChamarLoja() {
 
-	Loja * startLoja ;
+	Loja *startLoja;
 	startLoja->run_loja();
 
+}
+
+void Menu::ChamarLevels() {
+
+	Levels *startLevels;
+	startLevels->run_Levels();
 
 }
 void Menu::drawMenu() {
@@ -642,10 +662,9 @@ void Menu::drawMenu() {
 	window.draw(startButtonS);
 	window.draw(settingButtonS);
 
-	if(keySettings == true){
+	if (keySettings == true) {
 		drawConfig();
 	}
-
 	window.draw(ArrowRS2);
 	window.draw(ArrowLS2);
 	window.draw(vitrineS);
@@ -657,11 +676,24 @@ void Menu::drawMenu() {
 	window.draw(ArrowRS);
 	window.draw(ArrowLS);
 	window.draw(spritecars);
-	window.draw(Reso);
+	window.draw(carrohit);
+	window.draw(*Contagem);
+	window.draw(Lv1);
+	window.draw(Lv2);
+	window.draw(Lv3);
+	window.draw(Lv4);
+	window.draw(Lv5);
+	window.draw(Lv6);
+	window.draw(Lv7);
+	window.draw(Lv8);
+	window.draw(Lv9);
+	window.draw(Lv10);
+	for(int j = 0; j < SpritesLockeds.size(); j++){
+		window.draw(SpritesLockeds[j]);
+	}
+
+
 	window.display();
-
-
-
 
 }
 
@@ -675,12 +707,15 @@ void Menu::run_menu() {
 			eventsMenu();
 		} else if (keySettings == true) {
 			Eventsconfiguration();
-		}else if (keyGame == true) {
+		} else if (keyGame == true) {
 			ChamarGame();
-		}else if (keyShop == true) {
+		} else if (keyShop == true) {
 			ChamarLoja();
+		} else if(keyLevels == true){
+			ChamarLevels();
 		}
-		l++;
+
+
 		drawMenu();
 	}
 }

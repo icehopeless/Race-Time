@@ -7,6 +7,7 @@
 #include <SFML/Audio.hpp>
 #include <time.h>
 #include<vector>
+#include <fstream>
 using namespace std;
 class Menu {
 protected:
@@ -35,7 +36,8 @@ protected:
 	sf::Sprite VolumeS;
 
 
-
+	sf::Texture textureLockeds;
+	vector<sf::Sprite> SpritesLockeds;
 
 	sf::Texture arrowL;
 	sf::Texture arrowR;
@@ -46,8 +48,8 @@ protected:
 	sf::Vector2i pos_mouse;
 	sf::Vector2f mouse_coord;
 
-	sf::RectangleShape StartMouse;
-	sf::RectangleShape SettingMouse;
+	sf::RectangleShape CampMouse1;
+	sf::RectangleShape CampMouse2;
 
 	sf::RectangleShape CampMouse3;
 	sf::RectangleShape CampMouse4;
@@ -60,6 +62,17 @@ protected:
 
 	sf::Font *font;
 	sf::Text Reso;
+	sf::Text *Contagem;
+	sf::Text Lv1;
+	sf::Text Lv2;
+	sf::Text Lv3;
+	sf::Text Lv4;
+	sf::Text Lv5;
+	sf::Text Lv6;
+	sf::Text Lv7;
+	sf::Text Lv8;
+	sf::Text Lv9;
+	sf::Text Lv10;
 
 	bool  KeyDown;
 	bool KeyUP;
@@ -78,6 +91,7 @@ protected:
 	bool keyMenu;
 	bool keyShop;
 	bool keyGame;
+	bool keyLevels;
 	int counterKeyboard;
 	int counterVertical;
 
@@ -86,13 +100,13 @@ protected:
 	bool destruirGame;
 	bool destruirLoja;
 	string resolutionNumber;
-	sf::RectangleShape SetaEsquerada;
-	sf::RectangleShape SetaDireita;
+	sf::RectangleShape CampMouse5;
+	sf::RectangleShape CampMouse6;
 
 	int counterResu;
 
-	sf::RectangleShape SoundEsquerada;
-	sf::RectangleShape SoundDireita;
+	sf::RectangleShape CampMouse7;
+	sf::RectangleShape CampMouse8;
 
 
 
@@ -100,11 +114,10 @@ protected:
 	
 	int CarSelectP1;
 	int CarSelectP2;
-	
+
 	//p1
-	sf::RectangleShape arrowMouseR;
-	sf::RectangleShape arrowMouseL;
-	sf::RectangleShape SelectCar;
+	sf::RectangleShape CampMouse9;
+	sf::RectangleShape CampMouse10;
 	sf::Texture ArrowR;
 	sf::Sprite  ArrowRS;
 	sf::Texture ArrowL;
@@ -116,9 +129,7 @@ protected:
 	int CarP1;
 
 	//p2
-	sf::RectangleShape arrowMouseR2;
-	sf::RectangleShape arrowMouseL2;
-	sf::RectangleShape SelectCar2;
+
 	sf::Sprite ArrowRS2;
 	sf::Sprite ArrowLS2;
 	sf::Sprite vitrineS2;
@@ -136,9 +147,30 @@ protected:
 	sf::RectangleShape carrohit;
 	sf::Texture car[2];
 	sf::Sprite spritecars;
-	int texturaRecorrente,c,l = 0;
+	int AtualizacaoTextura,l = 0;
 	sf::FloatRect ColisonBounds ;
-		sf::FloatRect carBounds ;
+	sf::FloatRect carBounds ;
+	int x =3;
+	int SOundGo;
+	bool Contagem_Realizada = false;
+	bool Init_Game = false;
+	bool Init_Level = false;
+	sf::SoundBuffer Contador;
+	sf::Sound Go;
+	bool SoundCont = false;
+
+// ???????????????????????????	Levels ????????????????????????????????????????????????????????
+	int Counter_Selectd_Levels;
+	bool Bloqued;
+	bool Bloqued2;
+	bool Bloqued3;
+	bool Bloqued4;
+	bool Bloqued5;
+	bool Bloqued6;
+	bool Bloqued7;
+	bool Bloqued8;
+	bool Bloqued9;
+	bool Bloqued10;
 
 protected:
 
@@ -162,6 +194,7 @@ protected:
 	void StartMenu();
 	void ChamarGame();
 	void ChamarLoja();
+	void ChamarLevels();
 public:
 	Menu();
 	~Menu();
@@ -173,15 +206,16 @@ class Game:public Menu{
 
 
 private:
+
 	void InicializarGame();
 	void DrawGame();
 	void game();
 	void EventsGame();
+	void SaveGame();
 
 public :
 
 	sf::Sprite spritecars;
-	int texturaRecorrente,c;
 
 	void MovimentCar();
 	void run_game();
@@ -199,6 +233,22 @@ public:
 public :
 	void run_loja();
 };
+
+class Levels: public Menu{
+public:
+	bool startLv = false;
+	void LimparTela();
+	void inicializar_Levels();
+	void run_Levels();
+	void events_Levels();
+	void Keyboard_Levels();
+	void Mouse_Levels();
+	void started_Game();
+	void iniciar_numeros();
+	void reading_Save();
+};
+
+
 
 
 

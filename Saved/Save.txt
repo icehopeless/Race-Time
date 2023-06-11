@@ -1,0 +1,12 @@
+Level1,unlocked
+Level2,Blocked
+Level3,Blocked
+Level4,Blocked
+Level5,Blocked
+Level6,Blocked
+Level7,Blocked
+Level8,Blocked
+Level9,Blocked
+Level10,Blocked
+
+
