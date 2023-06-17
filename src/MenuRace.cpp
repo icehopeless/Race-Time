@@ -19,24 +19,23 @@ void Menu::Start() {
 	counterResu = 3;
 	Volume.setPosition(450, 390);
 	VolumeS.setPosition(450, 390);
-	fundo.loadFromFile("assets/1.png");
+	fundo.loadFromFile("assets/L.png");
 	Fundo.setTexture(fundo);
-	music.openFromFile("assets/Sounds/Menu/Home.wav");
 	Sound = 4;
 	music.setVolume(Sound);
 	VolumeUp = false;
 	VolumeDown = false;
-	startButton.loadFromFile("assets/Start.png");
+	startButton.loadFromFile("assets/Loading.png");
 	startButtonS.setTexture(startButton);
-	startButtonS.setScale(0.6, 0.6);
-	startButtonS.setPosition(510, 400);
+	startButtonS.setScale(0.9, 0.9);
+	startButtonS.setPosition(450, 550);
+
 	CampMouse1.setPosition(480, 400);
 	CampMouse1.setSize(sf::Vector2f(300, 110));
 
 	CarSelectP1 = 1;
 	CarSelectP2 = rand() % 5;
-	settingButton.loadFromFile("assets/Setting.png");
-	settingButtonS.setTexture(settingButton);
+
 	settingButtonS.setScale(0.5, 0.5);
 	settingButtonS.setPosition(490, 550);
 	CampMouse2.setPosition(490, 550);
@@ -46,13 +45,14 @@ void Menu::Start() {
 	KeyUP = false;
 	KeyLeft = false;
 	KeyRight = false;
-
+	KeyLoading = false;
 	SelecionadoEnter = false;
 	Mouse_Left = false;
 	keyMenu = true;
 	keySettings = false;
 	keyShop = false;
 	keyGame = false;
+	KeyFinaleGame = false;
 	keyLevels = false;
 	k = 1;
 	counterKeyboard = 0;
@@ -62,6 +62,26 @@ void Menu::Start() {
 	Contador.loadFromFile("assets/Sounds/Game/GO.wav");
 	Go.setBuffer(Contador);
 	Go.setVolume(SOundGo);
+	soundActive = false;
+	contadodetempo = 0;
+
+}
+void Menu::loading(){
+
+
+	if( y < 255){
+		y++;
+	}
+	if(y == 254){
+		y = 12;
+	}
+	sf::sleep(sf::milliseconds(10.0f));
+	startButtonS.setColor(sf::Color { 100, 100, 100, y });
+	if(contadodetempo == 700){
+		sf::sleep(sf::milliseconds(0.0f));
+		KeyLoading = false;
+		keyMenu = true;
+	}
 
 }
 void Menu::ZeraCounters() {
@@ -71,11 +91,16 @@ void Menu::ZeraCounters() {
 }
 
 void Menu::StartMenu() {
+	if(soundActive == false){
+		music.openFromFile("assets/Sounds/Menu/Home.wav");
+		music.play();
+		soundActive = true;
+	}
 
 	fundo.loadFromFile("assets/1.png");
 	Fundo.setTexture(fundo);
 	startButton.loadFromFile("assets/Start.png");
-	startButtonS.setTexture(startButton);
+	startButtonS.setTexture(startButton,true);
 	startButtonS.setScale(0.6, 0.6);
 	startButtonS.setPosition(510, 400);
 	CampMouse1.setPosition(480, 400);
@@ -94,7 +119,7 @@ void Menu::StartMenu() {
 	Reso.setFillColor(sf::Color::Transparent);
 	//***********************************************************
 	settingButton.loadFromFile("assets/Setting.png");
-	settingButtonS.setTexture(settingButton);
+	settingButtonS.setTexture(settingButton,true);
 	settingButtonS.setScale(0.5, 0.5);
 	settingButtonS.setPosition(490, 550);
 	CampMouse2.setPosition(490, 550);
@@ -196,14 +221,14 @@ void Menu::Setconfiguration() {
 
 	fundo.loadFromFile("assets/2.png");
 	texture3.loadFromFile("assets/Settings/Home.png");
-	texture3S.setTexture(texture3);
+	texture3S.setTexture(texture3,true);
 	texture3S.setScale(0.6, 0.6);
 	texture3S.setPosition(110, 580);
 
 	texture4.loadFromFile("assets/Settings/quit.png");
 	texture4S.setTexture(texture4);
 	texture5.loadFromFile("assets/Settings/resolution.png");
-	texture5S.setTexture(texture5);
+	texture5S.setTexture(texture5,true);
 
 	texture5S.setScale(0.3, 0.3);
 	texture4S.setScale(0.6, 0.6);
@@ -220,8 +245,8 @@ void Menu::Setconfiguration() {
 
 	ArrowR.loadFromFile("assets/Settings/arrowR.png");
 	ArrowL.loadFromFile("assets/Settings/arrowL.png");
-	ArrowLS.setTexture(ArrowL);
-	ArrowRS.setTexture(ArrowR);
+	ArrowLS.setTexture(ArrowL,true);
+	ArrowRS.setTexture(ArrowR,true);
 
 	ArrowLS.setScale(0.3, 0.3);
 	ArrowRS.setScale(0.3, 0.3);
@@ -640,6 +665,8 @@ void Menu::ChamarGame() {
 	Game *start;
 	start->run_game();
 
+
+
 }
 
 void Menu::ChamarLoja() {
@@ -672,11 +699,12 @@ void Menu::drawMenu() {
 	window.draw(VolumeS);
 	window.draw(arrowRS);
 	window.draw(arrowLS);
+	window.draw(texture3S);
 	window.draw(vitrineS);
 	window.draw(ArrowRS);
 	window.draw(ArrowLS);
-	window.draw(spritecars);
 	window.draw(carrohit);
+	window.draw(spritecars);
 	window.draw(*Contagem);
 	window.draw(Lv1);
 	window.draw(Lv2);
@@ -698,12 +726,14 @@ void Menu::drawMenu() {
 }
 
 void Menu::run_menu() {
-	music.play();
+
 	music.setLoop(true);
 
 	while (window.isOpen()) { // main loop
 		loopEvents();
-		if (keyMenu == true) {
+		if(KeyLoading == true){
+			loading();
+		}else if (keyMenu == true) {
 			eventsMenu();
 		} else if (keySettings == true) {
 			Eventsconfiguration();
@@ -715,6 +745,7 @@ void Menu::run_menu() {
 			ChamarLevels();
 		}
 
+		contadodetempo++;
 
 		drawMenu();
 	}

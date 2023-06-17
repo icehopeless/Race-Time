@@ -10,6 +10,7 @@
 #include <fstream>
 using namespace std;
 class Menu {
+
 protected:
 	sf::RenderWindow window;
 
@@ -85,16 +86,19 @@ protected:
 	bool Mouse_Left;
 	bool KeyA;
 	bool KeyD;
-
+	bool soundActive;
 	int Sound,k;
+	int y = 240;
 	bool keySettings;
 	bool keyMenu;
 	bool keyShop;
 	bool keyGame;
+	bool KeyLoading;
 	bool keyLevels;
+	bool KeyFinaleGame;
 	int counterKeyboard;
 	int counterVertical;
-
+	int contadodetempo;
 	int EscolhaCarro;
 
 	bool destruirGame;
@@ -104,7 +108,7 @@ protected:
 	sf::RectangleShape CampMouse6;
 
 	int counterResu;
-
+	int Nivelatual;
 	sf::RectangleShape CampMouse7;
 	sf::RectangleShape CampMouse8;
 
@@ -145,11 +149,11 @@ protected:
 // ||||||||||||||||||||||||||||||||||||||||||||||||||Game||||||||||||||||||||||||||||||||||||||||||||||||||||
 	sf::RectangleShape colison1;
 	sf::RectangleShape carrohit;
-	sf::Texture car[2];
+	sf::Texture car;
 	sf::Sprite spritecars;
 	int AtualizacaoTextura,l = 0;
-	sf::FloatRect ColisonBounds ;
-	sf::FloatRect carBounds ;
+	sf::FloatRect ColisonBounds;
+	sf::FloatRect carBounds;
 	int x =3;
 	int SOundGo;
 	bool Contagem_Realizada = false;
@@ -195,6 +199,7 @@ protected:
 	void ChamarGame();
 	void ChamarLoja();
 	void ChamarLevels();
+	void loading();
 public:
 	Menu();
 	~Menu();
@@ -206,17 +211,15 @@ class Game:public Menu{
 
 
 private:
-
+	 bool Saved;
 	void InicializarGame();
 	void DrawGame();
 	void game();
 	void EventsGame();
 	void SaveGame();
-
+	void Final_game();
+	void Events_Final_game();
 public :
-
-	sf::Sprite spritecars;
-
 	void MovimentCar();
 	void run_game();
 };

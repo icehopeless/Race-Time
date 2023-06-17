@@ -22,6 +22,9 @@ void Levels::inicializar_Levels() {
 	ArrowLS2.setColor(sf::Color::Transparent);
 	vitrineS2.setColor(sf::Color::Transparent);
 	vitrineS.setColor(sf::Color::Transparent);
+	startButtonS.setColor(sf::Color::Transparent);
+	settingButtonS.setColor(sf::Color::Transparent);
+	texture3S.setColor(sf::Color::Transparent);
 	iniciar_numeros();
 	reading_Save();
 }
@@ -54,7 +57,9 @@ void Levels::reading_Save() {
 		status.push_back(situation);
 	}
 
-for(int c = 0; c < Levels.size(); c++){
+	fileSaved.close();
+ int tam = Levels.size();
+for(int c = 0; c < tam; c++){
 		if( Levels[c] == "Level1" && status[c] == Blocked){
 			Bloqued = true;
 			sf::Sprite L;
@@ -64,6 +69,7 @@ for(int c = 0; c < Levels.size(); c++){
 			SpritesLockeds.push_back(L);
 		} else if (Levels[c] == "Level1" && status[c] == Unlocked){
 			Bloqued = false;
+
 		}
 
 		if( Levels[c] == "Level2" && status[c] == Blocked){
@@ -75,6 +81,7 @@ for(int c = 0; c < Levels.size(); c++){
 			SpritesLockeds.push_back(L);
 		} else if (Levels[c] == "Level2" && status[c] == Unlocked){
 			Bloqued2 = false;
+			Nivelatual = 1;
 		}
 
 		if( Levels[c] == "Level3" && status[c] == Blocked){
@@ -86,6 +93,7 @@ for(int c = 0; c < Levels.size(); c++){
 			SpritesLockeds.push_back(L);
 		} else if (Levels[c] == "Level3" && status[c] == Unlocked){
 			Bloqued3 = false;
+			Nivelatual = 2;
 		}
 
 		if( Levels[c] == "Level4" && status[c] == Blocked){
@@ -97,6 +105,7 @@ for(int c = 0; c < Levels.size(); c++){
 			SpritesLockeds.push_back(L);
 		} else if (Levels[c] == "Level4" && status[c] == Unlocked){
 			Bloqued4 = false;
+			Nivelatual = 3;
 		}
 
 		if( Levels[c] == "Level5" && status[c] == Blocked){
@@ -108,6 +117,7 @@ for(int c = 0; c < Levels.size(); c++){
 			SpritesLockeds.push_back(L);
 		} else if (Levels[c] == "Level5" && status[c] == Unlocked){
 			Bloqued5 = false;
+			Nivelatual = 4;
 		}
 
 		if( Levels[c] == "Level6" && status[c] == Blocked){
@@ -119,6 +129,7 @@ for(int c = 0; c < Levels.size(); c++){
 			SpritesLockeds.push_back(L);
 		} else if (Levels[c] == "Level6" && status[c] == Unlocked){
 			Bloqued6 = false;
+			Nivelatual = 5;
 		}
 
 		if( Levels[c] == "Level7" && status[c] == Blocked){
@@ -130,6 +141,7 @@ for(int c = 0; c < Levels.size(); c++){
 			SpritesLockeds.push_back(L);
 		} else if (Levels[c] == "Level7" && status[c] == Unlocked){
 			Bloqued7 = false;
+			Nivelatual = 6;
 		}
 
 		if( Levels[c] == "Level8" && status[c] == Blocked){
@@ -141,6 +153,7 @@ for(int c = 0; c < Levels.size(); c++){
 			SpritesLockeds.push_back(L);
 		} else if (Levels[c] == "Level8" && status[c] == Unlocked){
 			Bloqued8 = false;
+			Nivelatual = 7;
 		}
 
 		if( Levels[c] == "Level9" && status[c] == Blocked){
@@ -152,6 +165,7 @@ for(int c = 0; c < Levels.size(); c++){
 			SpritesLockeds.push_back(L);
 		} else if (Levels[c] == "Level9" && status[c] == Unlocked){
 			Bloqued9 = false;
+			Nivelatual = 8;
 		}
 
 		if( Levels[c] == "Level10" && status[c] == Blocked){
@@ -163,6 +177,7 @@ for(int c = 0; c < Levels.size(); c++){
 			SpritesLockeds.push_back(L);
 		} else if (Levels[c] == "Level10" && status[c] == Unlocked){
 			Bloqued10 = false;
+			Nivelatual = 9;
 		}
 	}
 
@@ -263,21 +278,29 @@ void Levels::iniciar_numeros() {
 }
 
 void Levels::Keyboard_Levels() {
+	if(counterKeyboard == 1 && counterVertical == 1){
+		Nivelatual = 0;
+	}
 	if (KeyUP == true) {
 		if(counterKeyboard == 5 && Bloqued5 == false ){
 			counterVertical--;
+			Nivelatual = 4;
 		}
 		if(counterKeyboard == 4 && Bloqued4 == false ){
 			counterVertical--;
+			Nivelatual = 3;
 		}
 		if(counterKeyboard == 3 && Bloqued3 == false ){
 			counterVertical--;
+			Nivelatual = 2;
 		}
 		if(counterKeyboard == 2 && Bloqued2 == false ){
 			counterVertical--;
+			Nivelatual = 1;
 		}
 		if(counterKeyboard == 1 && Bloqued == false ){
 			counterVertical--;
+			Nivelatual = 0;
 		}
 		if (counterVertical == 0) {
 			counterVertical = 1;
@@ -288,18 +311,23 @@ void Levels::Keyboard_Levels() {
 	if (KeyDown == true) {
 		if(counterKeyboard == 1 && Bloqued6 == false ){
 			counterVertical++;
+			Nivelatual = 5;
 		}
 		if(counterKeyboard == 2 && Bloqued7 == false ){
 			counterVertical++;
+			Nivelatual = 6;
 		}
 		if(counterKeyboard == 3 && Bloqued8 == false ){
 			counterVertical++;
+			Nivelatual = 7;
 		}
 		if(counterKeyboard == 4 && Bloqued9 == false ){
 			counterVertical++;
+			Nivelatual = 8;
 		}
 		if(counterKeyboard == 5 && Bloqued10 == false ){
 			counterVertical++;
+			Nivelatual = 9;
 		}
 
 
@@ -315,28 +343,41 @@ void Levels::Keyboard_Levels() {
 
 		if(counterKeyboard == 4 && Bloqued5 == false && counterVertical == 1){
 			counterKeyboard++;
+			Nivelatual = 4;
+
 		}
 		if(counterKeyboard == 3 && Bloqued4 == false && counterVertical == 1){
 			counterKeyboard++;
+			Nivelatual = 3;
+
 		}
 		if(counterKeyboard == 2 && Bloqued3 == false && counterVertical == 1){
 			counterKeyboard++;
+			Nivelatual = 2;
 		}
 		if(counterKeyboard == 1 && Bloqued2 == false && counterVertical == 1){
 			counterKeyboard++;
+			Nivelatual = 1;
+		}
+		if(counterKeyboard == 1 && counterVertical == 2){
+			Nivelatual = 5;
 		}
 		//Linha 2a
 		if(counterKeyboard == 4 && counterVertical == 2 && Bloqued10 == false ){
 			counterKeyboard++;
+			Nivelatual = 9;
 		}
 		if(counterKeyboard == 3 && counterVertical == 2 && Bloqued9 == false ){
 			counterKeyboard++;
+			Nivelatual = 8;
 		}
 		if(counterKeyboard == 2 && counterVertical == 2 && Bloqued8 == false ){
 			counterKeyboard++;
+			Nivelatual = 7;
 		}
 		if(counterKeyboard == 1 && counterVertical == 2 && Bloqued7 == false ){
 			counterKeyboard++;
+			Nivelatual = 6;
 		}
 
 
@@ -349,32 +390,46 @@ void Levels::Keyboard_Levels() {
 	if (KeyLeft == true) {
 		if(counterKeyboard == 2 && Bloqued == false && counterVertical == 1 ){
 			counterKeyboard--;
+			Nivelatual = 0;
 		}
 		if(counterKeyboard == 3 && Bloqued2 == false && counterVertical == 1){
 			counterKeyboard--;
+			Nivelatual = 1;
 		}
 		if(counterKeyboard == 4 && Bloqued3 == false && counterVertical == 1){
 			counterKeyboard--;
+			Nivelatual = 2;
 		}
 		if(counterKeyboard == 5 && Bloqued4 == false && counterVertical == 1){
 			counterKeyboard--;
+			Nivelatual = 3;
 		}
 
 		if(counterKeyboard == 2 && Bloqued6 == false && counterVertical == 2 ){
 			counterKeyboard--;
+			Nivelatual = 5;
 		}
 		if(counterKeyboard == 3 && Bloqued7 == false && counterVertical == 2){
 			counterKeyboard--;
+			Nivelatual = 6;
 		}
 		if(counterKeyboard == 4 && Bloqued8 == false && counterVertical == 2){
 			counterKeyboard--;
+			Nivelatual = 7;
 		}
 		if(counterKeyboard == 5 && Bloqued9 == false && counterVertical == 2){
 			counterKeyboard--;
+			Nivelatual = 8;
 		}
 
 		if (counterKeyboard == 0) {
 			counterKeyboard = 1;
+		}
+		if(counterKeyboard == 1 && counterVertical == 1){
+			Nivelatual = 0;
+		}
+		if(counterKeyboard == 5 && counterVertical == 2){
+			Nivelatual = 9;
 		}
 		KeyLeft = false;
 	}
@@ -433,51 +488,61 @@ void Levels::Mouse_Levels() {
 			LimparTela();
 			keyGame= true;
 			keyLevels = false;
+			Nivelatual = 0;
 		}
 		if(CampMouse2.getGlobalBounds().contains(mouse_coord) && Bloqued2 == false ){
 			LimparTela();
 			keyGame= true;
 			keyLevels = false;
+			Nivelatual = 1;
 		}
 		if(CampMouse3.getGlobalBounds().contains(mouse_coord) && Bloqued3 == false){
 			LimparTela();
 			keyGame= true;
 			keyLevels = false;
+			Nivelatual = 2;
 		}
 		if(CampMouse4.getGlobalBounds().contains(mouse_coord) && Bloqued4 == false){
 			LimparTela();
 			keyGame= true;
 			keyLevels = false;
+			Nivelatual = 3;
 		}
 		if(CampMouse5.getGlobalBounds().contains(mouse_coord) && Bloqued5== false ){
 			LimparTela();
 			keyGame= true;
 			keyLevels = false;
+			Nivelatual = 4;
 		}
 		if(CampMouse6.getGlobalBounds().contains(mouse_coord) && Bloqued6 == false){
 			LimparTela();
 			keyGame= true;
 			keyLevels = false;
+			Nivelatual = 5;
 		}
 		if(CampMouse7.getGlobalBounds().contains(mouse_coord) && Bloqued7 == false){
 			LimparTela();
 			keyGame= true;
 			keyLevels = false;
+			Nivelatual = 6;
 		}
 		if(CampMouse8.getGlobalBounds().contains(mouse_coord) && Bloqued8 == false){
 			LimparTela();
 			keyGame= true;
 			keyLevels = false;
+			Nivelatual = 7;
 		}
 		if(CampMouse9.getGlobalBounds().contains(mouse_coord) && Bloqued9 == false){
 			LimparTela();
 			keyGame= true;
 			keyLevels = false;
+			Nivelatual = 8;
 		}
 		if(CampMouse10.getGlobalBounds().contains(mouse_coord) && Bloqued10 == false){
 			LimparTela();
 			keyGame= true;
 			keyLevels = false;
+			Nivelatual = 9;
 		}
 		Mouse_Left = false;
 	}
@@ -629,7 +694,8 @@ void Levels::LimparTela(){
 	Lv8.setFillColor(sf::Color::Transparent);
 	Lv9.setFillColor(sf::Color::Transparent);
 	Lv1.setFillColor(sf::Color::Transparent);
-	for(int j = 0; j < SpritesLockeds.size(); j++){
+	int tam = SpritesLockeds.size();
+	for(int j = 0; j < tam; j++){
 		SpritesLockeds[j].setColor(sf::Color::Transparent);
 	}
 }
