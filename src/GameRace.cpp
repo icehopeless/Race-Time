@@ -5,7 +5,7 @@ void Game::InicializarGame() {
 
 	music.stop();
 	VolumeS.setColor(sf::Color::Transparent);
-	fundo.loadFromFile("assets/Game/pista1.png");
+	fundo.loadFromFile("assets/Game/map1.png");
 	Fundo.setTexture(fundo, true);
 	startButtonS.setColor(sf::Color::Transparent);
 	settingButtonS.setColor(sf::Color::Transparent);
@@ -33,7 +33,7 @@ void Game::InicializarGame() {
 	Contagem->setCharacterSize(500);
 	Contagem->setFillColor(sf::Color::Cyan);
 	Contagem->setPosition(500, 50);
-	KeyFinaleGame = true;
+	KeyFinaleGame = false;
 	Saved = false;
 	counterKeyboard = 0;
 

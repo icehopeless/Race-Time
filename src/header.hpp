@@ -219,6 +219,7 @@ private:
 	void SaveGame();
 	void Final_game();
 	void Events_Final_game();
+	void PistaRefrent();
 public :
 	void MovimentCar();
 	void run_game();
