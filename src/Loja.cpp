@@ -1,6 +1,6 @@
 #include "header.hpp"
 
-void Loja::InicializarLoja() {
+void Menu::InicializarLoja() {
 
 
 	//Textures and Sprites p1
@@ -16,7 +16,6 @@ void Loja::InicializarLoja() {
 	ArrowLS.setScale(0.3, 0.3);
 	ArrowLS.setPosition(0,360);
 	vitrineS.setColor(sf::Color::White);
-
 
 
 	//Textures and Sprites p2
@@ -44,7 +43,7 @@ void Loja::InicializarLoja() {
 }
 
 
-void Loja::Section1(){
+void Menu::Section1(){
 
 	//coloring
 	/*if (arrowMouseL.getGlobalBounds().contains(mouse_coord)) {
@@ -146,7 +145,7 @@ void Loja::Section1(){
 
 }
 
-void Loja::Section2(){
+void Menu::Section2(){
 	//coloring p2
 	if (KeyRight == true) {
 			CarSelectP2++;
@@ -226,7 +225,7 @@ void Loja::Section2(){
 	
 }
 
-void Loja::SelectTwoPlayer() {
+void Menu::SelectTwoPlayer() {
 		Section1();
 		Section2();
 
@@ -238,18 +237,19 @@ void Loja::SelectTwoPlayer() {
 	if (escolhafinalizada1 == true && escolhafinalizada2 == true) {
 		keyShop = false;
 		keyLevels = true;
+		startLv = false;
 		escolhafinalizada1 = false;
 		escolhafinalizada2 = false;
 	}
 
 }
 
-void Loja::EventsLoja() {
+void Menu::EventsLoja() {
 		SelectTwoPlayer();
 
 }
 
-void Loja::run_loja() {
+void Menu::run_loja() {
 	InicializarLoja();
 	EventsLoja();
 

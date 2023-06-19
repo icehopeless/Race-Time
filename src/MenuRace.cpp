@@ -5,6 +5,7 @@ Menu::Menu() {
 
 	Start();
 }
+
 Menu::~Menu() {
 	delete Contagem;
 	delete font;
@@ -34,7 +35,7 @@ void Menu::Start() {
 	CampMouse1.setSize(sf::Vector2f(300, 110));
 
 	CarSelectP1 = 1;
-	CarSelectP2 = rand() % 5;
+	CarSelectP2 = 1;
 
 	settingButtonS.setScale(0.5, 0.5);
 	settingButtonS.setPosition(490, 550);
@@ -52,7 +53,6 @@ void Menu::Start() {
 	keySettings = false;
 	keyShop = false;
 	keyGame = false;
-	KeyFinaleGame = false;
 	keyLevels = false;
 	k = 1;
 	counterKeyboard = 0;
@@ -662,25 +662,24 @@ void Menu::ChamarGame() {
 	 startGame = nullptr;
 	 */
 
-	Game *start;
-	start->run_game();
+
+	run_game();
 
 
 
 }
 
 void Menu::ChamarLoja() {
-
-	Loja *startLoja;
-	startLoja->run_loja();
+	run_loja();
 
 }
 
 void Menu::ChamarLevels() {
+	run_Levels();
 
-	Levels *startLevels;
-	startLevels->run_Levels();
-
+}
+void Menu::draw(){
+	carro.draw(&window);
 }
 void Menu::drawMenu() {
 	window.clear();
@@ -716,7 +715,11 @@ void Menu::drawMenu() {
 	window.draw(Lv8);
 	window.draw(Lv9);
 	window.draw(Lv10);
-	for(int j = 0; j < SpritesLockeds.size(); j++){
+	if(keyGame == true){
+		draw();
+	}
+	int i = SpritesLockeds.size();
+	for(int j = 0; j < i; j++){
 		window.draw(SpritesLockeds[j]);
 	}
 
@@ -743,6 +746,8 @@ void Menu::run_menu() {
 			ChamarLoja();
 		} else if(keyLevels == true){
 			ChamarLevels();
+		}else if(KeyFinaleGame == true){
+			Final_game();
 		}
 
 		contadodetempo++;

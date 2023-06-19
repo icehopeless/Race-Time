@@ -5,6 +5,6 @@ Level4,unlocked
 Level5,unlocked
 Level6,unlocked
 Level7,unlocked
-Level8,Blocked
-Level9,Blocked
+Level8,unlocked
+Level9,unlocked
 Level10,Blocked

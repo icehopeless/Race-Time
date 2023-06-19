@@ -1,6 +1,7 @@
 #include "header.hpp"
 
-void Levels::inicializar_Levels() {
+void Menu::inicializar_Levels() {
+
 	fundo.loadFromFile("assets/4.png");
 	Fundo.setTexture(fundo, true);
 	Counter_Selectd_Levels = 0;
@@ -29,7 +30,7 @@ void Levels::inicializar_Levels() {
 	reading_Save();
 }
 
-void Levels::reading_Save() {
+void Menu::reading_Save() {
 	ifstream fileSaved("Saved/Save.txt");
 
 	if (!fileSaved.is_open()) {
@@ -183,7 +184,7 @@ for(int c = 0; c < tam; c++){
 
 }
 
-void Levels::iniciar_numeros() {
+void Menu::iniciar_numeros() {
 
 	font->loadFromFile("assets/Font/VintageTimes.ttf");
 	Lv1.setFont(*font);
@@ -277,7 +278,7 @@ void Levels::iniciar_numeros() {
 	CampMouse10.setSize(sf::Vector2f(120, 120));
 }
 
-void Levels::Keyboard_Levels() {
+void Menu::Keyboard_Levels() {
 	if(counterKeyboard == 1 && counterVertical == 1){
 		Nivelatual = 0;
 	}
@@ -442,7 +443,7 @@ void Levels::Keyboard_Levels() {
 	}
 }
 
-void Levels::Mouse_Levels() {
+void Menu::Mouse_Levels() {
 	if (CampMouse1.getGlobalBounds().contains(mouse_coord) && Bloqued == false ) {
 		counterVertical = 1, counterKeyboard = 1;
 	}
@@ -486,8 +487,8 @@ void Levels::Mouse_Levels() {
 	if(Mouse_Left == true){
 		if(CampMouse1.getGlobalBounds().contains(mouse_coord) && Bloqued == false ){
 			LimparTela();
-			keyGame= true;
 			keyLevels = false;
+			keyGame= true;
 			Nivelatual = 0;
 		}
 		if(CampMouse2.getGlobalBounds().contains(mouse_coord) && Bloqued2 == false ){
@@ -548,7 +549,7 @@ void Levels::Mouse_Levels() {
 	}
 }
 
-void Levels::events_Levels() {
+void Menu::events_Levels() {
 
 	if (counterVertical == 1 && counterKeyboard == 1 && Bloqued == false) {
 		Counter_Selectd_Levels = 1;
@@ -683,7 +684,7 @@ void Levels::events_Levels() {
 	}
 
 }
-void Levels::LimparTela(){
+void Menu::LimparTela(){
 	Lv10.setFillColor(sf::Color::Transparent);
 	Lv2.setFillColor(sf::Color::Transparent);
 	Lv3.setFillColor(sf::Color::Transparent);
@@ -699,7 +700,7 @@ void Levels::LimparTela(){
 		SpritesLockeds[j].setColor(sf::Color::Transparent);
 	}
 }
-void Levels::run_Levels() {
+void Menu::run_Levels() {
 	if (startLv == false) {
 		inicializar_Levels();
 		startLv = true;
@@ -708,8 +709,4 @@ void Levels::run_Levels() {
 	Keyboard_Levels();
 	Mouse_Levels();
 }
-void Levels::started_Game() {
-	Init_Game = false;
-	SoundCont = false;
-	Contagem_Realizada = false;
-}
+

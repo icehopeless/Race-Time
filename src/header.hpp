@@ -9,9 +9,19 @@
 #include<vector>
 #include <fstream>
 using namespace std;
+class Carros{
+public:
+	 sf::Sprite zero;
+
+public:
+	 void draw(sf::RenderWindow *w);
+
+};
 class Menu {
 
 protected:
+
+	Carros carro;
 	sf::RenderWindow window;
 
 	sf::Texture fundo;
@@ -95,7 +105,6 @@ protected:
 	bool keyGame;
 	bool KeyLoading;
 	bool keyLevels;
-	bool KeyFinaleGame;
 	int counterKeyboard;
 	int counterVertical;
 	int contadodetempo;
@@ -143,7 +152,7 @@ protected:
 	bool escolhafinalizada1 = false;
 	bool escolhafinalizada2 = false;
 
-	
+
 
 
 // ||||||||||||||||||||||||||||||||||||||||||||||||||Game||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -162,8 +171,6 @@ protected:
 	sf::SoundBuffer Contador;
 	sf::Sound Go;
 	bool SoundCont = false;
-
-// ???????????????????????????	Levels ????????????????????????????????????????????????????????
 	int Counter_Selectd_Levels;
 	bool Bloqued;
 	bool Bloqued2;
@@ -183,6 +190,40 @@ protected:
 // ||||||||||||||||||||||||||||||||||||||||||||||||||Game||||||||||||||||||||||||||||||||||||||||||||||||||||
 
  bool liberagamer;
+private:
+	bool startLv = false;
+	void LimparTela();
+	void inicializar_Levels();
+	void run_Levels();
+	void events_Levels();
+	void Keyboard_Levels();
+	void Mouse_Levels();
+	void started_Game();
+	void iniciar_numeros();
+	void reading_Save();
+
+private:
+	bool KeyFinaleGame;
+	void Section1();
+	void Section2();
+	void SelectTwoPlayer();
+	void InicializarLoja();
+	void loja();
+	void EventsLoja();
+	void run_loja();
+
+private:
+	void InicializarGame();
+	void DrawGame();
+	void game();
+	void EventsGame();
+	void SaveGame();
+	void Final_game();
+	void Events_Final_game();
+	void PistaRefrent();
+	void MovimentCar();
+	void run_game();
+
 protected:
 	void AleterarCor();
 	void loopEvents();
@@ -200,6 +241,7 @@ protected:
 	void ChamarLoja();
 	void ChamarLevels();
 	void loading();
+	void draw();
 public:
 	Menu();
 	~Menu();
@@ -207,67 +249,15 @@ public:
 };
 
 
-class Game:public Menu{
-
-
-private:
-	 bool Saved;
-	void InicializarGame();
-	void DrawGame();
-	void game();
-	void EventsGame();
-	void SaveGame();
-	void Final_game();
-	void Events_Final_game();
-	void PistaRefrent();
-public :
-	void MovimentCar();
-	void run_game();
-};
-
-
-class Loja:public Menu{
-public:
-	void Section1();
-	void Section2();
-	void SelectTwoPlayer();
-	void InicializarLoja();
-	void loja();
-	void EventsLoja();
-public :
-	void run_loja();
-};
-
-class Levels: public Menu{
-public:
-	bool startLv = false;
-	void LimparTela();
-	void inicializar_Levels();
-	void run_Levels();
-	void events_Levels();
-	void Keyboard_Levels();
-	void Mouse_Levels();
-	void started_Game();
-	void iniciar_numeros();
-	void reading_Save();
-};
 
 
 
 
 
-/*
- * COISAS DO JOGO
- */
-
-class Carros:public Menu{
-public:
-
-	string nome;
-	int vel;
-	sf::Texture Textura;
-	sf::Sprite SpriteCar;
-public:
 
 
-};
+
+
+
+
+
