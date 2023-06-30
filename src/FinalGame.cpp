@@ -1,16 +1,18 @@
 #include "header.hpp"
 
-void Menu::Final_game(){
-	keyGame = false;
-	if(SoundCont == false){
-		music.openFromFile("assets/Sounds/Game/FinalGame.wav");
-		music.play();
-		SoundCont = true;
+void FinalGame::Final_game(){
+	if(Init_Final == false){
+		 SelecionadoEnter = false;
+		 Mouse_Left = false;
+		KeyDown = false;
+		KeyUP = false;
+		KeyLeft = false;
+		KeyRight = false;
+		Init_Final = true;
+		keyLevels = false;
+		keyMenu = false;
 	}
-
-	spritecars.setColor(sf::Color::Transparent);
 	fundo.loadFromFile("assets/FinalGame/Final.png");
-	Fundo.setTexture(fundo, true);
 
 
 	texture3.loadFromFile("assets/FinalGame/save.png");
@@ -21,9 +23,7 @@ void Menu::Final_game(){
 	settingButtonS.setTexture(settingButton,true);
 	texture3S.setTexture(texture3,true);
 
-	texture3S.setColor(sf::Color::White);
-	startButtonS.setColor(sf::Color::White);
-	settingButtonS.setColor(sf::Color::White);
+
 
 
 	texture3S.setPosition(80, 570);
@@ -42,22 +42,71 @@ void Menu::Final_game(){
 	CampMouse3.setPosition(920, 570);
 	CampMouse3.setSize(sf::Vector2f(300, 110));
 
-	Events_Final_game();
 }
 
-void Menu::Events_Final_game(){
+void FinalGame::Recept(int Nivel){
+	this->Nivelatual = Nivel;
+}
+void FinalGame::DrawFinal(sf::Sprite * Fundo){
+	Fundo->setTexture(fundo, true);
+}
+void FinalGame::DesenharFinal(sf::RenderWindow * w){
+	w->draw(texture3S);
+	w->draw(startButtonS);
+	w->draw(settingButtonS);
+}
+void FinalGame::Music(sf::Music *music){
+
+	if(SoundCont == false){
+		music->openFromFile("assets/Sounds/Game/FinalGame.wav");
+		if(KeySound == false){
+			music->play();
+			KeySound  =true;
+		}
+		SoundCont = true;
+	}
+}
+void FinalGame::LoopFinal(){
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)
+			&& KeyDown == false) {
+		KeyDown = true;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && KeyUP == false) {
+		KeyUP = true;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
+			&& KeyLeft == false) {
+		KeyLeft = true;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
+			&& KeyRight == false) {
+		KeyRight = true;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)
+			&& SelecionadoEnter == false) {
+		SelecionadoEnter = true;
+	}
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)
+			&& Mouse_Left == false) {
+		Mouse_Left = true;
+	}
+}
+void FinalGame::Events_Final_game(sf::Vector2f mouse_coord){
 
 	if(CampMouse1.getGlobalBounds().contains(mouse_coord)){
+		counterKeyboard = 1;
 		texture3S.setColor(sf::Color::Magenta);
 		startButtonS.setColor(sf::Color::White);
 		settingButtonS.setColor(sf::Color::White);
 	}
 	if(CampMouse2.getGlobalBounds().contains(mouse_coord)){
+		counterKeyboard = 2;
 		texture3S.setColor(sf::Color::White);
 		startButtonS.setColor(sf::Color::Magenta);
 		settingButtonS.setColor(sf::Color::White);
 	}
 	if(CampMouse3.getGlobalBounds().contains(mouse_coord)){
+		counterKeyboard = 3;
 		texture3S.setColor(sf::Color::White);
 		startButtonS.setColor(sf::Color::White);
 		settingButtonS.setColor(sf::Color::Magenta);
@@ -68,21 +117,14 @@ void Menu::Events_Final_game(){
 		if(CampMouse3.getGlobalBounds().contains(mouse_coord)){
 			counterKeyboard = 0;
 			keyMenu= true;
-			KeyFinaleGame = false;
-			Init_Game = false;
-			keyGame=false;
 			SoundCont = false;
-			soundActive = false;
 		}
 		if(CampMouse2.getGlobalBounds().contains(mouse_coord)){
-			Init_Game = false;
 			counterKeyboard = 0;
 			keyLevels= true;
-			startLv = false;
-			KeyFinaleGame = false;
-			keyGame=false;
+
 			SoundCont = false;
-			soundActive = false;
+
 		}
 		if(CampMouse1.getGlobalBounds().contains(mouse_coord)){
 			counterKeyboard = 0;
@@ -130,30 +172,39 @@ void Menu::Events_Final_game(){
 		}
 		if(counterKeyboard == 2){
 			counterKeyboard = 0;
-			KeyFinaleGame = false;
-			Init_Game = false;
-			keyGame=false;
-			startLv = false;
 			keyLevels= true;
 			SoundCont = false;
-			soundActive = false;
 		}
 		if(counterKeyboard == 3){
 			counterKeyboard = 0;
 			keyMenu= true;
-			KeyFinaleGame = false;
-			Init_Game = false;
-			keyGame=false;
 			SoundCont = false;
-			soundActive = false;
 		}
 		SelecionadoEnter = false;
 	}
 
 }
 
+void FinalGame::ReturnFinal(int * key){
+	if(keyLevels == true){
+		*key =1;
+		KeySound = false;
+		SoundCont = false;
+		Init_Final = false;
+		keyLevels = false;
+		keyMenu = false;
+	}
+	if(keyMenu == true){
+		KeySound = false;
+		SoundCont = false;
+		*key =2;
+		Init_Final = false;
+		keyLevels = false;
+		keyMenu = false;
+	}
+}
 
-void Menu::SaveGame(){
+void FinalGame::SaveGame(){
 
 		ifstream fileSaved("Saved/Save.txt");
 		if (!fileSaved.is_open()) {

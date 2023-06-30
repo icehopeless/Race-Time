@@ -1,36 +1,49 @@
 #include "header.hpp"
 
-void Menu::inicializar_Levels() {
-
-	fundo.loadFromFile("assets/4.png");
-	Fundo.setTexture(fundo, true);
+void Levels::inicializar_Levels() {
+	 KeyDown = false;
+	 KeyUP = false;
+	 KeyLeft = false;
+	 KeyRight = false;
+	 SelecionadoEnter = false;
+	 Mouse_Left = false;
 	Counter_Selectd_Levels = 0;
 	counterVertical = 1;
 	counterKeyboard = 1;
-	arrowRS.setColor(sf::Color::Transparent);
-	arrowLS.setColor(sf::Color::Transparent);
-	vitrineS.setColor(sf::Color::Transparent);
-	VolumeS.setColor(sf::Color::Transparent);
-	texture4S.setColor(sf::Color::Transparent);
-	texture5S.setColor(sf::Color::Transparent);
-	texture3S.setColor(sf::Color::Transparent);
-	ArrowLS.setColor(sf::Color::Transparent);
-	ArrowRS.setColor(sf::Color::Transparent);
-	texture5S.setColor(sf::Color::Transparent);
-	Reso.setFillColor(sf::Color::Transparent);
 	textureLockeds.loadFromFile("assets/Loja/blocked.png");
-	ArrowRS2.setColor(sf::Color::Transparent);
-	ArrowLS2.setColor(sf::Color::Transparent);
-	vitrineS2.setColor(sf::Color::Transparent);
-	vitrineS.setColor(sf::Color::Transparent);
-	startButtonS.setColor(sf::Color::Transparent);
-	settingButtonS.setColor(sf::Color::Transparent);
-	texture3S.setColor(sf::Color::Transparent);
+	keyGame = false;
+	keyLevels = false;
 	iniciar_numeros();
 	reading_Save();
-}
 
-void Menu::reading_Save() {
+}
+void Levels::DesenharFundoLevels(sf::Sprite * Fundo){
+	fundo.loadFromFile("assets/4.png");
+	Fundo->setTexture(fundo, true);
+
+}
+void Levels::Music(sf::Music *m){
+	if(startLv == false){
+		m->play();
+	}
+}
+void Levels::drawLeveles(sf::RenderWindow *w){
+	w->draw(Lv1);
+	w->draw(Lv2);
+	w->draw(Lv3);
+	w->draw(Lv4);
+	w->draw(Lv5);
+	w->draw(Lv6);
+	w->draw(Lv7);
+	w->draw(Lv8);
+	w->draw(Lv9);
+	w->draw(Lv10);
+	int i = SpritesLockeds.size();
+	for(int j = 0; j < i; j++){
+		w->draw(SpritesLockeds[j]);
+	}
+}
+void Levels::reading_Save() {
 	ifstream fileSaved("Saved/Save.txt");
 
 	if (!fileSaved.is_open()) {
@@ -70,6 +83,7 @@ for(int c = 0; c < tam; c++){
 			SpritesLockeds.push_back(L);
 		} else if (Levels[c] == "Level1" && status[c] == Unlocked){
 			Bloqued = false;
+			Nivelatual = 0;
 
 		}
 
@@ -184,64 +198,64 @@ for(int c = 0; c < tam; c++){
 
 }
 
-void Menu::iniciar_numeros() {
+void Levels::iniciar_numeros() {
 
-	font->loadFromFile("assets/Font/VintageTimes.ttf");
-	Lv1.setFont(*font);
+	font.loadFromFile("assets/Font/VintageTimes.ttf");
+	Lv1.setFont(font);
 	Lv1.setCharacterSize(140);
 	Lv1.setFillColor(sf::Color::Cyan);
 	Lv1.setPosition(285, 155);
 	Lv1.setString("1");
 
-	Lv2.setFont(*font);
+	Lv2.setFont(font);
 	Lv2.setCharacterSize(140);
 	Lv2.setFillColor(sf::Color::Cyan);
 	Lv2.setPosition(455, 155);
 	Lv2.setString("2");
 
-	Lv3.setFont(*font);
+	Lv3.setFont(font);
 	Lv3.setCharacterSize(140);
 	Lv3.setFillColor(sf::Color::Cyan);
 	Lv3.setPosition(625, 155);
 	Lv3.setString("3");
 
-	Lv4.setFont(*font);
+	Lv4.setFont(font);
 	Lv4.setCharacterSize(140);
 	Lv4.setFillColor(sf::Color::Cyan);
 	Lv4.setPosition(795, 155);
 	Lv4.setString("4");
 
-	Lv5.setFont(*font);
+	Lv5.setFont(font);
 	Lv5.setCharacterSize(140);
 	Lv5.setFillColor(sf::Color::Cyan);
 	Lv5.setPosition(965, 155);
 	Lv5.setString("5");
 
-	Lv6.setFont(*font);
+	Lv6.setFont(font);
 	Lv6.setCharacterSize(140);
 	Lv6.setFillColor(sf::Color::Cyan);
 	Lv6.setPosition(285, 355);
 	Lv6.setString("6");
 
-	Lv7.setFont(*font);
+	Lv7.setFont(font);
 	Lv7.setCharacterSize(140);
 	Lv7.setFillColor(sf::Color::Cyan);
 	Lv7.setPosition(455, 355);
 	Lv7.setString("7");
 
-	Lv8.setFont(*font);
+	Lv8.setFont(font);
 	Lv8.setCharacterSize(140);
 	Lv8.setFillColor(sf::Color::Cyan);
 	Lv8.setPosition(625, 355);
 	Lv8.setString("8");
 
-	Lv9.setFont(*font);
+	Lv9.setFont(font);
 	Lv9.setCharacterSize(140);
 	Lv9.setFillColor(sf::Color::Cyan);
 	Lv9.setPosition(795, 355);
 	Lv9.setString("9");
 
-	Lv10.setFont(*font);
+	Lv10.setFont(font);
 	Lv10.setCharacterSize(120);
 	Lv10.setFillColor(sf::Color::Cyan);
 	Lv10.setPosition(950, 360);
@@ -277,8 +291,34 @@ void Menu::iniciar_numeros() {
 	CampMouse10.setPosition(942, 381);
 	CampMouse10.setSize(sf::Vector2f(120, 120));
 }
+void Levels::loop_events_Levels(){
 
-void Menu::Keyboard_Levels() {
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)
+					&& KeyDown == false) {
+				KeyDown = true;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && KeyUP == false) {
+				KeyUP = true;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
+					&& KeyLeft == false) {
+				KeyLeft = true;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
+					&& KeyRight == false) {
+				KeyRight = true;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)
+					&& SelecionadoEnter == false) {
+				SelecionadoEnter = true;
+			}
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left)
+					&& Mouse_Left == false) {
+				Mouse_Left = true;
+			}
+
+}
+void Levels::Keyboard_Levels() {
 	if(counterKeyboard == 1 && counterVertical == 1){
 		Nivelatual = 0;
 	}
@@ -442,8 +482,15 @@ void Menu::Keyboard_Levels() {
 		SelecionadoEnter = false;
 	}
 }
-
-void Menu::Mouse_Levels() {
+int Levels::returnKeyLevels(){
+	int key;
+	if(keyGame == true and keyLevels == false){
+		key = 1;
+		startLv = false;
+	}
+	return key;
+}
+void Levels::EventesLevels(sf::Vector2f mouse_coord) {
 	if (CampMouse1.getGlobalBounds().contains(mouse_coord) && Bloqued == false ) {
 		counterVertical = 1, counterKeyboard = 1;
 	}
@@ -549,7 +596,7 @@ void Menu::Mouse_Levels() {
 	}
 }
 
-void Menu::events_Levels() {
+void Levels::events_Levels() {
 
 	if (counterVertical == 1 && counterKeyboard == 1 && Bloqued == false) {
 		Counter_Selectd_Levels = 1;
@@ -684,7 +731,7 @@ void Menu::events_Levels() {
 	}
 
 }
-void Menu::LimparTela(){
+void Levels::LimparTela(){
 	Lv10.setFillColor(sf::Color::Transparent);
 	Lv2.setFillColor(sf::Color::Transparent);
 	Lv3.setFillColor(sf::Color::Transparent);
@@ -700,13 +747,16 @@ void Menu::LimparTela(){
 		SpritesLockeds[j].setColor(sf::Color::Transparent);
 	}
 }
-void Menu::run_Levels() {
+void Levels::TrackSelected(int *pista){
+	*pista = this->Nivelatual;
+}
+void Levels::run_Levels() {
 	if (startLv == false) {
 		inicializar_Levels();
 		startLv = true;
 	}
+
 	events_Levels();
 	Keyboard_Levels();
-	Mouse_Levels();
 }
 

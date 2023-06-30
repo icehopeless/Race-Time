@@ -11,7 +11,6 @@ Menu::~Menu() {
 	delete font;
 }
 void Menu::Start() {
-	liberagamer = true;
 	window.create(sf::VideoMode(1280, 720), "Mystic Time",sf::Style::Titlebar | sf::Style::Close);
 	window.setPosition(sf::Vector2i(0, 0));
 	sf::Image Icon = sf::Image { };
@@ -34,8 +33,6 @@ void Menu::Start() {
 	CampMouse1.setPosition(480, 400);
 	CampMouse1.setSize(sf::Vector2f(300, 110));
 
-	CarSelectP1 = 1;
-	CarSelectP2 = 1;
 
 	settingButtonS.setScale(0.5, 0.5);
 	settingButtonS.setPosition(490, 550);
@@ -46,10 +43,10 @@ void Menu::Start() {
 	KeyUP = false;
 	KeyLeft = false;
 	KeyRight = false;
-	KeyLoading = false;
+	KeyLoading = true;
 	SelecionadoEnter = false;
 	Mouse_Left = false;
-	keyMenu = true;
+	keyMenu = false;
 	keySettings = false;
 	keyShop = false;
 	keyGame = false;
@@ -92,6 +89,14 @@ void Menu::ZeraCounters() {
 
 void Menu::StartMenu() {
 	if(soundActive == false){
+		 KeyDown = false;
+		 KeyUP = false;
+		 KeyLeft = false;
+		 KeyRight = false;
+		 SelecionadoEnter = false;
+		 Mouse_Left = false;
+			settingButtonS.setColor(sf::Color::White);
+			startButtonS.setColor(sf::Color::White);
 		music.openFromFile("assets/Sounds/Menu/Home.wav");
 		music.play();
 		soundActive = true;
@@ -613,11 +618,15 @@ void Menu::loopEvents() {
 
 	pos_mouse = sf::Mouse::getPosition(window);
 	mouse_coord = window.mapPixelToCoords(pos_mouse);
-
+	Newgame.loopEventGame();
 	while (window.pollEvent(event)) {
 		if (event.type == sf::Event::Closed) {
 			window.close();
 		}
+
+		level.loop_events_Levels();
+		loja.EventesKeyBoard();
+		Final.LoopFinal();
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && KeyDown == false) {
 			KeyA = true;
 		}
@@ -654,32 +663,81 @@ void Menu::loopEvents() {
 
 	}
 }
+
 void Menu::ChamarGame() {
-	/*
-	 Game * startGame = new Game();
-	 startGame->run_game();
-	 delete startGame;
-	 startGame = nullptr;
-	 */
-
-
-	run_game();
-
+	int KeyFinalGame;
+	Newgame.Setpista(Nivelatual);
+	Newgame.run_game();
+	Newgame.CarsSelceteds(CarP1,CarP2);
+	Newgame.SetCar(&carro);
+	Newgame.SetCar2(&carro2);
+	Newgame.ColisionsInCars(&carro,&carro2);
+	Newgame.Checks1(&carro);
+	Newgame.Checks2(&carro2);
+	Newgame.stopedMusic(&music);
+	Newgame.FinalPista(&Nivelatual);
+	KeyFinalGame = Newgame.returnGameFinal();
+	if(KeyFinalGame == 1){
+		keyGame = false;
+		KeyFinaleGame = true;
+	}
 
 
 }
 
 void Menu::ChamarLoja() {
-	run_loja();
-
+	int key;
+	startButtonS.setColor(sf::Color::Transparent);
+	settingButtonS.setColor(sf::Color::Transparent);
+	loja.run_loja();
+	loja.DesenharFundoLoja(&Fundo);
+	key = loja.returnKeyLoja();
+	loja.CarsSelecteds(&CarP1, &CarP2);
+	if(key == 1){
+		keyShop = false;
+		keyLevels = true;
+	}
+	SelecionadoEnter = false;
+	KeyRight = false;
+	KeyLeft = false;
 }
 
 void Menu::ChamarLevels() {
-	run_Levels();
+	level.Music(&music);
+	level.run_Levels();
+	int keyLeveGame = 0;
+	keyLeveGame = level.returnKeyLevels();
+	level.DesenharFundoLevels(&Fundo);
+	level.EventesLevels(mouse_coord);
+	level.TrackSelected(&Nivelatual);
+	if(keyLeveGame == 1){
+		keyLevels = false;
+		keyGame = true;
+	}
 
+}
+
+void Menu::ChamarFinal(){
+	int Key = 0;
+	Final.Recept(Nivelatual);
+	Final.Events_Final_game(mouse_coord);
+	Final.Music(&music);
+	Final.Final_game();
+
+	Final.ReturnFinal(&Key);
+	if(Key ==  1){
+		KeyFinaleGame = false;
+		keyLevels = true;
+	}
+	if(Key ==  2){
+		KeyFinaleGame = false;
+		keyMenu = true;
+		soundActive = false;
+	}
 }
 void Menu::draw(){
 	carro.draw(&window);
+	carro2.draw(&window);
 }
 void Menu::drawMenu() {
 	window.clear();
@@ -690,6 +748,12 @@ void Menu::drawMenu() {
 
 	if (keySettings == true) {
 		drawConfig();
+	}
+	if(keyShop == true){
+		loja.drawLoja(&window);
+	}
+	if(keyLevels == true){
+		level.drawLeveles(&window);
 	}
 	window.draw(ArrowRS2);
 	window.draw(ArrowLS2);
@@ -704,25 +768,19 @@ void Menu::drawMenu() {
 	window.draw(ArrowLS);
 	window.draw(carrohit);
 	window.draw(spritecars);
-	window.draw(*Contagem);
-	window.draw(Lv1);
-	window.draw(Lv2);
-	window.draw(Lv3);
-	window.draw(Lv4);
-	window.draw(Lv5);
-	window.draw(Lv6);
-	window.draw(Lv7);
-	window.draw(Lv8);
-	window.draw(Lv9);
-	window.draw(Lv10);
+
 	if(keyGame == true){
 		draw();
 	}
-	int i = SpritesLockeds.size();
-	for(int j = 0; j < i; j++){
-		window.draw(SpritesLockeds[j]);
+	if(keyGame == true){
+		Newgame.DrawGame(&window);
+		Newgame.DesenharFundoPista(&Fundo);
 	}
-
+	if(KeyFinaleGame == true){
+		Final.DrawFinal(&Fundo);
+		Final.DesenharFinal(&window);
+	}
+	window.draw(*Contagem);
 
 	window.display();
 
@@ -747,11 +805,10 @@ void Menu::run_menu() {
 		} else if(keyLevels == true){
 			ChamarLevels();
 		}else if(KeyFinaleGame == true){
-			Final_game();
+			ChamarFinal();
 		}
-
 		contadodetempo++;
-
 		drawMenu();
+
 	}
 }

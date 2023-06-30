@@ -1,7 +1,7 @@
 #include "header.hpp"
 
-void Menu::InicializarLoja() {
-
+void Loja::InicializarLoja() {
+	offLoja = 0;
 
 	//Textures and Sprites p1
 	ArrowR.loadFromFile("assets/Loja/SetR.png");
@@ -10,15 +10,11 @@ void Menu::InicializarLoja() {
 	ArrowLS.setTexture(ArrowL,true);
 	ArrowRS.setColor(sf::Color::White);
 	ArrowLS.setColor(sf::Color::White);
-
 	ArrowRS.setScale(0.3, 0.3);
 	ArrowRS.setPosition(370, 360);
 	ArrowLS.setScale(0.3, 0.3);
 	ArrowLS.setPosition(0,360);
 	vitrineS.setColor(sf::Color::White);
-
-
-	//Textures and Sprites p2
 	ArrowRS2.setTexture(ArrowR);
 	ArrowLS2.setTexture(ArrowL);
 	ArrowRS2.setScale(0.3, 0.3);
@@ -26,24 +22,60 @@ void Menu::InicializarLoja() {
 	ArrowLS2.setScale(0.3, 0.3);
 	ArrowLS2.setPosition(700,360);
 	vitrineS2.setColor(sf::Color::White);
-
 	ArrowRS2.setColor(sf::Color::White);
 	ArrowLS2.setColor(sf::Color::White);
+	CarSelectP1 = 1;
+	CarSelectP2 = 1;
+	SelecionadoEnter= false;
+	KeyDown = false;
+	 KeyUP = false;
+	 KeyLeft = false;
+	 KeyRight = false;
+	 SelecionadoEnter = false;
+	 Space = false;
+	 KeyA = false;
+	 KeyD = false;
+}
 
-
-	VolumeS.setColor(sf::Color::Transparent);
+void Loja::DesenharFundoLoja(sf::Sprite * Fundo){
 	fundo.loadFromFile("assets/Loja/Loja.png");
-	Fundo.setTexture(fundo, true);
-	startButtonS.setColor(sf::Color::Transparent);
-	settingButtonS.setColor(sf::Color::Transparent);
-	texture3S.setColor(sf::Color::Transparent);
-	texture4S.setColor(sf::Color::Transparent);
-	startButtonS.setPosition(550, 570);
+	Fundo->setTexture(fundo, true);
+}
+void Loja::EventesKeyBoard(){
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && KeyDown == false) {
+				KeyA = true;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)
+					&& SelecionadoEnter == false) {
+				Space = true;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && KeyDown == false) {
+				KeyD = true;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)
+					&& KeyDown == false) {
+				KeyDown = true;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && KeyUP == false) {
+				KeyUP = true;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
+					&& KeyLeft == false) {
+				KeyLeft = true;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
+					&& KeyRight == false) {
+				KeyRight = true;
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)
+					&& SelecionadoEnter == false) {
+				SelecionadoEnter = true;
+			}
 
 }
 
-
-void Menu::Section1(){
+void Loja::Section1(){
 
 	//coloring
 	/*if (arrowMouseL.getGlobalBounds().contains(mouse_coord)) {
@@ -145,7 +177,7 @@ void Menu::Section1(){
 
 }
 
-void Menu::Section2(){
+void Loja::Section2(){
 	//coloring p2
 	if (KeyRight == true) {
 			CarSelectP2++;
@@ -224,33 +256,48 @@ void Menu::Section2(){
 	
 	
 }
-
-void Menu::SelectTwoPlayer() {
+void Loja::CarsSelecteds(int *Car1,int *Car2){
+	*Car1 = this->CarP1;
+	*Car2 = this->CarP2;
+}
+void Loja::SelectTwoPlayer() {
 		Section1();
 		Section2();
 
-		
 
+	if (escolhafinalizada1 == true and escolhafinalizada2 == true) {
+		OffLoja();
 
-	
-
-	if (escolhafinalizada1 == true && escolhafinalizada2 == true) {
-		keyShop = false;
-		keyLevels = true;
-		startLv = false;
 		escolhafinalizada1 = false;
 		escolhafinalizada2 = false;
 	}
 
 }
+void Loja::OffLoja(){
+	offLoja = 1;
+	init_Loja = false;
+}
+int Loja::returnKeyLoja(){
+	return offLoja;
 
-void Menu::EventsLoja() {
+}
+void Loja::EventsLoja() {
 		SelectTwoPlayer();
 
 }
-
-void Menu::run_loja() {
-	InicializarLoja();
+void Loja::drawLoja(sf::RenderWindow * w){
+	w->draw(vitrineS2);
+	w->draw(ArrowRS);
+	w->draw(ArrowLS2);
+	w->draw(ArrowLS);
+	w->draw(vitrineS);
+	w->draw(ArrowRS2);
+}
+void Loja::run_loja() {
+	if(init_Loja == false){
+		InicializarLoja();
+		init_Loja = true;
+	}
 	EventsLoja();
 
 }
