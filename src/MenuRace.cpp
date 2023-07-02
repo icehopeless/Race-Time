@@ -43,14 +43,15 @@ void Menu::Start() {
 	KeyUP = false;
 	KeyLeft = false;
 	KeyRight = false;
-	KeyLoading = true;
+	KeyLoading = false;
 	SelecionadoEnter = false;
 	Mouse_Left = false;
 	keyMenu = false;
 	keySettings = false;
-	keyShop = false;
+	keyShop = true;
 	keyGame = false;
 	keyLevels = false;
+	KeyFinaleGame = false;
 	k = 1;
 	counterKeyboard = 0;
 	counterVertical = 0;
@@ -666,16 +667,25 @@ void Menu::loopEvents() {
 
 void Menu::ChamarGame() {
 	int KeyFinalGame;
+
 	Newgame.Setpista(Nivelatual);
 	Newgame.run_game();
+
+	//Main Cars
 	Newgame.CarsSelceteds(CarP1,CarP2);
-	Newgame.SetCar(&carro);
-	Newgame.SetCar2(&carro2);
-	Newgame.ColisionsInCars(&carro,&carro2);
 	Newgame.Checks1(&carro);
 	Newgame.Checks2(&carro2);
+	Newgame.SetCar(&carro);
+	Newgame.SetCar2(&carro2);
+	Newgame.Moviment_car2(&carro2);
+	Newgame.Corretction_bug(&carro, &carro2);
+	Newgame.ColisionsInCars(&carro,&carro2);
+
+	//||||||||||||||||||
+
 	Newgame.stopedMusic(&music);
 	Newgame.FinalPista(&Nivelatual);
+	Newgame.Return_Plac_result(&Win);
 	KeyFinalGame = Newgame.returnGameFinal();
 	if(KeyFinalGame == 1){
 		keyGame = false;
@@ -723,7 +733,7 @@ void Menu::ChamarFinal(){
 	Final.Events_Final_game(mouse_coord);
 	Final.Music(&music);
 	Final.Final_game();
-
+	Final.ReceptWin(Win);
 	Final.ReturnFinal(&Key);
 	if(Key ==  1){
 		KeyFinaleGame = false;

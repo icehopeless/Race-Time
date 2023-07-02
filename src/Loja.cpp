@@ -1,269 +1,447 @@
 #include "header.hpp"
 
 void Loja::InicializarLoja() {
+	ReadSaving();
 	offLoja = 0;
-
+	CarP1 = 1;
+	CarP2 = 1;
+	CounterFrame = 0;
+	Acount_1 = 100;
+	Acount_2 = 100;
+	font.loadFromFile("assets/Font/VintageTimes-Light.ttf");
+	MoneysAcount_1.setFont(font);
+	MoneysAcount_2.setFont(font);
+	MoneysAcount_1.setFillColor(sf::Color::Magenta);
+	MoneysAcount_2.setFillColor(sf::Color::Magenta);
 	//Textures and Sprites p1
 	ArrowR.loadFromFile("assets/Loja/SetR.png");
 	ArrowL.loadFromFile("assets/Loja/SetL.png");
-	ArrowRS.setTexture(ArrowR,true);
-	ArrowLS.setTexture(ArrowL,true);
+	ArrowRS.setTexture(ArrowR, true);
+	ArrowLS.setTexture(ArrowL, true);
 	ArrowRS.setColor(sf::Color::White);
 	ArrowLS.setColor(sf::Color::White);
 	ArrowRS.setScale(0.3, 0.3);
 	ArrowRS.setPosition(370, 360);
 	ArrowLS.setScale(0.3, 0.3);
-	ArrowLS.setPosition(0,360);
+	ArrowLS.setPosition(0, 360);
 	vitrineS.setColor(sf::Color::White);
 	ArrowRS2.setTexture(ArrowR);
 	ArrowLS2.setTexture(ArrowL);
 	ArrowRS2.setScale(0.3, 0.3);
 	ArrowRS2.setPosition(1070, 360);
 	ArrowLS2.setScale(0.3, 0.3);
-	ArrowLS2.setPosition(700,360);
+	ArrowLS2.setPosition(700, 360);
 	vitrineS2.setColor(sf::Color::White);
 	ArrowRS2.setColor(sf::Color::White);
 	ArrowLS2.setColor(sf::Color::White);
 	CarSelectP1 = 1;
 	CarSelectP2 = 1;
-	SelecionadoEnter= false;
+	SelecionadoEnter = false;
 	KeyDown = false;
-	 KeyUP = false;
-	 KeyLeft = false;
-	 KeyRight = false;
-	 SelecionadoEnter = false;
-	 Space = false;
-	 KeyA = false;
-	 KeyD = false;
+	KeyUP = false;
+	KeyLeft = false;
+	KeyRight = false;
+	SelecionadoEnter = false;
+	Space = false;
+	KeyA = false;
+	KeyD = false;
+	money[0].loadFromFile("assets/Loja/1.png");
+	coins.setTexture(money[0], true);
+	blocked.loadFromFile("assets/Loja/blocked.png");
+	Blocked.setTexture(blocked, true);
+	Blocked.setScale(0.5,0.5);
+	Blocked.setPosition(150, 250);
+	Blocked_2.setTexture(blocked, true);
+	Blocked_2.setScale(0.5,0.5);
+	Blocked_2.setPosition(860, 250);
+}
+void Loja::ReadSaving(){
+
+	ifstream file("Saved/SaveCars.txt");
+	if(!file.is_open()){
+		cout << "ERROR";
+	}
+	string linha;
+	while(getline(file,linha)){
+		stringstream ss(linha);
+		string campo;
+		string status;
+		int car;
+
+		getline(ss,campo,',');
+		car = atoi(campo.c_str());
+
+
+		getline(ss,campo,',');
+		status = campo;
+		Status.push_back(status);
+		carros.push_back(car);
+	}
+
+	file.close();
+
+	if(Status[0] == "unlocked" and carros[0] == 1){
+		Blocked1 = false;
+	}else{
+		Blocked1 = true;
+	}
+	if(Status[1] == "unlocked" and carros[1] == 2){
+		Blocked2 = false;
+	}else{
+		Blocked2 = true;
+	}
+	if(Status[2] == "unlocked" and carros[2] == 3){
+		Blocked3 = false;
+	}else{
+		Blocked3 = true;
+	}
+	if(Status[3] == "unlocked" and carros[3] == 4){
+		Blocked4 = false;
+	}else{
+		Blocked4 = true;
+	}
+	if(Status[4] == "unlocked" and carros[4] == 5){
+		Blocked5 = false;
+	}else{
+		Blocked5 = true;
+	}
 }
 
-void Loja::DesenharFundoLoja(sf::Sprite * Fundo){
+
+void Loja::DesenharFundoLoja(sf::Sprite *Fundo) {
 	fundo.loadFromFile("assets/Loja/Loja.png");
 	Fundo->setTexture(fundo, true);
 }
-void Loja::EventesKeyBoard(){
+void Loja::EventesKeyBoard() {
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && KeyDown == false) {
-				KeyA = true;
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)
-					&& SelecionadoEnter == false) {
-				Space = true;
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && KeyDown == false) {
-				KeyD = true;
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)
-					&& KeyDown == false) {
-				KeyDown = true;
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && KeyUP == false) {
-				KeyUP = true;
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
-					&& KeyLeft == false) {
-				KeyLeft = true;
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)
-					&& KeyRight == false) {
-				KeyRight = true;
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)
-					&& SelecionadoEnter == false) {
-				SelecionadoEnter = true;
-			}
+		KeyA = true;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)
+			&& SelecionadoEnter == false) {
+		Space = true;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && KeyDown == false) {
+		KeyD = true;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && KeyDown == false) {
+		KeyDown = true;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && KeyUP == false) {
+		KeyUP = true;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && KeyLeft == false) {
+		KeyLeft = true;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && KeyRight == false) {
+		KeyRight = true;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return)
+			&& SelecionadoEnter == false) {
+		SelecionadoEnter = true;
+	}
 
 }
 
-void Loja::Section1(){
+void Loja::Section1() {
 
 	//coloring
 	/*if (arrowMouseL.getGlobalBounds().contains(mouse_coord)) {
-				ArrowLS.setColor(sf::Color::Blue);
-				ArrowRS.setColor(sf::Color::White);
-			} else {
-				ArrowLS.setColor(sf::Color::White);
-			}
-			if (arrowMouseR.getGlobalBounds().contains(mouse_coord)) {
-				ArrowRS.setColor(sf::Color::Blue);
-				ArrowLS.setColor(sf::Color::White);
-			} else {
-				ArrowRS.setColor(sf::Color::White);
-			}*/
+	 ArrowLS.setColor(sf::Color::Blue);
+	 ArrowRS.setColor(sf::Color::White);
+	 } else {
+	 ArrowLS.setColor(sf::Color::White);
+	 }
+	 if (arrowMouseR.getGlobalBounds().contains(mouse_coord)) {
+	 ArrowRS.setColor(sf::Color::Blue);
+	 ArrowLS.setColor(sf::Color::White);
+	 } else {
+	 ArrowRS.setColor(sf::Color::White);
+	 }*/
 
-			if (KeyD == true) {
-				CarSelectP1++;
-				ArrowRS.setColor(sf::Color::Blue);
-				ArrowLS.setColor(sf::Color::White);
-				if (CarSelectP1 > 5) {
-					CarSelectP1 = 1;
-				}
-				KeyD = false;
-			}
-
-			if (KeyA == true) {
-				CarSelectP1--;
-				ArrowLS.setColor(sf::Color::Blue);
-				ArrowRS.setColor(sf::Color::White);
-				if (CarSelectP1 < 1) {
-					CarSelectP1 = 5;
-				}
-				KeyA = false;
-			}
-	//coloring p2
-	/*if (arrowMouseL2.getGlobalBounds().contains(mouse_coord)) {
-			ArrowLS2.setColor(sf::Color::Blue);
-			ArrowRS2.setColor(sf::Color::White);
-		} else {
-			ArrowLS2.setColor(sf::Color::White);
+	if (KeyD == true) {
+		CarSelectP1++;
+		ArrowRS.setColor(sf::Color::Blue);
+		ArrowLS.setColor(sf::Color::White);
+		if (CarSelectP1 > 5) {
+			CarSelectP1 = 1;
 		}
-		if (arrowMouseR2.getGlobalBounds().contains(mouse_coord)) {
-			ArrowRS2.setColor(sf::Color::Blue);
-			ArrowLS2.setColor(sf::Color::White);
-		} else {
-			ArrowRS2.setColor(sf::Color::White);
-		}*/
-			//click p1
-			if (Space == true) {
-				/*if (arrowMouseR.getGlobalBounds().contains(mouse_coord)) {
-					CarSelectP1++;
-					if (CarSelectP1 > 5) {
-						CarSelectP1 = 1;
-					}
-				}*/
+		if(CarSelectP1 == 1 ){
+				if(Blocked1 == false){
+				CarP1 = 1;
+			}
+		}
+		if(CarSelectP1 == 2 ){
+			if(Blocked2 == false){
+				CarP1 = 2;
+			}
+		}
+		if(CarSelectP1 == 3 ){
+				if(Blocked3 == false){
+				CarP1 = 3;
+			}
+		}
+		if(CarSelectP1 == 4 ){
+				if(Blocked4 == false){
+				CarP1 = 4;
+			}
+		}
+		if(CarSelectP1 == 5 ){
+				if(Blocked5 == false){
+				CarP1 = 5;
+			}
+		}
+		KeyD = false;
+	}
 
-				/*if (arrowMouseL.getGlobalBounds().contains(mouse_coord)) {
-					CarSelectP1--;
-					if (CarSelectP1 < 1) {
-						CarSelectP1 = 5;
-					}
-				}*/
-					CarP1=CarSelectP1;
-					escolhafinalizada1 = true;
-					Space = false;
+	if (KeyA == true) {
+		CarSelectP1--;
+		ArrowLS.setColor(sf::Color::Blue);
+		ArrowRS.setColor(sf::Color::White);
+		if (CarSelectP1 < 1) {
+			CarSelectP1 = 5;
+		}
+		if (CarSelectP1 > 5) {
+			CarSelectP1 = 1;
+		}
+		if(CarSelectP1 == 1 ){
+				if(Blocked1 == false){
+				CarP1 = 1;
 			}
+		}
+		if(CarSelectP1 == 2 ){
+			if(Blocked2 == false){
+				CarP1 = 2;
+			}
+		}
+		if(CarSelectP1 == 3 ){
+				if(Blocked3 == false){
+				CarP1 = 3;
+			}
+		}
+		if(CarSelectP1 == 4 ){
+				if(Blocked4 == false){
+				CarP1 = 4;
+			}
+		}
+		if(CarSelectP1 == 5 ){
+				if(Blocked5 == false){
+				CarP1 = 5;
+			}
+		}
+		KeyA = false;
+	}
 
+	if (Space == true) {
+		if(CarSelectP1 == 2 and Blocked2 == true){
+			if(Acount_1 >= Price_car){
+				Acount_1 = Acount_1 - Price_car;
+				Status[1] = "unlocked";
+			}
+		}
+		if(CarSelectP1 == 3 and Blocked3 == true){
+			if(Acount_1 >= Price_car){
+				Acount_1 = Acount_1 - Price_car;
+				Status[2] = "unlocked";
+			}
+		}
+		if(CarSelectP1 == 4 and Blocked4 == true){
+			if(Acount_1 >= Price_car){
+				Acount_1 = Acount_1 - Price_car;
+				Status[3] = "unlocked";
+			}
+		}
+		if(CarSelectP1 == 5 and Blocked5 == true){
+			if(Acount_1 >= Price_car){
+				Acount_1 = Acount_1 - Price_car;
+				Status[4] = "unlocked";
+			}
+		}
+		escolhafinalizada1 = true;
+		Space = false;
+	}
 
-			if (CarSelectP1 == 1) {
-				vitrine.loadFromFile("assets/Cars/V1.png");
-				vitrineS.setTexture(vitrine);
-				vitrineS.setScale(0.34, 0.34);
-				vitrineS.setPosition(156, 326);
-			}
-			if (CarSelectP1 == 2) {
-				vitrine.loadFromFile("assets/Cars/V2.png");
-				vitrineS.setTexture(vitrine, true);
-				vitrineS.setScale(0.14, 0.14);
-				vitrineS.setPosition(146, 326);
-			}
-			if (CarSelectP1 == 3) {
-				vitrine.loadFromFile("assets/Cars/V3.png");
-				vitrineS.setTexture(vitrine, true);
-				vitrineS.setScale(0.34, 0.34);
-				vitrineS.setPosition(136, 326);
-			}
-			if (CarSelectP1 == 4) {
-				vitrine.loadFromFile("assets/Cars/V4.png");
-				vitrineS.setTexture(vitrine, true);
-				vitrineS.setScale(0.34, 0.34);
-				vitrineS.setPosition(156, 326);
-			}
-			if (CarSelectP1 == 5) {
-				vitrineS.setScale(0.14, 0.14);
-				vitrine.loadFromFile("assets/Cars/V5.png");
-				vitrineS.setTexture(vitrine, true);
-				vitrineS.setPosition(156, 326);
-			}
+	if (CarSelectP1 == 1) {
+		vitrine.loadFromFile("assets/Cars/V1.png");
+		vitrineS.setTexture(vitrine, true);
+		vitrineS.setScale(0.54, 0.54);
+		vitrineS.setPosition(156, 286);
+	}
+	if (CarSelectP1 == 2) {
+		vitrine.loadFromFile("assets/Cars/V2.png");
+		vitrineS.setTexture(vitrine, true);
+		vitrineS.setScale(1, 1);
+		vitrineS.setPosition(156, 316);
+	}
+	if (CarSelectP1 == 3) {
+		vitrine.loadFromFile("assets/Cars/V3.png");
+		vitrineS.setTexture(vitrine, true);
+		vitrineS.setScale(0.74, 0.74);
+		vitrineS.setPosition(136, 176);
+	}
+	if (CarSelectP1 == 4) {
+		vitrine.loadFromFile("assets/Cars/V4.png");
+		vitrineS.setTexture(vitrine, true);
+		vitrineS.setScale(0.94, 0.94);
+		vitrineS.setPosition(166, 326);
+	}
+	if (CarSelectP1 == 5) {
+		vitrineS.setScale(0.54, 0.54);
+		vitrine.loadFromFile("assets/Cars/V5.png");
+		vitrineS.setTexture(vitrine, true);
+		vitrineS.setPosition(106, 306);
+	}
 
 }
 
-void Loja::Section2(){
+void Loja::Section2() {
 	//coloring p2
 	if (KeyRight == true) {
-			CarSelectP2++;
-			ArrowRS2.setColor(sf::Color::Blue);
-			ArrowLS2.setColor(sf::Color::White);
-			if (CarSelectP2 > 5) {
-				CarSelectP2 = 1;
-			}
-			KeyRight = false;
+		CarSelectP2++;
+		ArrowRS2.setColor(sf::Color::Blue);
+		ArrowLS2.setColor(sf::Color::White);
+		if (CarSelectP2 > 5) {
+			CarSelectP2 = 1;
 		}
 
-		if (KeyLeft == true) {
-			CarSelectP2--;
-			ArrowLS2.setColor(sf::Color::Blue);
-			ArrowRS2.setColor(sf::Color::White);
-			if (CarSelectP2 < 1) {
-				CarSelectP2 = 5;
+		if(CarSelectP2 == 1 ){
+				if(Blocked1 == false){
+				CarP2 = 1;
 			}
-			KeyLeft = false;
 		}
+		if(CarSelectP2 == 2 ){
+			if(Blocked2 == false){
+				CarP2 = 2;
+			}
+		}
+		if(CarSelectP2 == 3 ){
+				if(Blocked3 == false){
+				CarP2 = 3;
+			}
+		}
+		if(CarSelectP2 == 4 ){
+				if(Blocked4 == false){
+				CarP2 = 4;
+			}
+		}
+		if(CarSelectP2 == 5 ){
+				if(Blocked5 == false){
+				CarP2 = 5;
+			}
+		}
+		KeyRight = false;
+	}
 
+	if (KeyLeft == true) {
+		CarSelectP2--;
+		ArrowLS2.setColor(sf::Color::Blue);
+		ArrowRS2.setColor(sf::Color::White);
+		if (CarSelectP2 < 1) {
+			CarSelectP2 = 5;
+		}
+		if(CarSelectP2 == 1 ){
+				if(Blocked1 == false){
+				CarP2 = 1;
+			}
+		}
+		if(CarSelectP2 == 2 ){
+			if(Blocked2 == false){
+				CarP2 = 2;
+			}
+		}
+		if(CarSelectP2 == 3 ){
+				if(Blocked3 == false){
+				CarP2 = 3;
+			}
+		}
+		if(CarSelectP2 == 4 ){
+				if(Blocked4 == false){
+				CarP2 = 4;
+			}
+		}
+		if(CarSelectP2 == 5 ){
+				if(Blocked5 == false){
+				CarP2 = 5;
+			}
+		}
+		KeyLeft = false;
+	}
 
 	//click p2
 
-			if (SelecionadoEnter == true) {
-			/*if (arrowMouseR2.getGlobalBounds().contains(mouse_coord)) {
-				CarSelectP2++;
-				if (CarSelectP2 > 5) {
-					CarSelectP2 = 1;
-				}
+	if (SelecionadoEnter == true) {
+		if(CarSelectP2 == 2 and Blocked2 == true){
+			if(Acount_2 >= Price_car_2){
+				Acount_2 = Acount_2 - Price_car_2;
+				Status[1] = "unlocked";
+				Blocked.setColor(sf::Color::Transparent);
 			}
+		}
+		if(CarSelectP2 == 3 and Blocked3 == true){
+			if(Acount_2 >= Price_car_2){
+				Acount_2 = Acount_2 - Price_car_2;
+				Status[2] = "unlocked";
+				Blocked.setColor(sf::Color::Transparent);
+			}
+		}
+		if(CarSelectP2 == 4 and Blocked4 == true){
+			if(Acount_2 >= Price_car_2){
+				Acount_2 = Acount_2 - Price_car_2;
+				Status[3] = "unlocked";
+				Blocked.setColor(sf::Color::Transparent);
+			}
+		}
+		if(CarSelectP2 == 5 and Blocked5 == true){
+			if(Acount_2 >= Price_car_2){
+				Acount_2 = Acount_2 - Price_car_2;
+				Status[4] = "unlocked";
+				Blocked.setColor(sf::Color::Transparent);
+			}
+		}
+		escolhafinalizada2 = true;
+		SelecionadoEnter = false;
 
-			if (arrowMouseL2.getGlobalBounds().contains(mouse_coord)) {
-				CarSelectP2--;
-				if (CarSelectP2 < 1) {
-					CarSelectP2 = 5;
-				}
-			}*/
-						escolhafinalizada2 = true;
-						CarP2 = CarSelectP2;
-						SelecionadoEnter = false;
-				
-		}
+	}
 
-		if (CarSelectP2 == 1) {
-			vitrine2.loadFromFile("assets/Cars/V1.png");
-			vitrineS2.setTexture(vitrine2);
-			vitrineS2.setScale(0.34, 0.34);
-			vitrineS2.setPosition(840, 326);
-		}
-		if (CarSelectP2 == 2) {
-			vitrine2.loadFromFile("assets/Cars/V2.png");
-			vitrineS2.setTexture(vitrine2, true);
-			vitrineS2.setScale(0.14, 0.14);
-			vitrineS2.setPosition(840, 326);
-		}
-		if (CarSelectP2 == 3) {
-			vitrine2.loadFromFile("assets/Cars/V3.png");
-			vitrineS2.setTexture(vitrine2, true);
-			vitrineS2.setScale(0.34, 0.34);
-			vitrineS2.setPosition(840, 326);
-		}
-		if (CarSelectP2 == 4) {
-			vitrine2.loadFromFile("assets/Cars/V4.png");
-			vitrineS2.setTexture(vitrine2, true);
-			vitrineS2.setScale(0.34, 0.34);
-			vitrineS2.setPosition(840, 326);
-		}
-		if (CarSelectP2 == 5) {
-			vitrine2.loadFromFile("assets/Cars/V5.png");
-			vitrineS2.setTexture(vitrine2, true);
-			vitrineS2.setScale(0.14, 0.14);
-			vitrineS2.setPosition(840, 326);
-		}
+	if (CarSelectP2 == 1) {
+		vitrine2.loadFromFile("assets/Cars/V1.png");
+		vitrineS2.setTexture(vitrine2, true);
+		vitrineS2.setScale(0.54, 0.54);
+		vitrineS2.setPosition(850, 286);
+	}
+	if (CarSelectP2 == 2) {
+		vitrine2.loadFromFile("assets/Cars/V2.png");
+		vitrineS2.setTexture(vitrine2, true);
+		vitrineS2.setScale(1, 1);
+		vitrineS2.setPosition(850, 316);
+	}
+	if (CarSelectP2 == 3) {
+		vitrine2.loadFromFile("assets/Cars/V3.png");
+		vitrineS2.setTexture(vitrine2, true);
+		vitrineS2.setScale(0.74, 0.74);
+		vitrineS2.setPosition(840, 176);
+	}
+	if (CarSelectP2 == 4) {
+		vitrine2.loadFromFile("assets/Cars/V4.png");
+		vitrineS2.setTexture(vitrine2, true);
+		vitrineS2.setScale(0.94, 0.94);
+		vitrineS2.setPosition(850, 326);
+	}
+	if (CarSelectP2 == 5) {
+		vitrine2.loadFromFile("assets/Cars/V5.png");
+		vitrineS2.setTexture(vitrine2, true);
+		vitrineS2.setScale(0.54, 0.54);
+		vitrineS2.setPosition(810, 306);
+	}
 
-	
-	
 }
-void Loja::CarsSelecteds(int *Car1,int *Car2){
+void Loja::CarsSelecteds(int *Car1, int *Car2) {
 	*Car1 = this->CarP1;
 	*Car2 = this->CarP2;
 }
 void Loja::SelectTwoPlayer() {
-		Section1();
-		Section2();
-
+	Section1();
+	Section2();
 
 	if (escolhafinalizada1 == true and escolhafinalizada2 == true) {
 		OffLoja();
@@ -273,32 +451,167 @@ void Loja::SelectTwoPlayer() {
 	}
 
 }
-void Loja::OffLoja(){
+void Loja::OffLoja() {
 	offLoja = 1;
 	init_Loja = false;
 }
-int Loja::returnKeyLoja(){
+int Loja::returnKeyLoja() {
 	return offLoja;
 
 }
 void Loja::EventsLoja() {
-		SelectTwoPlayer();
+	SelectTwoPlayer();
 
 }
-void Loja::drawLoja(sf::RenderWindow * w){
+void Loja::drawLoja(sf::RenderWindow *w) {
 	w->draw(vitrineS2);
 	w->draw(ArrowRS);
 	w->draw(ArrowLS2);
 	w->draw(ArrowLS);
 	w->draw(vitrineS);
 	w->draw(ArrowRS2);
+	w->draw(coins);
+	w->draw(coins2);
+	w->draw(MoneysAcount_1);
+	w->draw(MoneysAcount_2);
+	w->draw(Blocked);
+	w->draw(Blocked_2);
 }
-void Loja::run_loja() {
-	if(init_Loja == false){
-		InicializarLoja();
-		init_Loja = true;
+void Loja::Visibile(){
+
+	if(Blocked1 == false and CarSelectP1 == 1 and Status[0] == "unlocked"){
+		Blocked.setColor(sf::Color::Transparent);
+	}else if(Blocked2 == false and CarSelectP1 == 2 and Status[1] == "unlocked"){
+		Blocked.setColor(sf::Color::Transparent);
+	}else if(Blocked3 == false and CarSelectP1 == 3 and Status[2] == "unlocked"){
+		Blocked.setColor(sf::Color::Transparent);
+	}else if(Blocked4 == false and CarSelectP1 == 4 and Status[3] == "unlocked"){
+		Blocked.setColor(sf::Color::Transparent);
+	}else if(Blocked5 == false and CarSelectP1 == 5 and Status[4] == "unlocked"){
+		Blocked.setColor(sf::Color::Transparent);
+	}else{
+		Blocked.setColor(sf::Color::White);
 	}
-	EventsLoja();
+
+
+
+	if(Blocked1 == false and CarSelectP2 == 1 and Status[0] == "unlocked"){
+		Blocked_2.setColor(sf::Color::Transparent);
+	}else if(Blocked2 == false and CarSelectP2 == 2 and Status[1] == "unlocked"){
+		Blocked_2.setColor(sf::Color::Transparent);
+	}else if(Blocked3 == false and CarSelectP2 == 3 and Status[2] == "unlocked"){
+		Blocked_2.setColor(sf::Color::Transparent);
+	}else if(Blocked4 == false and CarSelectP2 == 4 and Status[3] == "unlocked"){
+		Blocked_2.setColor(sf::Color::Transparent);
+	}else if(Blocked5 == false and CarSelectP2 == 5 and Status[4] == "unlocked"){
+		Blocked_2.setColor(sf::Color::Transparent);
+	}else{
+		Blocked_2.setColor(sf::Color::White);
+	}
+}
+void Loja::Preco_Carros(){
+	if(CarSelectP1 == 2){
+		Price_car = 20;
+	}
+	if(CarSelectP1 == 3){
+		Price_car = 30;
+	}
+	if(CarSelectP1 == 4){
+		Price_car = 40;
+	}
+	if(CarSelectP1 == 5){
+		Price_car = 50;
+	}
+
+
+
+	if(CarSelectP2 == 2){
+		Price_car_2 = 20;
+	}
+	if(CarSelectP2 == 3){
+		Price_car_2 = 30;
+	}
+	if(CarSelectP2 == 4){
+		Price_car_2 = 40;
+	}
+	if(CarSelectP2 == 5){
+		Price_car_2 = 50;
+	}
+
 
 }
+void Loja::run_loja() {
+
+
+	cout <<  Price_car << "," << Price_car_2  << endl;
+	fflush(stdout);
+	if (init_Loja == false) {
+		InicializarLoja();
+		init_Loja = true;
+		Update_Texture = 0;
+
+	}
+	CounterFrame++;
+	stringstream Amostra1;
+	stringstream Amostra2;
+	Amostra1 << Acount_1;
+	Amostra2 << Acount_2;
+	//coins.setTextureRect(sf::IntRect(127,1,20,15));
+
+	MoneysAcount_1.setString(Amostra1.str());
+	MoneysAcount_1.setCharacterSize(40);
+	MoneysAcount_1.setPosition(100, 215);
+
+	MoneysAcount_2.setString(Amostra2.str());
+	MoneysAcount_2.setCharacterSize(40);
+	MoneysAcount_2.setPosition(770, 215);
+
+	coins.setPosition(60, 215);
+	coins.setScale(0.4, 0.4);
+	coins2.setPosition(730, 215);
+	coins2.setScale(0.4, 0.4);
+
+	money[0].loadFromFile("assets/Loja/1.png");
+	money[1].loadFromFile("assets/Loja/2.png");
+	money[2].loadFromFile("assets/Loja/3.png");
+	money[3].loadFromFile("assets/Loja/4.png");
+	money[4].loadFromFile("assets/Loja/5.png");
+	money[5].loadFromFile("assets/Loja/6.png");
+
+	if (CounterFrame == 4) {
+		if (Update_Texture == 5) {
+			Update_Texture = 0;
+		} else {
+			Update_Texture++;
+		}
+		CounterFrame = 0;
+	}
+
+	SaveCars();
+
+	coins.setTexture(money[Update_Texture], true);
+	coins2.setTexture(money[Update_Texture], true);
+
+	EventsLoja();
+	Visibile();
+	Preco_Carros();
+}
+
+void Loja::SaveCars(){
+	ofstream fileSaved("Saved/SaveCars.txt");
+
+	if(!fileSaved.is_open()){
+		cout << "ERROR";
+	}
+	int tam;
+	tam = Status.size();
+
+	for(int i =0;i < tam ;i++){
+		fileSaved << carros[i] << "," << Status[i] << endl;
+	}
+
+	fileSaved.close();
+}
+
+
 

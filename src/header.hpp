@@ -24,7 +24,7 @@ private:
 
 	int CarSelectP1;
 	int CarSelectP2;
-
+	int CounterFrame;
 	int CarP1;
 	int CarP2;
 	int offLoja;
@@ -39,6 +39,15 @@ private:
 	bool Space;
 	bool KeyA;
 	bool KeyD;
+	int Update_Texture;
+	int Price_car;
+	int Price_car_2;
+	int Acount_1;
+	int Acount_2;
+	vector<int>carros;
+	vector<string>Status;
+	vector<int>carros2;
+	vector<string>Status2;
 	sf::RectangleShape CampMouse9;
 	sf::RectangleShape CampMouse10;
 	sf::Texture ArrowR;
@@ -52,7 +61,29 @@ private:
 	sf::Sprite ArrowLS2;
 	sf::Sprite vitrineS2;
 	sf::Texture fundo;
+	sf::Sprite coins;
+	sf::Sprite coins2;
+	sf::Font font;
+	sf::Text MoneysAcount_1;
+	sf::Text MoneysAcount_2;
+	sf::Texture money[6];
+	sf::Sprite Blocked;
+
+	sf::Sprite Blocked_2;
+	sf::Texture blocked;
 	bool init_Loja = false;
+
+	bool Blocked1;
+	bool Blocked2;
+	bool Blocked3;
+	bool Blocked4;
+	bool Blocked5;
+
+	bool Blocked1_2;
+	bool Blocked2_2;
+	bool Blocked3_2;
+	bool Blocked4_2;
+	bool Blocked5_2;
 
 public:
 	void drawLoja(sf::RenderWindow *w);
@@ -68,6 +99,10 @@ public:
 	void OffLoja();
 	int returnKeyLoja();
 	void CarsSelecteds(int *Car1,int *Car2);
+	void ReadSaving();
+	void SaveCars();
+	void Visibile();
+	void Preco_Carros();
 
 };
 
@@ -195,6 +230,7 @@ private:
 	bool KeyW;
 	int CarP1;
 	int CarP2;
+	int Result;
 	sf::SoundBuffer Contador;
 	sf::Sound Go;
 	int l,x = 3;
@@ -221,8 +257,13 @@ public:
 	void stopedMusic(sf::Music * music);
 	void DesenharFundoPista(sf::Sprite * Fundo);
 	void loopEventGame();
+	void Moviment_car(Carros * carro);
+	void Moviment_car2(Carros * carro2);
+	void Corretction_bug(Carros * carro,Carros * carro2);
 	void Checks1(Carros * car1);
 	void Checks2(Carros * car2);
+	void Return_Plac_result(int *p);
+
 /////////////////////////////////////////////////////////////////////////
 
 
@@ -242,6 +283,7 @@ private:
 	bool Mouse_Left;
 	bool keyMenu;
 	bool keyLevels;
+	int Win;
 	bool SoundCont = false;
 	bool Init_Final = false;
 	int counterKeyboard;
@@ -249,16 +291,22 @@ private:
 	bool KeySound = false;
 	sf::Texture startButton;
 	sf::Sprite startButtonS;
-
 	sf::Texture settingButton;
 	sf::Sprite settingButtonS;
-
-
 	sf::Texture texture3;
 	sf::Sprite texture3S;
+	sf::Texture Text1;
+	sf::Texture Text2;
+	sf::Sprite Player_1;
+	sf::Sprite Player_2;
+	sf::Sprite NumeberTwo;
+	sf::Sprite NumeberOne;
+	sf::Texture win;
+	sf::Texture Lose;
 public:
 	void LoopFinal();
 	void Recept(int Nivel);
+	void ReceptWin(int Win);
 	void DrawFinal(sf::Sprite * Fundo);
 	void SaveGame();
 	void Final_game();
@@ -269,7 +317,8 @@ public:
 };
 class Menu {
 
-protected:
+private:
+	bool key = true;
 	Loja  loja;
 	Carros carro;
 	Carros carro2;
@@ -338,6 +387,7 @@ protected:
 	bool KeyD;
 	bool soundActive;
 	int Sound,k;
+	int Win;
 	int y = 240;
 	bool keySettings;
 	bool keyMenu;

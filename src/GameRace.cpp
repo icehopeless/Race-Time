@@ -1,7 +1,7 @@
 #include "header.hpp"
 
 void Game::InicializarGame() {
-	Voltas = 2;
+	Voltas = 0;
 	Check_Lap = false;
 	Voltas2 = 0;
 	Check_Lap2 = false;
@@ -19,8 +19,6 @@ void Game::InicializarGame() {
 	KeyW = false;
 	draw_cars = false;
 	draw_cars2 = true;
-	car.loadFromFile("assets/Cars/Sprites/BlueStrip.png");
-	car2.loadFromFile("assets/Cars/Sprites/RedStrip.png");
 	Contador.loadFromFile("assets/Sounds/Game/GO.wav");
 	Go.setBuffer(Contador);
 	Go.setVolume(SOundGo);
@@ -30,7 +28,7 @@ void Game::InicializarGame() {
 	Contagem.setFillColor(sf::Color::Cyan);
 	Contagem.setPosition(500, 50);
 	KeyFinaleGame = false;
-
+	Result = 0;
 	PistaRefrent();
 
 }
@@ -39,7 +37,8 @@ void Game::Setpista(int pista) {
 }
 void Game::CarsSelceteds(int CarP1, int CarP2) {
 	this->CarP1 = CarP1;
-	this->CarP2 = CarP1;
+	this->CarP2 = CarP2;
+
 }
 void Game::PistaRefrent() {
 	if (Nivelatual == 0) {
@@ -93,14 +92,47 @@ void Carros::draw(sf::RenderWindow *w) {
 void Game::FinalPista(int * pista){
 	*pista = this->Nivelatual;
 }
+
+void Game::Corretction_bug(Carros * carro,Carros * carro2){
+	Moviment_car(carro);
+
+}
 void Game::SetCar(Carros *carro) {
 	if (draw_cars == true) {
-		carro->zero.setTexture(car);
-		carro->zero.setScale(1, 1);
-		carro->zero.setRotation(180);
+		if(CarP1 == 1){
+			car.loadFromFile("assets/Cars/Sprites/BlackOut.png");
+			carro->zero.setScale(1, 1);
+			carro->zero.setRotation(180);
+		}
+		if(CarP1 == 2){
+			car.loadFromFile("assets/Cars/Sprites/TT.png");
+			carro->zero.setScale(0.13, 0.13);
+			carro->zero.setRotation(90);
+
+		}
+		if(CarP1 == 3){
+			car.loadFromFile("assets/Cars/Sprites/SkyLine.png");
+			carro->zero.setScale(0.08, 0.1);
+		}
+		if(CarP1 == 4){
+			car.loadFromFile("assets/Cars/Sprites/Trueno.png");
+			carro->zero.setScale(0.1, 0.1);
+			carro->zero.setRotation(180);
+		}
+		if(CarP1 == 5){
+			car.loadFromFile("assets/Cars/Sprites/Ferrari.png");
+			carro->zero.setScale(0.08, 0.08);
+			carro->zero.setRotation(180);
+		}
+		carro->zero.setTexture(car,true);
 		carro->zero.setPosition(400, 400);
 		draw_cars = false;
+
 	}
+
+}
+
+void Game::Moviment_car(Carros *carro) {
 
 	bool camb1;
 	bool camb2;
@@ -109,38 +141,38 @@ void Game::SetCar(Carros *carro) {
 
 	Colisions(carro);
 
-		if (KeyLeft == true) {
+	if (CarP1 == 1) {
+		if (KeyA == true) {
 			carro->zero.setPosition(carro->zero.getPosition().x - 0.1,
 					carro->zero.getPosition().y);
-			KeyLeft = false;
+			KeyA = false;
 			carro->zero.setRotation(180);
 			camb1 = true;
 		}
-		if (KeyRight == true) {
+		if (KeyD == true) {
 			carro->zero.setPosition(carro->zero.getPosition().x + 0.1,
 					carro->zero.getPosition().y);
-			KeyRight = false;
+			KeyD = false;
 			carro->zero.setRotation(360);
 
 			camb2 = true;
 		}
-		if (KeyUP == true) {
+		if (KeyW == true) {
 			carro->zero.setRotation(270);
 
 			carro->zero.setPosition(carro->zero.getPosition().x,
 					carro->zero.getPosition().y - 0.1);
-			KeyUP = false;
+			KeyW = false;
 			camb3 = true;
 		}
-		if (KeyDown == true) {
+		if (KeyS == true) {
 			carro->zero.setRotation(90);
 
 			camb4 = true;
 			carro->zero.setPosition(carro->zero.getPosition().x,
 					carro->zero.getPosition().y + 0.1);
-			KeyDown = false;
+			KeyS = false;
 		}
-
 		if (camb1 == true and camb3 == true) {
 			carro->zero.setRotation(225);
 			camb1 = false;
@@ -165,51 +197,318 @@ void Game::SetCar(Carros *carro) {
 			camb2 = false;
 			camb4 = false;
 		}
+	}
+
+	if (CarP1 == 2) {
+		if (KeyA == true) {
+			carro->zero.setPosition(carro->zero.getPosition().x - 0.1,
+					carro->zero.getPosition().y);
+			KeyA = false;
+			carro->zero.setRotation(90);
+			camb1 = true;
+		}
+		if (KeyD == true) {
+			carro->zero.setPosition(carro->zero.getPosition().x + 0.1,
+					carro->zero.getPosition().y);
+			KeyD = false;
+			carro->zero.setRotation(270);
+
+			camb2 = true;
+		}
+		if (KeyW == true) {
+			carro->zero.setRotation(180);
+
+			carro->zero.setPosition(carro->zero.getPosition().x,
+					carro->zero.getPosition().y - 0.1);
+			KeyW = false;
+			camb3 = true;
+		}
+		if (KeyS == true) {
+			carro->zero.setRotation(360);
+
+			camb4 = true;
+			carro->zero.setPosition(carro->zero.getPosition().x,
+					carro->zero.getPosition().y + 0.1);
+			KeyS = false;
+		}
+		if (camb1 == true and camb3 == true) {
+			carro->zero.setRotation(135);
+			camb1 = false;
+			camb3 = false;
+		}
+
+		if (camb3 == true and camb2 == true) {
+			carro->zero.setRotation(225);
+			camb2 = false;
+			camb3 = false;
+		}
+
+		if (camb1 == true and camb4 == true) {
+			carro->zero.setRotation(45);
+
+			camb1 = false;
+			camb4 = false;
+		}
+
+		if (camb4 == true and camb2 == true) {
+			carro->zero.setRotation(330);
+			camb2 = false;
+			camb4 = false;
+		}
+	}
+
+	if (CarP1 == 3) {
+		if (KeyA == true) {
+			carro->zero.setPosition(carro->zero.getPosition().x - 0.1,
+					carro->zero.getPosition().y);
+			KeyA = false;
+			carro->zero.setRotation(360);
+			camb1 = true;
+		}
+		if (KeyD == true) {
+			carro->zero.setPosition(carro->zero.getPosition().x + 0.1,
+					carro->zero.getPosition().y);
+			KeyD = false;
+			carro->zero.setRotation(180);
+
+			camb2 = true;
+		}
+		if (KeyW == true) {
+			carro->zero.setRotation(90);
+
+			carro->zero.setPosition(carro->zero.getPosition().x,
+					carro->zero.getPosition().y - 0.1);
+			KeyW = false;
+			camb3 = true;
+		}
+		if (KeyS == true) {
+			carro->zero.setRotation(270);
+			camb4 = true;
+			carro->zero.setPosition(carro->zero.getPosition().x,
+					carro->zero.getPosition().y + 0.1);
+			KeyS = false;
+		}
+		if (camb1 == true and camb3 == true) {
+			carro->zero.setRotation(45);
+			camb1 = false;
+			camb3 = false;
+		}
+
+		if (camb3 == true and camb2 == true) {
+			carro->zero.setRotation(135);
+			camb2 = false;
+			camb3 = false;
+		}
+
+		if (camb1 == true and camb4 == true) {
+			carro->zero.setRotation(330);
+
+			camb1 = false;
+			camb4 = false;
+		}
+
+		if (camb4 == true and camb2 == true) {
+			carro->zero.setRotation(225);
+			camb2 = false;
+			camb4 = false;
+		}
+
+	}
+
+	if (CarP1 == 4) {
+			if (KeyA == true) {
+				carro->zero.setPosition(carro->zero.getPosition().x - 0.1,
+						carro->zero.getPosition().y);
+				KeyA = false;
+				carro->zero.setRotation(180);
+				camb1 = true;
+			}
+			if (KeyD == true) {
+				carro->zero.setPosition(carro->zero.getPosition().x + 0.1,
+						carro->zero.getPosition().y);
+				KeyD = false;
+				carro->zero.setRotation(360);
+
+				camb2 = true;
+			}
+			if (KeyW == true) {
+				carro->zero.setRotation(270);
+
+				carro->zero.setPosition(carro->zero.getPosition().x,
+						carro->zero.getPosition().y - 0.1);
+				KeyW = false;
+				camb3 = true;
+			}
+			if (KeyS == true) {
+				carro->zero.setRotation(90);
+
+				camb4 = true;
+				carro->zero.setPosition(carro->zero.getPosition().x,
+						carro->zero.getPosition().y + 0.1);
+				KeyS = false;
+			}
+			if (camb1 == true and camb3 == true) {
+				carro->zero.setRotation(225);
+				camb1 = false;
+				camb3 = false;
+			}
+
+			if (camb3 == true and camb2 == true) {
+				carro->zero.setRotation(330);
+				camb2 = false;
+				camb3 = false;
+			}
+
+			if (camb1 == true and camb4 == true) {
+				carro->zero.setRotation(135);
+
+				camb1 = false;
+				camb4 = false;
+			}
+
+			if (camb4 == true and camb2 == true) {
+				carro->zero.setRotation(45);
+				camb2 = false;
+				camb4 = false;
+			}
+		}
+
+	if (CarP1 == 5) {
+		if (KeyA == true) {
+			carro->zero.setPosition(carro->zero.getPosition().x - 0.1,
+					carro->zero.getPosition().y);
+			KeyA = false;
+			carro->zero.setRotation(180);
+			camb1 = true;
+		}
+		if (KeyD == true) {
+			carro->zero.setPosition(carro->zero.getPosition().x + 0.1,
+					carro->zero.getPosition().y);
+			KeyD = false;
+			carro->zero.setRotation(360);
+
+			camb2 = true;
+		}
+		if (KeyW == true) {
+			carro->zero.setRotation(270);
+
+			carro->zero.setPosition(carro->zero.getPosition().x,
+					carro->zero.getPosition().y - 0.1);
+			KeyW = false;
+			camb3 = true;
+		}
+		if (KeyS == true) {
+			carro->zero.setRotation(90);
+
+			camb4 = true;
+			carro->zero.setPosition(carro->zero.getPosition().x,
+					carro->zero.getPosition().y + 0.1);
+			KeyS = false;
+		}
+		if (camb1 == true and camb3 == true) {
+			carro->zero.setRotation(225);
+			camb1 = false;
+			camb3 = false;
+		}
+
+		if (camb3 == true and camb2 == true) {
+			carro->zero.setRotation(330);
+			camb2 = false;
+			camb3 = false;
+		}
+
+		if (camb1 == true and camb4 == true) {
+			carro->zero.setRotation(135);
+
+			camb1 = false;
+			camb4 = false;
+		}
+
+		if (camb4 == true and camb2 == true) {
+			carro->zero.setRotation(45);
+			camb2 = false;
+			camb4 = false;
+		}
+	}
+
+
 }
+
+
 void Game::SetCar2(Carros *carro2) {
 	if (draw_cars2 == true) {
-		carro2->zero.setTexture(car2);
-		carro2->zero.setScale(1, 1);
-		carro2->zero.setRotation(180);
+		if(CarP2 == 1){
+			car2.loadFromFile("assets/Cars/Sprites/BlackOut.png");
+			carro2->zero.setScale(1, 1);
+			carro2->zero.setRotation(180);
+		}
+		if(CarP2 == 2){
+			car2.loadFromFile("assets/Cars/Sprites/TT.png");
+			carro2->zero.setScale(0.13, 0.13);
+			carro2->zero.setRotation(90);
+		}
+		if(CarP2 == 3){
+			car2.loadFromFile("assets/Cars/Sprites/SkyLine.png");
+			carro2->zero.setScale(0.08, 0.1);
+		}
+		if(CarP2 == 4){
+			car2.loadFromFile("assets/Cars/Sprites/Trueno.png");
+			carro2->zero.setScale(0.1, 0.1);
+			carro2->zero.setRotation(180);
+		}
+		if(CarP2 == 5){
+			car2.loadFromFile("assets/Cars/Sprites/Ferrari.png");
+			carro2->zero.setScale(0.08, 0.08);
+			carro2->zero.setRotation(180);
+		}
+		carro2->zero.setTexture(car2,true);
 		carro2->zero.setPosition(400, 400);
 		draw_cars2 = false;
 	}
+
+}
+
+void Game::Moviment_car2(Carros *carro2) {
 
 	bool camb1;
 	bool camb2;
 	bool camb3;
 	bool camb4;
+
 	Colisions(carro2);
-		if (KeyA == true) {
+
+	if (CarP2 == 1) {
+
+		if (KeyLeft == true) {
 			carro2->zero.setPosition(carro2->zero.getPosition().x - 0.1,
 					carro2->zero.getPosition().y);
-			KeyA = false;
+			KeyLeft = false;
 			carro2->zero.setRotation(180);
 			camb1 = true;
 		}
-		if (KeyD == true) {
+		if (KeyRight == true) {
 			carro2->zero.setPosition(carro2->zero.getPosition().x + 0.1,
 					carro2->zero.getPosition().y);
-			KeyD = false;
+			KeyRight = false;
 			carro2->zero.setRotation(360);
 
 			camb2 = true;
 		}
-		if (KeyW == true) {
+		if (KeyUP == true) {
 			carro2->zero.setRotation(270);
 
 			carro2->zero.setPosition(carro2->zero.getPosition().x,
 					carro2->zero.getPosition().y - 0.1);
-			KeyW = false;
+			KeyUP = false;
 			camb3 = true;
 		}
-		if (KeyS == true) {
+		if (KeyDown == true) {
 			carro2->zero.setRotation(90);
 
 			camb4 = true;
 			carro2->zero.setPosition(carro2->zero.getPosition().x,
 					carro2->zero.getPosition().y + 0.1);
-			KeyS = false;
+			KeyDown = false;
 		}
 
 		if (camb1 == true and camb3 == true) {
@@ -236,29 +535,266 @@ void Game::SetCar2(Carros *carro2) {
 			camb2 = false;
 			camb4 = false;
 		}
+	}
+
+
+	if (CarP2 == 2) {
+
+		if (KeyLeft == true) {
+			carro2->zero.setPosition(carro2->zero.getPosition().x - 0.1,
+					carro2->zero.getPosition().y);
+			KeyLeft = false;
+			carro2->zero.setRotation(90);
+			camb1 = true;
+		}
+		if (KeyRight == true) {
+			carro2->zero.setPosition(carro2->zero.getPosition().x + 0.1,
+					carro2->zero.getPosition().y);
+			KeyRight = false;
+			carro2->zero.setRotation(270);
+
+			camb2 = true;
+		}
+		if (KeyUP == true) {
+			carro2->zero.setRotation(180);
+
+			carro2->zero.setPosition(carro2->zero.getPosition().x,
+					carro2->zero.getPosition().y - 0.1);
+			KeyUP = false;
+			camb3 = true;
+		}
+		if (KeyDown == true) {
+			carro2->zero.setRotation(360);
+
+			camb4 = true;
+			carro2->zero.setPosition(carro2->zero.getPosition().x,
+					carro2->zero.getPosition().y + 0.1);
+			KeyDown = false;
+		}
+
+		if (camb1 == true and camb3 == true) {
+			carro2->zero.setRotation(135);
+			camb1 = false;
+			camb3 = false;
+		}
+
+		if (camb3 == true and camb2 == true) {
+			carro2->zero.setRotation(225);
+			camb2 = false;
+			camb3 = false;
+		}
+
+		if (camb1 == true and camb4 == true) {
+			carro2->zero.setRotation(45);
+
+			camb1 = false;
+			camb4 = false;
+		}
+
+		if (camb4 == true and camb2 == true) {
+			carro2->zero.setRotation(330);
+			camb2 = false;
+			camb4 = false;
+		}
+	}
+
+
+
+	if (CarP2 == 3) {
+
+		if (KeyLeft == true) {
+			carro2->zero.setPosition(carro2->zero.getPosition().x - 0.1,
+					carro2->zero.getPosition().y);
+			KeyLeft = false;
+			carro2->zero.setRotation(360);
+			camb1 = true;
+		}
+		if (KeyRight == true) {
+			carro2->zero.setPosition(carro2->zero.getPosition().x + 0.1,
+					carro2->zero.getPosition().y);
+			KeyRight = false;
+			carro2->zero.setRotation(180);
+
+			camb2 = true;
+		}
+		if (KeyUP == true) {
+			carro2->zero.setRotation(90);
+
+			carro2->zero.setPosition(carro2->zero.getPosition().x,
+					carro2->zero.getPosition().y - 0.1);
+			KeyUP = false;
+			camb3 = true;
+		}
+		if (KeyDown == true) {
+			carro2->zero.setRotation(270);
+
+			camb4 = true;
+			carro2->zero.setPosition(carro2->zero.getPosition().x,
+					carro2->zero.getPosition().y + 0.1);
+			KeyDown = false;
+		}
+
+		if (camb1 == true and camb3 == true) {
+			carro2->zero.setRotation(45);
+			camb1 = false;
+			camb3 = false;
+		}
+
+		if (camb3 == true and camb2 == true) {
+			carro2->zero.setRotation(135);
+			camb2 = false;
+			camb3 = false;
+		}
+
+		if (camb1 == true and camb4 == true) {
+			carro2->zero.setRotation(330);
+
+			camb1 = false;
+			camb4 = false;
+		}
+
+		if (camb4 == true and camb2 == true) {
+			carro2->zero.setRotation(225);
+			camb2 = false;
+			camb4 = false;
+		}
+	}
+
+	if (CarP2 == 4) {
+
+		if (KeyLeft == true) {
+			carro2->zero.setPosition(carro2->zero.getPosition().x - 0.1,
+					carro2->zero.getPosition().y);
+			KeyLeft = false;
+			carro2->zero.setRotation(180);
+			camb1 = true;
+		}
+		if (KeyRight == true) {
+			carro2->zero.setPosition(carro2->zero.getPosition().x + 0.1,
+					carro2->zero.getPosition().y);
+			KeyRight = false;
+			carro2->zero.setRotation(360);
+
+			camb2 = true;
+		}
+		if (KeyUP == true) {
+			carro2->zero.setRotation(270);
+
+			carro2->zero.setPosition(carro2->zero.getPosition().x,
+					carro2->zero.getPosition().y - 0.1);
+			KeyUP = false;
+			camb3 = true;
+		}
+		if (KeyDown == true) {
+			carro2->zero.setRotation(90);
+
+			camb4 = true;
+			carro2->zero.setPosition(carro2->zero.getPosition().x,
+					carro2->zero.getPosition().y + 0.1);
+			KeyDown = false;
+		}
+
+		if (camb1 == true and camb3 == true) {
+			carro2->zero.setRotation(225);
+			camb1 = false;
+			camb3 = false;
+		}
+
+		if (camb3 == true and camb2 == true) {
+			carro2->zero.setRotation(330);
+			camb2 = false;
+			camb3 = false;
+		}
+
+		if (camb1 == true and camb4 == true) {
+			carro2->zero.setRotation(135);
+
+			camb1 = false;
+			camb4 = false;
+		}
+
+		if (camb4 == true and camb2 == true) {
+			carro2->zero.setRotation(45);
+			camb2 = false;
+			camb4 = false;
+		}
+	}
+	if (CarP2 == 5) {
+
+			if (KeyLeft == true) {
+				carro2->zero.setPosition(carro2->zero.getPosition().x - 0.1,
+						carro2->zero.getPosition().y);
+				KeyLeft = false;
+				carro2->zero.setRotation(180);
+				camb1 = true;
+			}
+			if (KeyRight == true) {
+				carro2->zero.setPosition(carro2->zero.getPosition().x + 0.1,
+						carro2->zero.getPosition().y);
+				KeyRight = false;
+				carro2->zero.setRotation(360);
+
+				camb2 = true;
+			}
+			if (KeyUP == true) {
+				carro2->zero.setRotation(270);
+
+				carro2->zero.setPosition(carro2->zero.getPosition().x,
+						carro2->zero.getPosition().y - 0.1);
+				KeyUP = false;
+				camb3 = true;
+			}
+			if (KeyDown == true) {
+				carro2->zero.setRotation(90);
+
+				camb4 = true;
+				carro2->zero.setPosition(carro2->zero.getPosition().x,
+						carro2->zero.getPosition().y + 0.1);
+				KeyDown = false;
+			}
+
+			if (camb1 == true and camb3 == true) {
+				carro2->zero.setRotation(225);
+				camb1 = false;
+				camb3 = false;
+			}
+
+			if (camb3 == true and camb2 == true) {
+				carro2->zero.setRotation(330);
+				camb2 = false;
+				camb3 = false;
+			}
+
+			if (camb1 == true and camb4 == true) {
+				carro2->zero.setRotation(135);
+
+				camb1 = false;
+				camb4 = false;
+			}
+
+			if (camb4 == true and camb2 == true) {
+				carro2->zero.setRotation(45);
+				camb2 = false;
+				camb4 = false;
+			}
+		}
+
 }
 void Game::ColisionsInCars(Carros *car1, Carros *car2) {
-/*
-	cars1.setFillColor(sf::Color::Blue);
-	cars2.setFillColor(sf::Color::Red);
-	cars1.setSize(sf::Vector2f(40, 40));
-	cars2.setSize(sf::Vector2f(40, 40));
 
-	cars1.setPosition(car1->zero.getPosition().x - 40,car1->zero.getPosition().y);
-	cars2.setPosition(car2->zero.getPosition().x,car2->zero.getPosition().y);
 
-	carBounds1 = cars1.getGlobalBounds();
-	carBounds2 = cars2.getGlobalBounds();
+
+
+	carBounds1 = car1->zero.getGlobalBounds();
+	carBounds2 = car2->zero.getGlobalBounds();
 
 	if (carBounds1.intersects(carBounds2)) {
 		car1->zero.setPosition(car1->zero.getPosition().x,car1->zero.getPosition().y + 0.1);
-		cars1.setPosition(car2->zero.getPosition().x,car2->zero.getPosition().y - 0.1);
 	}
 	if (carBounds2.intersects(carBounds1)) {
 		car2->zero.setPosition(car2->zero.getPosition().x,car2->zero.getPosition().y - 0.1);
-		cars2.setPosition(car2->zero.getPosition().x,car2->zero.getPosition().y - 0.1);
 	}
-*/
+
 }
 void Game::Colisions(Carros *car) {
 
@@ -347,6 +883,7 @@ void Game::Checks1(Carros * car1){
 		}
 	if(Voltas == 3 and Voltas2 < 3){
 		Nivelatual++;
+		Result = 1;
 		Init_Game = false;
 		KeyFinaleGame = true;
 	}
@@ -367,7 +904,12 @@ void Game::Checks2(Carros * car2){
 		Init_Game = false;
 			Nivelatual++;
 			KeyFinaleGame = true;
-		}
+			Result = 2;
+	}
+
+}
+void Game::Return_Plac_result(int * p){
+	*p = Result;
 }
 void Game::loopEventGame() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && KeyDown == false) {
@@ -407,6 +949,8 @@ int Game::returnGameFinal() {
 		keyGameFinal = 1;
 		Init_Game = false;
 		KeyFinaleGame = false;
+		CarP1 = 0;
+		CarP2 = 0;
 	}
 	return keyGameFinal;
 }

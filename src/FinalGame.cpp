@@ -23,8 +23,23 @@ void FinalGame::Final_game(){
 	settingButtonS.setTexture(settingButton,true);
 	texture3S.setTexture(texture3,true);
 
+	win.loadFromFile("assets/FinalGame/1.png");
+	Lose.loadFromFile("assets/FinalGame/2.png");
 
+	Text1.loadFromFile("assets/FinalGame/Player.png");
+	Player_1.setTexture(Text1);
 
+	Text2.loadFromFile("assets/FinalGame/Player.png");
+	Player_2.setTexture(Text1);
+
+	Player_1.setScale(0.3,0.3);
+	Player_1.setPosition(400, 160);
+	Player_2.setScale(0.3,0.3);
+	Player_2.setPosition(400, 200);
+	NumeberOne.setScale(0.3,0.3);
+	NumeberOne.setPosition(370, 165);
+	NumeberTwo.setScale(0.3,0.3);
+	NumeberTwo.setPosition(370, 205);
 
 	texture3S.setPosition(80, 570);
 	texture3S.setScale(0.7, 0.7);
@@ -32,6 +47,14 @@ void FinalGame::Final_game(){
 	startButtonS.setPosition(500, 570);
 	settingButtonS.setScale(0.7, 0.7);
 	settingButtonS.setPosition(930, 570);
+
+	if(Win == 1){
+		NumeberOne.setTexture(win,true);
+		NumeberTwo.setTexture(Lose,true);
+	} else 	if(Win == 2){
+		NumeberTwo.setTexture(win,true);
+		NumeberOne.setTexture(Lose,true);
+	}
 
 
 
@@ -50,10 +73,17 @@ void FinalGame::Recept(int Nivel){
 void FinalGame::DrawFinal(sf::Sprite * Fundo){
 	Fundo->setTexture(fundo, true);
 }
+void FinalGame::ReceptWin(int Win){
+	this->Win = Win;
+}
 void FinalGame::DesenharFinal(sf::RenderWindow * w){
 	w->draw(texture3S);
 	w->draw(startButtonS);
 	w->draw(settingButtonS);
+	w->draw(Player_1);
+	w->draw(Player_2);
+	w->draw(NumeberOne);
+	w->draw(NumeberTwo);
 }
 void FinalGame::Music(sf::Music *music){
 
@@ -137,7 +167,7 @@ void FinalGame::Events_Final_game(sf::Vector2f mouse_coord){
 	if(KeyRight == true){
 		counterKeyboard++;
 		if(counterKeyboard > 3){
-			counterKeyboard = 3;
+			counterKeyboard = 1;
 		}
 		KeyRight = false;
 	}
