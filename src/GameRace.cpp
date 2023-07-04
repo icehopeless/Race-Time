@@ -23,6 +23,7 @@ void Game::InicializarGame() {
 	PistaRefrent();
 
 }
+
 void Game::Setpista(int pista) {
 	this->Nivelatual = pista;
 }
@@ -63,6 +64,7 @@ void Game::PistaRefrent() {
 		KeyFinaleGame = true;
 	}
 }
+
 void Game::stopedMusic(sf::Music *music) {
 	Volume = music->getVolume();
 	Go.setVolume(Volume + 100);

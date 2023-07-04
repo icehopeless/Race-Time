@@ -25,15 +25,20 @@ public:
 	int Player;
 	int carSelect;
 	sf::Sprite zero;
+	float vel = 0.1;
+	float vel2 = 0.1;
 public:
-	 void Moviment_cars();
-	 void Moviment_car1();
-	 void Moviment_car2();
-	 void draw(sf::RenderWindow *w);
-	 void SetCar();
+	void Moviment_cars();
+	void Moviment_car1();
+	void Moviment_car2();
+	void draw(sf::RenderWindow *w);
+	void SetCar();
 	void SetCar1();
 	void SetCar2();
 	void EventsCar();
+	void velocidadeP1();
+	void velocidadeP2();
+
 	void Init_Carros(int Player, int carSelect){
 			KeyDown = false;
 			KeyUP = false;
