@@ -6,8 +6,7 @@ void Loja::InicializarLoja() {
 	CarP1 = 1;
 	CarP2 = 1;
 	CounterFrame = 0;
-	Acount_1 = 100;
-	Acount_2 = 100;
+
 	font.loadFromFile("assets/Font/VintageTimes-Light.ttf");
 	MoneysAcount_1.setFont(font);
 	MoneysAcount_2.setFont(font);
@@ -62,6 +61,8 @@ void Loja::ReadSaving(){
 	for(int i =0;i < tam ;i++){
 		carros.pop_back();
 		Status.pop_back();
+		carros2.pop_back();
+		Status2.pop_back();
 	}
 
 	ifstream file("Saved/SaveCars.txt");
@@ -69,20 +70,44 @@ void Loja::ReadSaving(){
 		cout << "ERROR";
 	}
 	string linha;
+	string player,campo;
+	stringstream ss;
+
+	getline(file,linha);
+	getline(file,linha);
+	Acount_1 = atoi(linha.c_str());
+	bool verificarP2 = false;
+
 	while(getline(file,linha)){
 		stringstream ss(linha);
 		string campo;
 		string status;
 		int car;
-
 		getline(ss,campo,',');
-		car = atoi(campo.c_str());
+		if(campo == "P2"){
 
+			getline(ss,campo,',');
+			Acount_2 = atoi(campo.c_str());
+			verificarP2 = true;
 
-		getline(ss,campo,',');
-		status = campo;
-		Status.push_back(status);
-		carros.push_back(car);
+		} else if(verificarP2 == false) {
+
+			car = atoi(campo.c_str());
+			getline(ss,campo,',');
+			status = campo;
+			Status.push_back(status);
+			carros.push_back(car);
+
+		} else {
+
+			car = atoi(campo.c_str());
+			getline(ss,campo,',');
+			status = campo;
+			Status2.push_back(status);
+			carros2.push_back(car);
+
+		}
+
 	}
 
 	file.close();
@@ -111,6 +136,33 @@ void Loja::ReadSaving(){
 		Blocked5 = false;
 	}else{
 		Blocked5 = true;
+	}
+
+
+	if(Status2[0] == "unlocked" and carros2[0] == 1){
+		Blocked1_2 = false;
+	}else{
+		Blocked1_2 = true;
+	}
+	if(Status2[1] == "unlocked" and carros2[1] == 2){
+		Blocked2_2 = false;
+	}else{
+		Blocked2_2 = true;
+	}
+	if(Status2[2] == "unlocked" and carros2[2] == 3){
+		Blocked3_2 = false;
+	}else{
+		Blocked3_2 = true;
+	}
+	if(Status2[3] == "unlocked" and carros2[3] == 4){
+		Blocked4_2 = false;
+	}else{
+		Blocked4_2 = true;
+	}
+	if(Status2[4] == "unlocked" and carros2[4] == 5){
+		Blocked5_2 = false;
+	}else{
+		Blocked5_2 = true;
 	}
 }
 
@@ -238,24 +290,32 @@ void Loja::Section1() {
 			if(Acount_1 >= Price_car){
 				Acount_1 = Acount_1 - Price_car;
 				Status[1] = "unlocked";
+				Blocked2 = false;
+				CarP1 = 2;
 			}
 		}
 		if(CarSelectP1 == 3 and Blocked3 == true){
 			if(Acount_1 >= Price_car){
 				Acount_1 = Acount_1 - Price_car;
 				Status[2] = "unlocked";
+				Blocked3 = false;
+				CarP1 = 3;
 			}
 		}
 		if(CarSelectP1 == 4 and Blocked4 == true){
 			if(Acount_1 >= Price_car){
 				Acount_1 = Acount_1 - Price_car;
 				Status[3] = "unlocked";
+				Blocked4 = false;
+				CarP1 = 4;
 			}
 		}
 		if(CarSelectP1 == 5 and Blocked5 == true){
 			if(Acount_1 >= Price_car){
 				Acount_1 = Acount_1 - Price_car;
 				Status[4] = "unlocked";
+				Blocked5 = false;
+				CarP1 = 5;
 			}
 		}
 		escolhafinalizada1 = true;
@@ -341,27 +401,27 @@ void Loja::Section2() {
 			CarSelectP2 = 5;
 		}
 		if(CarSelectP2 == 1 ){
-				if(Blocked1 == false){
+				if(Blocked1_2 == false){
 				CarP2 = 1;
 			}
 		}
 		if(CarSelectP2 == 2 ){
-			if(Blocked2 == false){
+			if(Blocked2_2 == false){
 				CarP2 = 2;
 			}
 		}
 		if(CarSelectP2 == 3 ){
-				if(Blocked3 == false){
+				if(Blocked3_2 == false){
 				CarP2 = 3;
 			}
 		}
 		if(CarSelectP2 == 4 ){
-				if(Blocked4 == false){
+				if(Blocked4_2 == false){
 				CarP2 = 4;
 			}
 		}
 		if(CarSelectP2 == 5 ){
-				if(Blocked5 == false){
+				if(Blocked5_2 == false){
 				CarP2 = 5;
 			}
 		}
@@ -371,32 +431,37 @@ void Loja::Section2() {
 	//click p2
 
 	if (SelecionadoEnter == true) {
-		if(CarSelectP2 == 2 and Blocked2 == true){
+		if(CarSelectP2 == 2 and Blocked2_2 == true){
 			if(Acount_2 >= Price_car_2){
 				Acount_2 = Acount_2 - Price_car_2;
-				Status[1] = "unlocked";
-				Blocked.setColor(sf::Color::Transparent);
+				Status2[1] = "unlocked";
+				Blocked2_2 = false;
+				CarP2 = 2;
+
 			}
 		}
-		if(CarSelectP2 == 3 and Blocked3 == true){
+		if(CarSelectP2 == 3 and Blocked3_2 == true){
 			if(Acount_2 >= Price_car_2){
 				Acount_2 = Acount_2 - Price_car_2;
-				Status[2] = "unlocked";
-				Blocked.setColor(sf::Color::Transparent);
+				Status2[2] = "unlocked";
+				CarP2 = 3;
+				Blocked3_2 = false;
 			}
 		}
-		if(CarSelectP2 == 4 and Blocked4 == true){
+		if(CarSelectP2 == 4 and Blocked4_2 == true){
 			if(Acount_2 >= Price_car_2){
 				Acount_2 = Acount_2 - Price_car_2;
-				Status[3] = "unlocked";
-				Blocked.setColor(sf::Color::Transparent);
+				Status2[3] = "unlocked";
+				CarP2 = 4;
+				Blocked4_2 = false;
 			}
 		}
-		if(CarSelectP2 == 5 and Blocked5 == true){
+		if(CarSelectP2 == 5 and Blocked5_2 == true){
 			if(Acount_2 >= Price_car_2){
 				Acount_2 = Acount_2 - Price_car_2;
-				Status[4] = "unlocked";
-				Blocked.setColor(sf::Color::Transparent);
+				Status2[4] = "unlocked";
+				CarP2 = 5;
+				Blocked5_2 = false;
 			}
 		}
 		escolhafinalizada2 = true;
@@ -496,15 +561,15 @@ void Loja::Visibile(){
 
 
 
-	if(Blocked1 == false and CarSelectP2 == 1 and Status[0] == "unlocked"){
+	if(Blocked1_2 == false and CarSelectP2 == 1 and Status2[0] == "unlocked"){
 		Blocked_2.setColor(sf::Color::Transparent);
-	}else if(Blocked2 == false and CarSelectP2 == 2 and Status[1] == "unlocked"){
+	}else if(Blocked2_2 == false and CarSelectP2 == 2 and Status2[1] == "unlocked"){
 		Blocked_2.setColor(sf::Color::Transparent);
-	}else if(Blocked3 == false and CarSelectP2 == 3 and Status[2] == "unlocked"){
+	}else if(Blocked3_2 == false and CarSelectP2 == 3 and Status2[2] == "unlocked"){
 		Blocked_2.setColor(sf::Color::Transparent);
-	}else if(Blocked4 == false and CarSelectP2 == 4 and Status[3] == "unlocked"){
+	}else if(Blocked4_2 == false and CarSelectP2 == 4 and Status2[3] == "unlocked"){
 		Blocked_2.setColor(sf::Color::Transparent);
-	}else if(Blocked5 == false and CarSelectP2 == 5 and Status[4] == "unlocked"){
+	}else if(Blocked5_2 == false and CarSelectP2 == 5 and Status2[4] == "unlocked"){
 		Blocked_2.setColor(sf::Color::Transparent);
 	}else{
 		Blocked_2.setColor(sf::Color::White);
@@ -600,7 +665,8 @@ void Loja::run_loja() {
 
 void Loja::SaveCars(){
 	ofstream fileSaved("Saved/SaveCars.txt");
-
+	fileSaved << "P1" << endl;
+	fileSaved << Acount_1 << endl;
 	if(!fileSaved.is_open()){
 		cout << "ERROR";
 	}
@@ -609,6 +675,13 @@ void Loja::SaveCars(){
 
 	for(int i =0;i < tam ;i++){
 		fileSaved << carros[i] << "," << Status[i] << endl;
+	}
+
+	int tam2;
+	tam = Status2.size();
+	fileSaved << "P2," << Acount_2<<endl;
+	for(int i =0;i < tam ;i++){
+		fileSaved << carros2[i] << "," << Status2[i] << endl;
 	}
 
 	fileSaved.close();

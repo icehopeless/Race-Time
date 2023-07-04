@@ -20,6 +20,9 @@ void Game::InicializarGame() {
 	Contagem.setPosition(500, 50);
 	KeyFinaleGame = false;
 	Result = 0;
+	meio.setFillColor(sf::Color::Transparent);
+	meio.setSize(sf::Vector2f(850, 355));
+	meio.setPosition(215.0, 185.0);
 	PistaRefrent();
 
 }
@@ -74,6 +77,8 @@ void Game::DrawGame(sf::RenderWindow *w) {
 	w->draw(Contagem);
 	w->draw(cars1);
 	w->draw(cars2);
+	w->draw(nitroSprite);
+	w->draw(meio);
 }
 
 void Game::DesenharFundoPista(sf::Sprite *Fundo) {
@@ -182,7 +187,34 @@ void Game::Colisions(Carros *car) {
 
 }
 
+void Game::nitroo(Carros *car, sf::RenderWindow *w){
 
+	nitroTexture.loadFromFile("assets/Game/nitro.png");
+	nitroSprite.setScale(0.3,0.3);
+	nitroSprite.setTexture(nitroTexture);
+	carBounds = car->zero.getGlobalBounds();
+	meiobounds = meio.getGlobalBounds();
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dis(0.0,w->getSize().y);
+    int ynitro = dis(gen);
+    ynitro = dis(gen);
+
+    nitroSprite.setPosition(300, ynitro);
+
+    while (nitroBounds.intersects(meiobounds)){
+    	 ynitro = dis(gen);
+    }
+
+
+    cout<<"|"<<ynitro <<endl;
+    fflush(stdin);
+
+	if(carBounds.intersects(nitroBounds)){
+		car->vel = car->vel+0.00007;
+	}
+}
 
 void Game::Checks1(Carros * car1){
 	carBounds = car1->zero.getGlobalBounds();
