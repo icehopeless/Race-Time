@@ -37,8 +37,6 @@ void Loja::InicializarLoja() {
 	CarSelectP1 = 1;
 	CarSelectP2 = 1;
 	SelecionadoEnter = false;
-	KeyDown = false;
-	KeyUP = false;
 	KeyLeft = false;
 	KeyRight = false;
 	SelecionadoEnter = false;
@@ -54,8 +52,17 @@ void Loja::InicializarLoja() {
 	Blocked_2.setTexture(blocked, true);
 	Blocked_2.setScale(0.5,0.5);
 	Blocked_2.setPosition(860, 250);
+	Price_car = 0;
+	Price_car_2 = 0;
 }
 void Loja::ReadSaving(){
+	int tam;
+	tam = Status.size();
+
+	for(int i =0;i < tam ;i++){
+		carros.pop_back();
+		Status.pop_back();
+	}
 
 	ifstream file("Saved/SaveCars.txt");
 	if(!file.is_open()){
@@ -114,21 +121,15 @@ void Loja::DesenharFundoLoja(sf::Sprite *Fundo) {
 }
 void Loja::EventesKeyBoard() {
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && KeyDown == false) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && KeyA == false) {
 		KeyA = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)
 			&& SelecionadoEnter == false) {
 		Space = true;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && KeyDown == false) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && KeyD == false) {
 		KeyD = true;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && KeyDown == false) {
-		KeyDown = true;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && KeyUP == false) {
-		KeyUP = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && KeyLeft == false) {
 		KeyLeft = true;

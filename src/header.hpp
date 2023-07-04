@@ -11,12 +11,47 @@
 using namespace std;
 class Carros{
 public:
-
-	 sf::Sprite zero;
-
+	sf::Texture car;
+	bool KeyDown;
+	bool KeyUP;
+	bool KeyLeft;
+	bool KeyRight;
+	bool KeyA;
+	bool KeyD;
+	bool KeyS;
+	int CarP1;
+	int CarP2;
+	bool KeyW;
+	int Player;
+	int carSelect;
+	sf::Sprite zero;
 public:
-
+	 void Moviment_cars();
+	 void Moviment_car1();
+	 void Moviment_car2();
 	 void draw(sf::RenderWindow *w);
+	 void SetCar();
+	void SetCar1();
+	void SetCar2();
+	void EventsCar();
+	void Init_Carros(int Player, int carSelect){
+			KeyDown = false;
+			KeyUP = false;
+			KeyLeft = false;
+			KeyRight = false;
+			KeyA = false;
+			KeyD = false;
+			KeyS = false;
+			KeyW = false;
+			this->Player =Player;
+			this->carSelect = carSelect;
+			if(this->Player == 1){
+				CarP1 = this->carSelect;
+			}
+			if(this->Player == 2){
+				CarP2 = this->carSelect;
+			}
+	 }
 
 };
 class Loja{
@@ -28,11 +63,8 @@ private:
 	int CarP1;
 	int CarP2;
 	int offLoja;
-	int contSction = 1;
 	bool escolhafinalizada1 = false;
 	bool escolhafinalizada2 = false;
-	bool  KeyDown;
-	bool KeyUP;
 	bool KeyLeft;
 	bool KeyRight;
 	bool SelecionadoEnter;
@@ -78,7 +110,6 @@ private:
 	bool Blocked3;
 	bool Blocked4;
 	bool Blocked5;
-
 	bool Blocked1_2;
 	bool Blocked2_2;
 	bool Blocked3_2;
@@ -92,7 +123,6 @@ public:
 	void Section2();
 	void SelectTwoPlayer();
 	void InicializarLoja();
-	void loja();
 	void DesenharFundoLoja(sf::Sprite * Fundo);
 	void EventsLoja();
 	void run_loja();
@@ -196,8 +226,6 @@ private:
 	sf::RectangleShape colison8;
 	sf::RectangleShape check;
 	sf::RectangleShape Line;
-	sf::Texture car;
-	sf::Texture car2;
 	sf::FloatRect ColisonBounds;
 	sf::FloatRect ColisonBounds2;
 	sf::FloatRect ColisonBounds3;
@@ -220,14 +248,6 @@ private:
 	bool SoundCont = false;
 	bool Init_Game;
 	bool KeyFinaleGame;
-	bool KeyDown;
-	bool KeyUP;
-	bool KeyLeft;
-	bool KeyRight;
-	bool KeyA;
-	bool KeyD;
-	bool KeyS;
-	bool KeyW;
 	int CarP1;
 	int CarP2;
 	int Result;
@@ -244,27 +264,20 @@ public:
 	void DrawGame(sf::RenderWindow *w);
 	void EventsGame();
 	void SaveGame();
-	void Final_game();
-	void Events_Final_game();
 	void PistaRefrent();
 	void run_game();
 	int returnGameFinal();
 	void CarsSelceteds(int CarP1,int CarP2);
-	void SetCar(Carros * carro);
-	void SetCar2(Carros * carro);
 	void Setpista(int pista);
 	void FinalPista(int * pista);
 	void stopedMusic(sf::Music * music);
 	void DesenharFundoPista(sf::Sprite * Fundo);
-	void loopEventGame();
-	void Moviment_car(Carros * carro);
-	void Moviment_car2(Carros * carro2);
-	void Corretction_bug(Carros * carro,Carros * carro2);
+	void loopEventGame(Carros * loopcar);
+	void Start_Cars(Carros * carro,Carros * carro2);
 	void Checks1(Carros * car1);
 	void Checks2(Carros * car2);
 	void Return_Plac_result(int *p);
 
-/////////////////////////////////////////////////////////////////////////
 
 
 };
@@ -318,62 +331,47 @@ public:
 class Menu {
 
 private:
-	bool key = true;
 	Loja  loja;
 	Carros carro;
 	Carros carro2;
 	Levels level;
-	Game Newgame;
-	FinalGame Final;
+	Game newgame;
+	FinalGame final;
 	sf::RenderWindow window;
-	bool KeyFinaleGame;
 	sf::Texture fundo;
 	sf::Sprite Fundo;
 	sf::Music music;
 	sf::Texture startButton;
 	sf::Sprite startButtonS;
-
 	sf::Texture settingButton;
 	sf::Sprite settingButtonS;
-
-
 	sf::Texture texture3;
 	sf::Sprite texture3S;
-
 	sf::Texture texture4;
 	sf::Sprite texture4S;
-
 	sf::Texture texture5;
 	sf::Sprite texture5S;
-
 	sf::Texture VolumeT;
 	sf::Sprite VolumeS;
-
 	sf::Texture arrowL;
 	sf::Texture arrowR;
 	sf::Sprite  arrowLS;
 	sf::Sprite  arrowRS;
-
 	sf::CircleShape Volume;
 	sf::Vector2i pos_mouse;
 	sf::Vector2f mouse_coord;
-
 	sf::RectangleShape CampMouse1;
 	sf::RectangleShape CampMouse2;
-
 	sf::RectangleShape CampMouse3;
 	sf::RectangleShape CampMouse4;
-
-
 	sf::Sprite SoundSpriteR;
 	sf::Texture SoundAumente;
 	sf::Texture SoundAbaixa;
 	sf::Sprite SoundSpriteL;
-
 	sf::Font *font;
 	sf::Text Reso;
 	sf::Text *Contagem;
-
+	bool KeyFinaleGame;
 	bool  KeyDown;
 	bool KeyUP;
 	bool KeyLeft;
@@ -381,10 +379,7 @@ private:
 	bool VolumeUp;
 	bool VolumeDown;
 	bool SelecionadoEnter;
-	bool Space;
 	bool Mouse_Left;
-	bool KeyA;
-	bool KeyD;
 	bool soundActive;
 	int Sound,k;
 	int Win;
@@ -398,83 +393,23 @@ private:
 	int counterKeyboard;
 	int counterVertical;
 	int contadodetempo;
-	int EscolhaCarro;
-
-	bool destruirGame;
-	bool destruirLoja;
 	string resolutionNumber;
 	sf::RectangleShape CampMouse5;
 	sf::RectangleShape CampMouse6;
-
 	int counterResu;
 	int Nivelatual;
 	sf::RectangleShape CampMouse7;
 	sf::RectangleShape CampMouse8;
-
-
-
-// ||||||||||||||||||||||||||||||||||||||||||||LOJA|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
-
-	//p1
-	sf::RectangleShape CampMouse9;
-	sf::RectangleShape CampMouse10;
 	sf::Texture ArrowR;
 	sf::Sprite  ArrowRS;
 	sf::Texture ArrowL;
 	sf::Sprite  ArrowLS;
-	sf::Texture vitrine;
-	sf::Texture vitrine2;
-	sf::Sprite vitrineS;
-
 	int CarP1;
-
-	//p2
-
-	sf::Sprite ArrowRS2;
-	sf::Sprite ArrowLS2;
-	sf::Sprite vitrineS2;
 	int CarP2;
-
-
-// ||||||||||||||||||||||||||||||||||||||||||||||||||Game||||||||||||||||||||||||||||||||||||||||||||||||||||
-	sf::RectangleShape colison1;
-	sf::RectangleShape carrohit;
-	sf::Texture car;
-	sf::Sprite spritecars;
-	sf::FloatRect ColisonBounds;
-	sf::FloatRect carBounds;
 	int SOundGo;
-	bool Contagem_Realizada = false;
-	sf::SoundBuffer Contador;
 	sf::Sound Go;
-	bool SoundCont = false;
-	int l,x = 3;
-	bool Init_Game;
-
-protected:
-
-
-
-// ||||||||||||||||||||||||||||||||||||||||||||||||||Game||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 private:
-
-
-
-private:
-	void InicializarGame();
-	void DrawGame();
-	void game();
-	void EventsGame();
-	void SaveGame();
-	void Final_game();
-	void Events_Final_game();
-	void PistaRefrent();
-	void MovimentCar();
-	void run_game();
-
-protected:
 	void AleterarCor();
 	void loopEvents();
 	void Start();

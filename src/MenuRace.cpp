@@ -46,20 +46,16 @@ void Menu::Start() {
 	KeyLoading = false;
 	SelecionadoEnter = false;
 	Mouse_Left = false;
-	keyMenu = false;
+	keyMenu = true;
 	keySettings = false;
-	keyShop = true;
+	keyShop = false;
 	keyGame = false;
 	keyLevels = false;
 	KeyFinaleGame = false;
 	k = 1;
 	counterKeyboard = 0;
 	counterVertical = 0;
-	 l =0;
 	 SOundGo = 1000;
-	Contador.loadFromFile("assets/Sounds/Game/GO.wav");
-	Go.setBuffer(Contador);
-	Go.setVolume(SOundGo);
 	soundActive = false;
 	contadodetempo = 0;
 
@@ -114,7 +110,6 @@ void Menu::StartMenu() {
 	//*********************************************************
 	arrowRS.setColor(sf::Color::Transparent);
 	arrowLS.setColor(sf::Color::Transparent);
-	vitrineS.setColor(sf::Color::Transparent);
 	VolumeS.setColor(sf::Color::Transparent);
 	texture4S.setColor(sf::Color::Transparent);
 	texture5S.setColor(sf::Color::Transparent);
@@ -239,6 +234,7 @@ void Menu::Setconfiguration() {
 	texture5S.setScale(0.3, 0.3);
 	texture4S.setScale(0.6, 0.6);
 	texture4S.setPosition(922, 580);
+	texture5S.setPosition(565, 175);
 	texture4S.setColor(sf::Color::White);
 	texture3S.setColor(sf::Color::White);
 	texture5S.setColor(sf::Color::White);
@@ -260,8 +256,8 @@ void Menu::Setconfiguration() {
 	ArrowLS.setColor(sf::Color::White);
 	ArrowRS.setColor(sf::Color::White);
 
-	ArrowLS.setPosition(560, 287);
-	ArrowRS.setPosition(760, 287);
+	ArrowLS.setPosition(550, 267);
+	ArrowRS.setPosition(760, 267);
 
 	startButtonS.setColor(sf::Color::Transparent);
 	settingButtonS.setColor(sf::Color::Transparent);
@@ -273,16 +269,15 @@ void Menu::Setconfiguration() {
 	CampMouse5.setSize(sf::Vector2f(30, 30));
 	CampMouse3.setSize(sf::Vector2f(350, 110));
 	CampMouse4.setSize(sf::Vector2f(300, 110));
-	texture5S.setPosition(300, 275);
 	font->loadFromFile("assets/Font/VintageTimes.ttf");
 
-	CampMouse6.setPosition(767, 287);
-	CampMouse5.setPosition(567, 287);
+	CampMouse6.setPosition(767, 267);
+	CampMouse5.setPosition(567, 267);
 
 	Reso.setFont(*font);
 	Reso.setCharacterSize(30);
 	Reso.setFillColor(sf::Color::Cyan);
-	Reso.setPosition(620, 287);
+	Reso.setPosition(615, 267);
 	SoundAumente.loadFromFile("assets/Settings/Sound_Menu.png");
 	SoundSpriteR.setTexture(SoundAumente, true);
 	SoundSpriteR.setScale(0.05, 0.05);
@@ -619,7 +614,8 @@ void Menu::loopEvents() {
 
 	pos_mouse = sf::Mouse::getPosition(window);
 	mouse_coord = window.mapPixelToCoords(pos_mouse);
-	Newgame.loopEventGame();
+	newgame.loopEventGame(&carro);
+	newgame.loopEventGame(&carro2);
 	while (window.pollEvent(event)) {
 		if (event.type == sf::Event::Closed) {
 			window.close();
@@ -627,17 +623,8 @@ void Menu::loopEvents() {
 
 		level.loop_events_Levels();
 		loja.EventesKeyBoard();
-		Final.LoopFinal();
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && KeyDown == false) {
-			KeyA = true;
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)
-				&& SelecionadoEnter == false) {
-			Space = true;
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && KeyDown == false) {
-			KeyD = true;
-		}
+		final.LoopFinal();
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)
 				&& KeyDown == false) {
 			KeyDown = true;
@@ -665,28 +652,25 @@ void Menu::loopEvents() {
 	}
 }
 
+
 void Menu::ChamarGame() {
 	int KeyFinalGame;
 
-	Newgame.Setpista(Nivelatual);
-	Newgame.run_game();
+	newgame.Setpista(Nivelatual);
+	newgame.run_game();
 
 	//Main Cars
-	Newgame.CarsSelceteds(CarP1,CarP2);
-	Newgame.Checks1(&carro);
-	Newgame.Checks2(&carro2);
-	Newgame.SetCar(&carro);
-	Newgame.SetCar2(&carro2);
-	Newgame.Moviment_car2(&carro2);
-	Newgame.Corretction_bug(&carro, &carro2);
-	Newgame.ColisionsInCars(&carro,&carro2);
-
-	//||||||||||||||||||
-
-	Newgame.stopedMusic(&music);
-	Newgame.FinalPista(&Nivelatual);
-	Newgame.Return_Plac_result(&Win);
-	KeyFinalGame = Newgame.returnGameFinal();
+	newgame.CarsSelceteds(CarP1,CarP2);
+	newgame.Checks1(&carro);
+	newgame.Checks2(&carro2);
+	newgame.Start_Cars(&carro, &carro2);
+	newgame.Colisions(&carro);
+	newgame.Colisions(&carro2);
+	newgame.ColisionsInCars(&carro, &carro2);
+	newgame.stopedMusic(&music);
+	newgame.FinalPista(&Nivelatual);
+	newgame.Return_Plac_result(&Win);
+	KeyFinalGame = newgame.returnGameFinal();
 	if(KeyFinalGame == 1){
 		keyGame = false;
 		KeyFinaleGame = true;
@@ -729,12 +713,12 @@ void Menu::ChamarLevels() {
 
 void Menu::ChamarFinal(){
 	int Key = 0;
-	Final.Recept(Nivelatual);
-	Final.Events_Final_game(mouse_coord);
-	Final.Music(&music);
-	Final.Final_game();
-	Final.ReceptWin(Win);
-	Final.ReturnFinal(&Key);
+	final.Recept(Nivelatual);
+	final.Events_Final_game(mouse_coord);
+	final.Music(&music);
+	final.Final_game();
+	final.ReceptWin(Win);
+	final.ReturnFinal(&Key);
 	if(Key ==  1){
 		KeyFinaleGame = false;
 		keyLevels = true;
@@ -765,30 +749,27 @@ void Menu::drawMenu() {
 	if(keyLevels == true){
 		level.drawLeveles(&window);
 	}
-	window.draw(ArrowRS2);
-	window.draw(ArrowLS2);
-	window.draw(vitrineS);
-	window.draw(vitrineS2);
+
+
+
 	window.draw(VolumeS);
 	window.draw(arrowRS);
 	window.draw(arrowLS);
 	window.draw(texture3S);
-	window.draw(vitrineS);
 	window.draw(ArrowRS);
 	window.draw(ArrowLS);
-	window.draw(carrohit);
-	window.draw(spritecars);
+
 
 	if(keyGame == true){
 		draw();
 	}
 	if(keyGame == true){
-		Newgame.DrawGame(&window);
-		Newgame.DesenharFundoPista(&Fundo);
+		newgame.DrawGame(&window);
+		newgame.DesenharFundoPista(&Fundo);
 	}
 	if(KeyFinaleGame == true){
-		Final.DrawFinal(&Fundo);
-		Final.DesenharFinal(&window);
+		final.DrawFinal(&Fundo);
+		final.DesenharFinal(&window);
 	}
 	window.draw(*Contagem);
 
