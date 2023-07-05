@@ -39,9 +39,9 @@ void Game::PistaRefrent() {
 	if (Nivelatual == 0) {
 		fundo.loadFromFile("assets/Game/map1.png");
 	} else if (Nivelatual == 1) {
-		KeyFinaleGame = true;
+		fundo.loadFromFile("assets/Game/map2.png");
 	} else if (Nivelatual == 2) {
-		KeyFinaleGame = true;
+		fundo.loadFromFile("assets/Game/map3.png");
 	} else if (Nivelatual == 3) {
 		KeyFinaleGame = true;
 	} else if (Nivelatual == 4) {
@@ -73,7 +73,8 @@ void Game::DrawGame(sf::RenderWindow *w) {
 	w->draw(cars1);
 	w->draw(cars2);
 	w->draw(nitroSprite);
-
+	w->draw(check);
+	w->draw(Line);
 	w->draw(nitroSprite2);
 	w->draw(nitroSprite3);
 	w->draw(nitroSprite4);
@@ -101,7 +102,7 @@ void Game::Start_Cars(Carros *carro, Carros *carro2) {
 }
 
 void Game::ColisionsInCars(Carros *car1, Carros *car2) {
-
+	/*
 	carBounds1 = car1->zero.getGlobalBounds();
 	carBounds2 = car2->zero.getGlobalBounds();
 
@@ -113,16 +114,18 @@ void Game::ColisionsInCars(Carros *car1, Carros *car2) {
 		car2->zero.setPosition(car2->zero.getPosition().x,
 				car2->zero.getPosition().y - 0.1);
 	}
-
+*
+*/
 }
 void Game::Colisions(Carros *car) {
 
-	colison1.setSize(sf::Vector2f(1280, 39));
-	colison2.setSize(sf::Vector2f(39, 1080));
-	colison3.setSize(sf::Vector2f(39, 1080));
-	colison3.setPosition(1241, 0);
-	colison4.setSize(sf::Vector2f(1280, 39));
-	colison4.setPosition(0, 687);
+	colison1.setSize(sf::Vector2f(1280, 70));
+	colison2.setSize(sf::Vector2f(39, 1090));
+	colison2.setPosition(41, 0);
+	colison3.setSize(sf::Vector2f(120, 1080));
+	colison3.setPosition(1211, 0);
+	colison4.setSize(sf::Vector2f(1280, 60));
+	colison4.setPosition(0, 657);
 
 	carBounds = car->zero.getGlobalBounds();
 	ColisonBounds = colison1.getGlobalBounds();
@@ -133,6 +136,8 @@ void Game::Colisions(Carros *car) {
 	ColisonBounds6 = colison6.getGlobalBounds();
 	ColisonBounds7 = colison7.getGlobalBounds();
 	ColisonBounds8 = colison8.getGlobalBounds();
+	ColisonBounds9 = colison9.getGlobalBounds();
+	ColisonBounds10 = colison10.getGlobalBounds();
 	LineVicttory = Line.getGlobalBounds();
 	CheckPoint = check.getGlobalBounds();
 
@@ -143,11 +148,11 @@ void Game::Colisions(Carros *car) {
 		colison8.setSize(sf::Vector2f(746, 39));
 		colison5.setRotation(90);
 		colison6.setRotation(90);
-		colison5.setPosition(297, 246);
-		colison6.setPosition(1023, 246);
-		colison7.setPosition(260, 460);
-		colison8.setPosition(260, 206);
-		check.setSize(sf::Vector2f(239, 78));
+		colison5.setPosition(262, 246);
+		colison6.setPosition(1060,246);
+		colison7.setPosition(260, 490);
+		colison8.setPosition(260, 186);
+		check.setSize(sf::Vector2f(239, 70));
 		check.setRotation(90);
 		check.setPosition(810, 0);
 		Line.setSize(sf::Vector2f(239, 78));
@@ -171,6 +176,151 @@ void Game::Colisions(Carros *car) {
 					car->zero.getPosition().y - car->vel);
 		}
 	}
+
+	if (Nivelatual == 1) {
+			colison5.setSize(sf::Vector2f(369, 70));
+			colison6.setSize(sf::Vector2f(369, 70));
+			colison7.setSize(sf::Vector2f(746, 39));
+			colison8.setSize(sf::Vector2f(746, 39));
+			colison9.setSize(sf::Vector2f(369, 70));
+			colison10.setSize(sf::Vector2f(369, 70));
+			colison5.setRotation(90);
+			colison6.setRotation(90);
+			colison9.setRotation(90);
+			colison10.setRotation(90);
+			colison5.setPosition(1010, 180);
+			colison6.setPosition(1066, 180);
+			colison9.setPosition(285, 180);
+			colison10.setPosition(341, 180);
+			colison7.setPosition(260, 320);
+			colison8.setPosition(265, 206);
+			colison5.setFillColor(sf::Color::Blue);
+			colison6.setFillColor(sf::Color::Red);
+			colison7.setFillColor(sf::Color::Green);
+			colison8.setFillColor(sf::Color::Yellow);
+			check.setSize(sf::Vector2f(239, 78));
+			check.setRotation(90);
+			check.setPosition(810, 0);
+			Line.setSize(sf::Vector2f(239, 78));
+			Line.setRotation(180);
+			Line.setPosition(270, 500);
+
+			if (carBounds.intersects(ColisonBounds5)) {
+				car->zero.setPosition(car->zero.getPosition().x - car->vel,
+						car->zero.getPosition().y);
+			}
+			if (carBounds.intersects(ColisonBounds6)) {
+				car->zero.setPosition(car->zero.getPosition().x + car->vel,
+						car->zero.getPosition().y);
+			}
+
+			if (carBounds.intersects(ColisonBounds9)) {
+				car->zero.setPosition(car->zero.getPosition().x - car->vel,
+						car->zero.getPosition().y);
+			}
+			if (carBounds.intersects(ColisonBounds10)) {
+				car->zero.setPosition(car->zero.getPosition().x + car->vel,
+						car->zero.getPosition().y);
+			}
+			if (carBounds.intersects(ColisonBounds7)) {
+				car->zero.setPosition(car->zero.getPosition().x,
+						car->zero.getPosition().y + car->vel);
+			}
+			if (carBounds.intersects(ColisonBounds8)) {
+				car->zero.setPosition(car->zero.getPosition().x,
+						car->zero.getPosition().y - car->vel);
+			}
+		}
+	if (Nivelatual == 2) {
+				colison5.setSize(sf::Vector2f(239, 39));
+				colison6.setSize(sf::Vector2f(239, 39));
+				colison7.setSize(sf::Vector2f(746, 39));
+				colison8.setSize(sf::Vector2f(746, 39));
+				colison5.setRotation(90);
+				colison6.setRotation(90);
+
+				colison5.setPosition(300, 240);
+				colison6.setPosition(1023, 240);
+				colison7.setPosition(260, 430);
+				colison8.setPosition(260, 250);
+
+				colison8_1.setPosition(480, 650);
+				colison8_2.setPosition(520, 610);
+				colison8_3.setPosition(470, 40);
+				colison8_4.setPosition(520, 70);
+
+				//order = x,y x,y
+				colison8_1.setSize(sf::Vector2f(410, 39));
+				colison8_2.setSize(sf::Vector2f(300, 39));
+				colison8_3.setSize(sf::Vector2f(410, 39));
+				colison8_4.setSize(sf::Vector2f(300, 39));
+
+
+				check.setSize(sf::Vector2f(239, 78));
+				check.setRotation(90);
+				check.setPosition(720, 10);
+				Line.setSize(sf::Vector2f(239, 78));
+				Line.setRotation(90);
+				Line.setPosition(720, 460);
+
+				if (carBounds.intersects(ColisonBounds5)) {
+					car->zero.setPosition(car->zero.getPosition().x - car->vel,
+							car->zero.getPosition().y);
+				}
+				if (carBounds.intersects(ColisonBounds6)) {
+					car->zero.setPosition(car->zero.getPosition().x + car->vel,
+							car->zero.getPosition().y);
+				}
+				if (carBounds.intersects(ColisonBounds7)) {
+					car->zero.setPosition(car->zero.getPosition().x,
+							car->zero.getPosition().y + car->vel);
+				}
+				if (carBounds.intersects(ColisonBounds8)) {
+					car->zero.setPosition(car->zero.getPosition().x,
+							car->zero.getPosition().y - car->vel);
+				}
+
+				if (carBounds.intersects(ColisonBounds)) {
+								car->zero.setPosition(car->zero.getPosition().x,
+										car->zero.getPosition().y + car->vel);
+							}
+
+							if (carBounds.intersects(ColisonBounds2)) {
+								car->zero.setPosition(car->zero.getPosition().x + car->vel,
+										car->zero.getPosition().y);
+							}
+
+							if (carBounds.intersects(ColisonBounds3)) {
+								car->zero.setPosition(car->zero.getPosition().x - car->vel,
+										car->zero.getPosition().y);
+							}
+
+							if (carBounds.intersects(ColisonBounds4)) {
+								car->zero.setPosition(car->zero.getPosition().x,
+										car->zero.getPosition().y - car->vel);
+							}
+
+							if (carBounds.intersects(ColisonBounds8_1)) {
+								car->zero.setPosition(car->zero.getPosition().x,
+										car->zero.getPosition().y - car->vel);
+						}
+						if (carBounds.intersects(ColisonBounds8_2)) {
+								car->zero.setPosition(car->zero.getPosition().x,
+										car->zero.getPosition().y - car->vel);
+						}
+						if (carBounds.intersects(ColisonBounds8_3)) {
+								car->zero.setPosition(car->zero.getPosition().x,
+										car->zero.getPosition().y + car->vel);
+						}
+						if (carBounds.intersects(ColisonBounds8_4)) {
+								car->zero.setPosition(car->zero.getPosition().x,
+										car->zero.getPosition().y + car->vel);
+							}
+
+			}
+
+
+
 
 	if (carBounds.intersects(ColisonBounds)) {
 		car->zero.setPosition(car->zero.getPosition().x,
@@ -236,6 +386,7 @@ void Game::nitroo(Carros *car, sf::RenderWindow *w) {
 
 
 void Game::operationsNitro(Carros *car) {
+	carBounds = car->zero.getGlobalBounds();
 	if (time == 1500) {
 		car->vel -= (cont_speed * 0.1);
 		cont_speed = 0;
@@ -251,6 +402,7 @@ void Game::operationsNitro(Carros *car) {
 	} else {
 		nitroSprite.setColor(sf::Color::Transparent);
 	}
+
 }
 
 /*void Game::nitroo(Carros *car, sf::RenderWindow *w){
@@ -274,7 +426,7 @@ void Game::operationsNitro(Carros *car) {
     }
 
 
-    cout<<"|"<<ynitro <<endl;
+    <<"|"<<ynitro <<endl;
     fflush(stdin);
 
 	if(carBounds.intersects(nitroBounds)){
@@ -375,6 +527,7 @@ void Game::run_game() {
 		InicializarGame();
 		l = 0;
 		Init_Game = true;
+
 	}
 
 	if (l > 0 and test_Cont == false) {

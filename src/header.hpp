@@ -26,7 +26,7 @@ public:
 	int Player;
 	int carSelect;
 	sf::Sprite zero;
-	float vel = 1;
+	float vel = 2;
 public:
 	void Moviment_cars();
 	void Moviment_car1();
@@ -55,6 +55,8 @@ public:
 			}
 			if(this->Player == 2){
 				CarP2 = this->carSelect;
+				cout << CarP2;
+				fflush(stdout);
 			}
 	 }
 
@@ -244,6 +246,14 @@ private:
 	sf::RectangleShape colison6;
 	sf::RectangleShape colison7;
 	sf::RectangleShape colison8;
+	sf::RectangleShape colison8_1;
+	sf::RectangleShape colison8_2;
+	sf::RectangleShape colison8_3;
+	sf::RectangleShape colison8_4;
+	sf::RectangleShape colison9;
+	sf::RectangleShape colison10;
+	sf::RectangleShape colison11;
+	sf::RectangleShape colison12;
 	sf::RectangleShape check;
 	sf::RectangleShape Line;
 	sf::RectangleShape nitroshape;
@@ -257,6 +267,13 @@ private:
 	sf::FloatRect ColisonBounds6;
 	sf::FloatRect ColisonBounds7;
 	sf::FloatRect ColisonBounds8;
+	sf::FloatRect ColisonBounds8_1;
+	sf::FloatRect ColisonBounds8_2;
+	sf::FloatRect ColisonBounds8_3;
+	sf::FloatRect ColisonBounds8_4;
+	sf::FloatRect ColisonBounds9;
+	sf::FloatRect ColisonBounds10;
+	sf::FloatRect ColisonBounds11;
 	sf::FloatRect CheckPoint;
 	sf::FloatRect LineVicttory;
 	sf::RectangleShape cars2;

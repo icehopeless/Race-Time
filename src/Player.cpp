@@ -16,8 +16,8 @@ void Carros::Moviment_car1() {
 	bool camb2;
 	bool camb3;
 	bool camb4;
-	velocidadeP1();
-	velocidadeP2();
+
+
 	if (CarP1 == 1) {
 		if (KeyA == true) {
 			zero.setPosition(zero.getPosition().x - vel,
@@ -315,19 +315,19 @@ void Carros::Moviment_car1() {
 void Carros::velocidadeP1(){
 	switch(CarP1){
 		case 2:
-			this->vel = vel+0.00002;
+			this->vel = vel+0.002;
 		break;
 
 		case 3:
-			this->vel = vel+.0000003;
+			this->vel = vel+0.003;
 		break;
 
 		case 4:
-			this->vel = vel+0.000004;
+			this->vel = vel+0.004;
 		break;
 
 		case 5:
-			this->vel = vel+0.000005;
+			this->vel = vel+0.005;
 		break;
 	}
 }
@@ -648,19 +648,19 @@ void Carros::Moviment_car2() {
 void Carros::velocidadeP2(){
 	switch(CarP2){
 		case 2:
-			this->vel = vel+0.000002;
+			this->vel += 0.002;
 		break;
 
 		case 3:
-			this->vel = vel+0.000003;
+			this->vel = vel+0.003;
 		break;
 
 		case 4:
-			this->vel = vel+0.000004;
+			this->vel = vel+0.004;
 		break;
 
 		case 5:
-			this->vel = vel+0.000005;
+			this->vel = vel+0.005;
 		break;
 	}
 }
@@ -674,7 +674,7 @@ void Carros::SetCar() {
 }
 
 void Carros::SetCar1() {
-
+	velocidadeP1();
 		if(CarP1 == 1){
 			car.loadFromFile("assets/Cars/Sprites/BlackOut.png");
 			zero.setScale(1, 1);
@@ -708,7 +708,7 @@ void Carros::SetCar1() {
 }
 
 void Carros::SetCar2() {
-
+	velocidadeP2();
 		if(CarP2 == 1){
 			car.loadFromFile("assets/Cars/Sprites/BlackOut.png");
 			zero.setScale(1, 1);
@@ -733,6 +733,7 @@ void Carros::SetCar2() {
 			zero.setScale(0.08, 0.08);
 			zero.setRotation(180);
 		}
+		velocidadeP2();
 		zero.setTexture(car,true);
 		zero.setPosition(900, 663);
 

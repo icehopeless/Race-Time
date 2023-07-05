@@ -615,7 +615,6 @@ void Menu::loopEvents() {
 	pos_mouse = sf::Mouse::getPosition(window);
 	mouse_coord = window.mapPixelToCoords(pos_mouse);
 	newgame.loopEventGame(&carro);
-	newgame.loopEventGame(&carro2);
 	while (window.pollEvent(event)) {
 		if (event.type == sf::Event::Closed) {
 			window.close();
@@ -650,6 +649,7 @@ void Menu::loopEvents() {
 		}
 
 	}
+	newgame.loopEventGame(&carro2);
 }
 
 
@@ -669,8 +669,8 @@ void Menu::ChamarGame() {
 	newgame.ColisionsInCars(&carro, &carro2);
 	newgame.stopedMusic(&music);
 	newgame.FinalPista(&Nivelatual);
-	newgame.nitroo(&carro, &window);
 	newgame.nitroo(&carro2,&window);
+	newgame.nitroo(&carro, &window);
 	newgame.Return_Plac_result(&Win);
 	KeyFinalGame = newgame.returnGameFinal();
 	if(KeyFinalGame == 1){
