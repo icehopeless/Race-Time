@@ -26,7 +26,11 @@ public:
 	int Player;
 	int carSelect;
 	sf::Sprite zero;
+<<<<<<< HEAD
 	float vel = 1;
+=======
+	float vel = 0.1;
+>>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
 public:
 	void Moviment_cars();
 	void Moviment_car1();
@@ -233,9 +237,12 @@ private:
 	sf::Texture carTexture;
 	sf::Texture nitroTexture;
 	sf::Sprite nitroSprite;
+<<<<<<< HEAD
 	sf::Sprite nitroSprite2;
 	sf::Sprite nitroSprite3;
 	sf::Sprite nitroSprite4;
+=======
+>>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
 	sf::RectangleShape colison1;
 	sf::RectangleShape colison2;
 	sf::RectangleShape colison3;
@@ -265,9 +272,12 @@ private:
 	sf::FloatRect carBounds1;
 	sf::FloatRect carBounds2;
 	sf::FloatRect nitroBounds;
+<<<<<<< HEAD
 	sf::FloatRect nitroBounds2;
 	sf::FloatRect nitroBounds3;
 	sf::FloatRect nitroBounds4;
+=======
+>>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
 	int SOundGo;
 	bool Contagem_Realizada = false;
 	bool draw_cars;

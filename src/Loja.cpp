@@ -61,6 +61,8 @@ void Loja::ReadSaving(){
 	for(int i =0;i < tam ;i++){
 		carros.pop_back();
 		Status.pop_back();
+		carros2.pop_back();
+		Status2.pop_back();
 	}
 	int tam2 = Status2.size();
 
@@ -307,7 +309,10 @@ void Loja::Section1() {
 				Status[1] = "unlocked";
 				Blocked2 = false;
 				CarP1 = 2;
+<<<<<<< HEAD
 				x = 1;
+=======
+>>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
 			}
 		}
 		if(CarSelectP1 == 3 and Blocked3 == true){
@@ -316,7 +321,10 @@ void Loja::Section1() {
 				Status[2] = "unlocked";
 				Blocked3 = false;
 				CarP1 = 3;
+<<<<<<< HEAD
 				x = 1;
+=======
+>>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
 			}
 		}
 		if(CarSelectP1 == 4 and Blocked4 == true){
@@ -325,7 +333,10 @@ void Loja::Section1() {
 				Status[3] = "unlocked";
 				Blocked4 = false;
 				CarP1 = 4;
+<<<<<<< HEAD
 				x = 1;
+=======
+>>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
 			}
 		}
 		if(CarSelectP1 == 5 and Blocked5 == true){
@@ -334,7 +345,10 @@ void Loja::Section1() {
 				Status[4] = "unlocked";
 				Blocked5 = false;
 				CarP1 = 5;
+<<<<<<< HEAD
 				x = 1;
+=======
+>>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
 			}
 		}
 		Space = false;
@@ -453,6 +467,7 @@ void Loja::Section2() {
 	//click p2
 	static int y =0;
 	if (SelecionadoEnter == true) {
+<<<<<<< HEAD
 		if(CarSelectP2 == 1 and Blocked1_2 == true){
 			if(Acount_2 >= Price_car_2){
 				Acount_2 = Acount_2 - Price_car_2;
@@ -496,6 +511,39 @@ void Loja::Section2() {
 				CarP2 = 5;
 				Blocked5_2 = false;
 				y = 2;
+=======
+		if(CarSelectP2 == 2 and Blocked2_2 == true){
+			if(Acount_2 >= Price_car_2){
+				Acount_2 = Acount_2 - Price_car_2;
+				Status2[1] = "unlocked";
+				Blocked2_2 = false;
+				CarP2 = 2;
+
+			}
+		}
+		if(CarSelectP2 == 3 and Blocked3_2 == true){
+			if(Acount_2 >= Price_car_2){
+				Acount_2 = Acount_2 - Price_car_2;
+				Status2[2] = "unlocked";
+				CarP2 = 3;
+				Blocked3_2 = false;
+			}
+		}
+		if(CarSelectP2 == 4 and Blocked4_2 == true){
+			if(Acount_2 >= Price_car_2){
+				Acount_2 = Acount_2 - Price_car_2;
+				Status2[3] = "unlocked";
+				CarP2 = 4;
+				Blocked4_2 = false;
+			}
+		}
+		if(CarSelectP2 == 5 and Blocked5_2 == true){
+			if(Acount_2 >= Price_car_2){
+				Acount_2 = Acount_2 - Price_car_2;
+				Status2[4] = "unlocked";
+				CarP2 = 5;
+				Blocked5_2 = false;
+>>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
 			}
 		}
 		SelecionadoEnter = false;
@@ -711,7 +759,11 @@ void Loja::SaveCars(){
 		fileSaved << carros[i] << "," << Status[i] << endl;
 	}
 
+<<<<<<< HEAD
 
+=======
+	int tam2;
+>>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
 	tam = Status2.size();
 	fileSaved << "P2," << Acount_2<<endl;
 	for(int i =0;i < tam ;i++){

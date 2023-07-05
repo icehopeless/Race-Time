@@ -73,9 +73,12 @@ void Game::DrawGame(sf::RenderWindow *w) {
 	w->draw(cars1);
 	w->draw(cars2);
 	w->draw(nitroSprite);
+<<<<<<< HEAD
 	w->draw(nitroSprite2);
 	w->draw(nitroSprite3);
 	w->draw(nitroSprite4);
+=======
+>>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
 	w->draw(meio);
 }
 
@@ -233,6 +236,7 @@ void Game::nitroo(Carros *car, sf::RenderWindow *w) {
 
 }
 
+<<<<<<< HEAD
 void Game::operationsNitro(Carros *car) {
 	if (time == 1500) {
 		car->vel -= (cont_speed * 0.1);
@@ -249,6 +253,36 @@ void Game::operationsNitro(Carros *car) {
 	} else {
 		nitroSprite.setColor(sf::Color::Transparent);
 	}
+=======
+void Game::nitroo(Carros *car, sf::RenderWindow *w){
+
+	nitroTexture.loadFromFile("assets/Game/nitro.png");
+	nitroSprite.setScale(0.3,0.3);
+	nitroSprite.setTexture(nitroTexture);
+	carBounds = car->zero.getGlobalBounds();
+	meiobounds = meio.getGlobalBounds();
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<float> dis(0.0,w->getSize().y);
+    int ynitro = dis(gen);
+    ynitro = dis(gen);
+
+    nitroSprite.setPosition(300, ynitro);
+
+    while (nitroBounds.intersects(meiobounds)){
+    	 ynitro = dis(gen);
+    }
+
+
+    cout<<"|"<<ynitro <<endl;
+    fflush(stdin);
+
+	if(carBounds.intersects(nitroBounds)){
+		car->vel = car->vel+0.00007;
+	}
+}
+>>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
 
 }
 

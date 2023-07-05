@@ -315,6 +315,7 @@ void Carros::Moviment_car1() {
 void Carros::velocidadeP1(){
 	switch(CarP1){
 		case 2:
+<<<<<<< HEAD
 			this->vel = vel+0.00002;
 		break;
 
@@ -328,6 +329,21 @@ void Carros::velocidadeP1(){
 
 		case 5:
 			this->vel = vel+0.05;
+=======
+			this->vel = vel+0.000002;
+		break;
+
+		case 3:
+			this->vel = vel+.0000003;
+		break;
+
+		case 4:
+			this->vel = vel+0.000004;
+		break;
+
+		case 5:
+			this->vel = vel+0.000005;
+>>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
 		break;
 	}
 }
