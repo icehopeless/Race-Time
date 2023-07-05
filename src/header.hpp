@@ -27,6 +27,7 @@ public:
 	int carSelect;
 	sf::Sprite zero;
 	float vel = 2;
+	int Track_referent;
 public:
 	void Moviment_cars();
 	void Moviment_car1();
@@ -38,6 +39,7 @@ public:
 	void EventsCar();
 	void velocidadeP1();
 	void velocidadeP2();
+	void Reception(int x);
 
 	void Init_Carros(int Player, int carSelect){
 			KeyDown = false;

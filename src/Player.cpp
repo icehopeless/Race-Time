@@ -339,7 +339,7 @@ void Carros::Moviment_car2() {
 	bool camb2;
 	bool camb3;
 	bool camb4;
-
+	cout << zero.getPosition().x << "|" << zero.getPosition().y << endl;
 
 	if (CarP2 == 1) {
 
@@ -664,6 +664,9 @@ void Carros::velocidadeP2(){
 		break;
 	}
 }
+void Carros::Reception(int x){
+	this->Track_referent = x;
+}
 void Carros::SetCar() {
 	if(Player == 1){
 		SetCar1();
@@ -700,8 +703,16 @@ void Carros::SetCar1() {
 			zero.setScale(0.08, 0.08);
 			zero.setRotation(180);
 		}
-		zero.setTexture(car,true);
-		zero.setPosition(900, 598);
+		if(Track_referent == 0){
+			zero.setTexture(car,true);
+			zero.setPosition(900, 598);
+		}
+
+		if(Track_referent == 1){
+			zero.setTexture(car,true);
+			zero.setPosition(144, 519);
+			zero.setRotation(180);
+		}
 
 
 

@@ -615,9 +615,6 @@ void Loja::Preco_Carros(){
 }
 void Loja::run_loja() {
 
-
-	cout <<  Price_car << "," << Price_car_2  << endl;
-	fflush(stdout);
 	if (init_Loja == false) {
 		InicializarLoja();
 		init_Loja = true;
