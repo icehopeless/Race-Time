@@ -10,10 +10,10 @@ void Game::InicializarGame() {
 	Init_Game = false;
 	KeyFinaleGame = false;
 	draw_cars = false;
-	Contador.loadFromFile("assets/Sounds/Game/GO.wav");
+	Contador.loadFromFile("../assets/Sounds/Game/GO.wav");
 	Go.setBuffer(Contador);
 	Go.setVolume(SOundGo);
-	font.loadFromFile("assets/Font/VintageTimes.ttf");
+	font.loadFromFile("../assets/Font/VintageTimes.ttf");
 	Contagem.setFont(font);
 	Contagem.setCharacterSize(500);
 	Contagem.setFillColor(sf::Color::Cyan);
@@ -37,7 +37,7 @@ void Game::CarsSelceteds(int CarP1, int CarP2) {
 }
 void Game::PistaRefrent() {
 	if (Nivelatual == 0) {
-		fundo.loadFromFile("assets/Game/map1.png");
+		fundo.loadFromFile("../assets/Game/map1.png");
 	} else if (Nivelatual == 1) {
 		KeyFinaleGame = true;
 	} else if (Nivelatual == 2) {
@@ -45,13 +45,13 @@ void Game::PistaRefrent() {
 	} else if (Nivelatual == 3) {
 		KeyFinaleGame = true;
 	} else if (Nivelatual == 4) {
-		fundo.loadFromFile("assets/Game/map5.png");
+		fundo.loadFromFile("../assets/Game/map5.png");
 	} else if (Nivelatual == 5) {
-		fundo.loadFromFile("assets/Game/map6.png");
+		fundo.loadFromFile("../assets/Game/map6.png");
 	} else if (Nivelatual == 6) {
-		fundo.loadFromFile("assets/Game/map7.png");
+		fundo.loadFromFile("../assets/Game/map7.png");
 	} else if (Nivelatual == 7) {
-		fundo.loadFromFile("assets/Game/map8.png");
+		fundo.loadFromFile("../assets/Game/map8.png");
 	} else if (Nivelatual == 8) {
 		KeyFinaleGame = true;
 	} else if (Nivelatual == 9) {
@@ -198,7 +198,7 @@ void Game::Colisions(Carros *car) {
 
 void Game::nitroo(Carros *car, sf::RenderWindow *w) {
 
-	nitroTexture.loadFromFile("assets/Game/nitro.png");
+	nitroTexture.loadFromFile("../assets/Game/nitro.png");
 	operationsNitro(car);
 
 	carBounds = car->zero.getGlobalBounds();
@@ -256,7 +256,7 @@ void Game::operationsNitro(Carros *car) {
 =======
 void Game::nitroo(Carros *car, sf::RenderWindow *w){
 
-	nitroTexture.loadFromFile("assets/Game/nitro.png");
+	nitroTexture.loadFromFile("../assets/Game/nitro.png");
 	nitroSprite.setScale(0.3,0.3);
 	nitroSprite.setTexture(nitroTexture);
 	carBounds = car->zero.getGlobalBounds();

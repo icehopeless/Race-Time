@@ -7,14 +7,14 @@ void Loja::InicializarLoja() {
 	CarP2 = 1;
 	CounterFrame = 0;
 
-	font.loadFromFile("assets/Font/VintageTimes-Light.ttf");
+	font.loadFromFile("../assets/Font/VintageTimes-Light.ttf");
 	MoneysAcount_1.setFont(font);
 	MoneysAcount_2.setFont(font);
 	MoneysAcount_1.setFillColor(sf::Color::Magenta);
 	MoneysAcount_2.setFillColor(sf::Color::Magenta);
 	//Textures and Sprites p1
-	ArrowR.loadFromFile("assets/Loja/SetR.png");
-	ArrowL.loadFromFile("assets/Loja/SetL.png");
+	ArrowR.loadFromFile("../assets/Loja/SetR.png");
+	ArrowL.loadFromFile("../assets/Loja/SetL.png");
 	ArrowRS.setTexture(ArrowR, true);
 	ArrowLS.setTexture(ArrowL, true);
 	ArrowRS.setColor(sf::Color::White);
@@ -42,9 +42,9 @@ void Loja::InicializarLoja() {
 	Space = false;
 	KeyA = false;
 	KeyD = false;
-	money[0].loadFromFile("assets/Loja/1.png");
+	money[0].loadFromFile("../assets/Loja/1.png");
 	coins.setTexture(money[0], true);
-	blocked.loadFromFile("assets/Loja/blocked.png");
+	blocked.loadFromFile("../assets/Loja/blocked.png");
 	Blocked.setTexture(blocked, true);
 	Blocked.setScale(0.5,0.5);
 	Blocked.setPosition(150, 250);
@@ -176,7 +176,7 @@ void Loja::ReadSaving(){
 
 
 void Loja::DesenharFundoLoja(sf::Sprite *Fundo) {
-	fundo.loadFromFile("assets/Loja/Loja.png");
+	fundo.loadFromFile("../assets/Loja/Loja.png");
 	Fundo->setTexture(fundo, true);
 }
 void Loja::EventesKeyBoard() {
@@ -309,10 +309,7 @@ void Loja::Section1() {
 				Status[1] = "unlocked";
 				Blocked2 = false;
 				CarP1 = 2;
-<<<<<<< HEAD
 				x = 1;
-=======
->>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
 			}
 		}
 		if(CarSelectP1 == 3 and Blocked3 == true){
@@ -321,10 +318,8 @@ void Loja::Section1() {
 				Status[2] = "unlocked";
 				Blocked3 = false;
 				CarP1 = 3;
-<<<<<<< HEAD
 				x = 1;
-=======
->>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
+
 			}
 		}
 		if(CarSelectP1 == 4 and Blocked4 == true){
@@ -333,10 +328,7 @@ void Loja::Section1() {
 				Status[3] = "unlocked";
 				Blocked4 = false;
 				CarP1 = 4;
-<<<<<<< HEAD
 				x = 1;
-=======
->>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
 			}
 		}
 		if(CarSelectP1 == 5 and Blocked5 == true){
@@ -345,10 +337,8 @@ void Loja::Section1() {
 				Status[4] = "unlocked";
 				Blocked5 = false;
 				CarP1 = 5;
-<<<<<<< HEAD
 				x = 1;
-=======
->>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
+
 			}
 		}
 		Space = false;
@@ -359,32 +349,32 @@ void Loja::Section1() {
 	}
 
 	if (CarSelectP1 == 1) {
-		vitrine.loadFromFile("assets/Cars/V1.png");
+		vitrine.loadFromFile("../assets/Cars/V1.png");
 		vitrineS.setTexture(vitrine, true);
 		vitrineS.setScale(0.54, 0.54);
 		vitrineS.setPosition(156, 286);
 	}
 	if (CarSelectP1 == 2) {
-		vitrine.loadFromFile("assets/Cars/V2.png");
+		vitrine.loadFromFile("../assets/Cars/V2.png");
 		vitrineS.setTexture(vitrine, true);
 		vitrineS.setScale(1, 1);
 		vitrineS.setPosition(156, 316);
 	}
 	if (CarSelectP1 == 3) {
-		vitrine.loadFromFile("assets/Cars/V3.png");
+		vitrine.loadFromFile("../assets/Cars/V3.png");
 		vitrineS.setTexture(vitrine, true);
 		vitrineS.setScale(0.74, 0.74);
 		vitrineS.setPosition(136, 176);
 	}
 	if (CarSelectP1 == 4) {
-		vitrine.loadFromFile("assets/Cars/V4.png");
+		vitrine.loadFromFile("../assets/Cars/V4.png");
 		vitrineS.setTexture(vitrine, true);
 		vitrineS.setScale(0.94, 0.94);
 		vitrineS.setPosition(166, 326);
 	}
 	if (CarSelectP1 == 5) {
 		vitrineS.setScale(0.54, 0.54);
-		vitrine.loadFromFile("assets/Cars/V5.png");
+		vitrine.loadFromFile("../assets/Cars/V5.png");
 		vitrineS.setTexture(vitrine, true);
 		vitrineS.setPosition(106, 306);
 	}
@@ -467,7 +457,7 @@ void Loja::Section2() {
 	//click p2
 	static int y =0;
 	if (SelecionadoEnter == true) {
-<<<<<<< HEAD
+
 		if(CarSelectP2 == 1 and Blocked1_2 == true){
 			if(Acount_2 >= Price_car_2){
 				Acount_2 = Acount_2 - Price_car_2;
@@ -511,7 +501,7 @@ void Loja::Section2() {
 				CarP2 = 5;
 				Blocked5_2 = false;
 				y = 2;
-=======
+
 		if(CarSelectP2 == 2 and Blocked2_2 == true){
 			if(Acount_2 >= Price_car_2){
 				Acount_2 = Acount_2 - Price_car_2;
@@ -543,7 +533,7 @@ void Loja::Section2() {
 				Status2[4] = "unlocked";
 				CarP2 = 5;
 				Blocked5_2 = false;
->>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
+
 			}
 		}
 		SelecionadoEnter = false;
@@ -554,31 +544,31 @@ void Loja::Section2() {
 	}
 
 	if (CarSelectP2 == 1) {
-		vitrine2.loadFromFile("assets/Cars/V1.png");
+		vitrine2.loadFromFile("../assets/Cars/V1.png");
 		vitrineS2.setTexture(vitrine2, true);
 		vitrineS2.setScale(0.54, 0.54);
 		vitrineS2.setPosition(850, 286);
 	}
 	if (CarSelectP2 == 2) {
-		vitrine2.loadFromFile("assets/Cars/V2.png");
+		vitrine2.loadFromFile("../assets/Cars/V2.png");
 		vitrineS2.setTexture(vitrine2, true);
 		vitrineS2.setScale(1, 1);
 		vitrineS2.setPosition(850, 316);
 	}
 	if (CarSelectP2 == 3) {
-		vitrine2.loadFromFile("assets/Cars/V3.png");
+		vitrine2.loadFromFile("../assets/Cars/V3.png");
 		vitrineS2.setTexture(vitrine2, true);
 		vitrineS2.setScale(0.74, 0.74);
 		vitrineS2.setPosition(840, 176);
 	}
 	if (CarSelectP2 == 4) {
-		vitrine2.loadFromFile("assets/Cars/V4.png");
+		vitrine2.loadFromFile("../assets/Cars/V4.png");
 		vitrineS2.setTexture(vitrine2, true);
 		vitrineS2.setScale(0.94, 0.94);
 		vitrineS2.setPosition(850, 326);
 	}
 	if (CarSelectP2 == 5) {
-		vitrine2.loadFromFile("assets/Cars/V5.png");
+		vitrine2.loadFromFile("../assets/Cars/V5.png");
 		vitrineS2.setTexture(vitrine2, true);
 		vitrineS2.setScale(0.54, 0.54);
 		vitrineS2.setPosition(810, 306);
@@ -719,12 +709,12 @@ void Loja::run_loja() {
 	coins2.setPosition(730, 215);
 	coins2.setScale(0.4, 0.4);
 
-	money[0].loadFromFile("assets/Loja/1.png");
-	money[1].loadFromFile("assets/Loja/2.png");
-	money[2].loadFromFile("assets/Loja/3.png");
-	money[3].loadFromFile("assets/Loja/4.png");
-	money[4].loadFromFile("assets/Loja/5.png");
-	money[5].loadFromFile("assets/Loja/6.png");
+	money[0].loadFromFile("../assets/Loja/1.png");
+	money[1].loadFromFile("../assets/Loja/2.png");
+	money[2].loadFromFile("../assets/Loja/3.png");
+	money[3].loadFromFile("../assets/Loja/4.png");
+	money[4].loadFromFile("../assets/Loja/5.png");
+	money[5].loadFromFile("../assets/Loja/6.png");
 
 	if (CounterFrame == 4) {
 		if (Update_Texture == 5) {
@@ -759,11 +749,7 @@ void Loja::SaveCars(){
 		fileSaved << carros[i] << "," << Status[i] << endl;
 	}
 
-<<<<<<< HEAD
-
-=======
 	int tam2;
->>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
 	tam = Status2.size();
 	fileSaved << "P2," << Acount_2<<endl;
 	for(int i =0;i < tam ;i++){

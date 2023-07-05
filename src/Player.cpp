@@ -315,22 +315,7 @@ void Carros::Moviment_car1() {
 void Carros::velocidadeP1(){
 	switch(CarP1){
 		case 2:
-<<<<<<< HEAD
 			this->vel = vel+0.00002;
-		break;
-
-		case 3:
-			this->vel = vel+.03;
-		break;
-
-		case 4:
-			this->vel = vel+0.04;
-		break;
-
-		case 5:
-			this->vel = vel+0.05;
-=======
-			this->vel = vel+0.000002;
 		break;
 
 		case 3:
@@ -343,7 +328,6 @@ void Carros::velocidadeP1(){
 
 		case 5:
 			this->vel = vel+0.000005;
->>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
 		break;
 	}
 }
@@ -692,27 +676,27 @@ void Carros::SetCar() {
 void Carros::SetCar1() {
 
 		if(CarP1 == 1){
-			car.loadFromFile("assets/Cars/Sprites/BlackOut.png");
+			car.loadFromFile("../assets/Cars/Sprites/BlackOut.png");
 			zero.setScale(1, 1);
 			zero.setRotation(180);
 		}
 		if(CarP1 == 2){
-			car.loadFromFile("assets/Cars/Sprites/TT.png");
+			car.loadFromFile("../assets/Cars/Sprites/TT.png");
 			zero.setScale(0.13, 0.13);
 			zero.setRotation(90);
 
 		}
 		if(CarP1 == 3){
-			car.loadFromFile("assets/Cars/Sprites/SkyLine.png");
+			car.loadFromFile("../assets/Cars/Sprites/SkyLine.png");
 			zero.setScale(0.08, 0.1);
 		}
 		if(CarP1 == 4){
-			car.loadFromFile("assets/Cars/Sprites/Trueno.png");
+			car.loadFromFile("../assets/Cars/Sprites/Trueno.png");
 			zero.setScale(0.1, 0.1);
 			zero.setRotation(180);
 		}
 		if(CarP1 == 5){
-			car.loadFromFile("assets/Cars/Sprites/Ferrari.png");
+			car.loadFromFile("../assets/Cars/Sprites/Ferrari.png");
 			zero.setScale(0.08, 0.08);
 			zero.setRotation(180);
 		}
@@ -726,26 +710,26 @@ void Carros::SetCar1() {
 void Carros::SetCar2() {
 
 		if(CarP2 == 1){
-			car.loadFromFile("assets/Cars/Sprites/BlackOut.png");
+			car.loadFromFile("../assets/Cars/Sprites/BlackOut.png");
 			zero.setScale(1, 1);
 			zero.setRotation(180);
 		}
 		if(CarP2 == 2){
-			car.loadFromFile("assets/Cars/Sprites/TT.png");
+			car.loadFromFile("../assets/Cars/Sprites/TT.png");
 			zero.setScale(0.13, 0.13);
 			zero.setRotation(90);
 		}
 		if(CarP2 == 3){
-			car.loadFromFile("assets/Cars/Sprites/SkyLine.png");
+			car.loadFromFile("../assets/Cars/Sprites/SkyLine.png");
 			zero.setScale(0.08, 0.1);
 		}
 		if(CarP2 == 4){
-			car.loadFromFile("assets/Cars/Sprites/Trueno.png");
+			car.loadFromFile("../assets/Cars/Sprites/Trueno.png");
 			zero.setScale(0.1, 0.1);
 			zero.setRotation(180);
 		}
 		if(CarP2 == 5){
-			car.loadFromFile("assets/Cars/Sprites/Ferrari.png");
+			car.loadFromFile("../assets/Cars/Sprites/Ferrari.png");
 			zero.setScale(0.08, 0.08);
 			zero.setRotation(180);
 		}
