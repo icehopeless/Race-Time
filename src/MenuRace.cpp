@@ -669,6 +669,8 @@ void Menu::ChamarGame() {
 	newgame.ColisionsInCars(&carro, &carro2);
 	newgame.stopedMusic(&music);
 	newgame.FinalPista(&Nivelatual);
+	newgame.nitroo(&carro, &window);
+	newgame.nitroo(&carro2,&window);
 	newgame.Return_Plac_result(&Win);
 	KeyFinalGame = newgame.returnGameFinal();
 	if(KeyFinalGame == 1){

@@ -8,6 +8,7 @@
 #include <time.h>
 #include<vector>
 #include <fstream>
+#include <random>
 using namespace std;
 class Carros{
 public:
@@ -25,15 +26,19 @@ public:
 	int Player;
 	int carSelect;
 	sf::Sprite zero;
+	float vel = 1;
 public:
-	 void Moviment_cars();
-	 void Moviment_car1();
-	 void Moviment_car2();
-	 void draw(sf::RenderWindow *w);
-	 void SetCar();
+	void Moviment_cars();
+	void Moviment_car1();
+	void Moviment_car2();
+	void draw(sf::RenderWindow *w);
+	void SetCar();
 	void SetCar1();
 	void SetCar2();
 	void EventsCar();
+	void velocidadeP1();
+	void velocidadeP2();
+
 	void Init_Carros(int Player, int carSelect){
 			KeyDown = false;
 			KeyUP = false;
@@ -207,15 +212,30 @@ public:
 
 class Game{
 private:
+	int time = 0;
+	int cont_speed = 0;
 	bool test_Cont = false;
 	bool Check_Lap;
+	float aniY = 0;
+	bool CHeck_any = false;
 	int Voltas;
 	bool Check_Lap2;
 	int Voltas2;
+	int CounterFrame = 0;
+	int cont_sprites = 0;
+	int Update_Texture =0;
+	sf::Texture money[6];
+	vector<sf::Sprite> moedas;
+	sf::Sprite moeda;
 	sf::Font font;
 	sf::Text Contagem;
 	sf::Texture fundo;
 	sf::Texture carTexture;
+	sf::Texture nitroTexture;
+	sf::Sprite nitroSprite;
+	sf::Sprite nitroSprite2;
+	sf::Sprite nitroSprite3;
+	sf::Sprite nitroSprite4;
 	sf::RectangleShape colison1;
 	sf::RectangleShape colison2;
 	sf::RectangleShape colison3;
@@ -226,6 +246,9 @@ private:
 	sf::RectangleShape colison8;
 	sf::RectangleShape check;
 	sf::RectangleShape Line;
+	sf::RectangleShape nitroshape;
+	sf::RectangleShape meio;
+	sf::FloatRect meiobounds;
 	sf::FloatRect ColisonBounds;
 	sf::FloatRect ColisonBounds2;
 	sf::FloatRect ColisonBounds3;
@@ -241,6 +264,10 @@ private:
 	sf::FloatRect carBounds;
 	sf::FloatRect carBounds1;
 	sf::FloatRect carBounds2;
+	sf::FloatRect nitroBounds;
+	sf::FloatRect nitroBounds2;
+	sf::FloatRect nitroBounds3;
+	sf::FloatRect nitroBounds4;
 	int SOundGo;
 	bool Contagem_Realizada = false;
 	bool draw_cars;
@@ -258,6 +285,8 @@ private:
 	int Nivelatual;
 
 public:
+	void moveNitro();
+	void operationsNitro(Carros * car);
 	void Colisions(Carros * car1);
 	void ColisionsInCars(Carros * car1,Carros * car2);
 	void InicializarGame();
@@ -277,6 +306,7 @@ public:
 	void Checks1(Carros * car1);
 	void Checks2(Carros * car2);
 	void Return_Plac_result(int *p);
+	void nitroo(Carros *vel, sf::RenderWindow *w);
 
 
 
