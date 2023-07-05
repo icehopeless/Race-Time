@@ -1,24 +1,13 @@
 P1
-<<<<<<< HEAD
-80
-=======
-100
->>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
+110
 1,unlocked
-2,unlocked
+2,Blocked
 3,Blocked
 4,Blocked
 5,Blocked
-<<<<<<< HEAD
-P2,120
-1,unlocked
-2,unlocked
-=======
 P2,100
 1,unlocked
 2,Blocked
->>>>>>> 488fa5e68aafee8b75497b6358bda95f3b86282a
 3,Blocked
 4,Blocked
 5,Blocked
-0,

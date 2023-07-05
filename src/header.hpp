@@ -26,7 +26,7 @@ public:
 	int Player;
 	int carSelect;
 	sf::Sprite zero;
-	float vel = 0.1;
+	float vel = 1;
 public:
 	void Moviment_cars();
 	void Moviment_car1();
