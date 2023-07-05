@@ -375,7 +375,6 @@ void Game::run_game() {
 		InicializarGame();
 		l = 0;
 		Init_Game = true;
-		Nivelatual++;
 	}
 
 	if (l > 0 and test_Cont == false) {
