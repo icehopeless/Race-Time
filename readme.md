@@ -5,11 +5,11 @@
 Recriação do jogo Race do Atari
 
 ## Indice 
-- <a href="https://github.com/icehopeless/Piratas-do-CPP/blob/main/README.md#contextualização-do-projeto-">Contextualização do Projeto</a>
-- <a href="https://github.com/icehopeless/Piratas-do-CPP/blob/main/README.md#principal-tecnologia-destacada-">Principal Tecnologia Destacada</a>
-- <a href="https://github.com/icehopeless/Piratas-do-CPP/blob/main/README.md#demonstração">Demonstração</a>
-- <a href="https://github.com/icehopeless/Piratas-do-CPP/blob/main/README.md#como-rodar-">Como Rodar?</a>
-- <a href="https://github.com/icehopeless/Piratas-do-CPP/blob/main/README.md#autores">Autores</a>
+- <a href="https://github.com/icehopeless/Race-Time/blob/main/README.md#contextualização-do-projeto-">Contextualização do Projeto</a>
+- <a href="https://github.com/icehopeless/Race-Time/blob/main/README.md#principal-tecnologia-destacada-">Principal Tecnologia Destacada</a>
+- <a href="https://github.com/icehopeless/Race-Time/blob/main/README.md#demonstração">Demonstração</a>
+- <a href="https://github.com/icehopeless/Race-Time/blob/main/README.md#como-rodar-">Como Rodar?</a>
+- <a href="https://github.com/icehopeless/Race-Time/blob/main/README.md#autores">Autores</a>
 
 ## Contextualização do Projeto 
 O projeto "Race Time" consiste numa recriação do jogo Race do Atari, onde é desenvolvido por meio da linguagem C++ e a da biblioteca gráfica Simple and Fast Multimedia Library (SFML). O jogo aceita dois jogadores, onde o player 1 se movimenta no WASD, e seleciona usando o SPACE, o Player2 se movimenta nas setas e selecionar no ENTER ou RETURN.
