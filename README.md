@@ -28,16 +28,16 @@ O menu principal do jogo contem duas opções, de configurações e de play, par
 
 
 ![config](./readme_assets/config.jpg)
-A tela de configurações permite ao usuário o controle e ajuste do som do jogo, uma alternativa de volta para o menu, acesso aos leveis do jogo e o play.
+A tela de configurações permite ao usuário o controle e ajuste do som do jogo, ajuste da resolução 
 
 ![levels](./readme_assets/mode.jpg)
-Os leveis são responsáveis para definir a forma como o usuário quer jogar, sendo fácil = infinitas bombas, medium = 50 e por fim, hard = 35 bombas.
+Os leveis são responsáveis para definir a forma como o usuário irá jogar. Há 3 pistas disponivieis para jogar, porém, o jogo há possibilidade de suportar outras 10 pistas. Além disso, a cara level completo, é desbloqueado mais uma pista.
 
 ![game](./readme_assets/game.jpg)
-A tela game representa a matriz, denominada com cenário do jogo. Ao lado há a contabilidade de bombas e barcos destruídos
+o Game em si é representado pela pista referente ao level, onde ganha o primeiro jogador a completar as 3 voltas antes do tempo estimado, sendo 60minutos.
 
 ![final](./readme_assets/finalscreen.jpg)
-A tela final permite ao usúario jogar novamente, ou sair do jogo, isto é, fechar a tela.
+A tela final permite ao usúario voltar a tela inicial, salvar as moedas, carros e pistas desbloqueadas, e também permite ir a tela dos leveis/pistas
 
 
 ## Como Rodar? 
