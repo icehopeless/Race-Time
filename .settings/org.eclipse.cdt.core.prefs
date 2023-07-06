@@ -1,9 +1,0 @@
-eclipse.preferences.version=1
-environment/project/cdt.managedbuild.config.gnu.mingw.exe.debug.1363680803/MINGW_HOME/delimiter=;
-environment/project/cdt.managedbuild.config.gnu.mingw.exe.debug.1363680803/MINGW_HOME/operation=replace
-environment/project/cdt.managedbuild.config.gnu.mingw.exe.debug.1363680803/MINGW_HOME/value=C\:\\mingw64;C\:\\mingw64\\bin
-environment/project/cdt.managedbuild.config.gnu.mingw.exe.debug.1363680803/PATH/delimiter=;
-environment/project/cdt.managedbuild.config.gnu.mingw.exe.debug.1363680803/PATH/operation=replace
-environment/project/cdt.managedbuild.config.gnu.mingw.exe.debug.1363680803/PATH/value=${MINGW_HOME}\\bin;${MSYS_HOME}\\bin;${MSYS_HOME}\\usr\\bin;C\:/Users/User/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.7.v20230425-1502/jre/bin/server;C\:/Users/User/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.7.v20230425-1502/jre/bin;C\:\\ProgramData\\Oracle\\Java\\javapath;C\:\\WINDOWS\\system32;C\:\\WINDOWS;C\:\\WINDOWS\\System32\\Wbem;C\:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C\:\\WINDOWS\\System32\\OpenSSH\\;C\:\\Program Files\\Git\\cmd;C\:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\;C\:\\Users\\User\\AppData\\Local\\Microsoft\\WindowsApps;C\:\\Users\\User\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C\:\\mingw64\\bin;C\:\\Users\\User\\Desktop
-environment/project/cdt.managedbuild.config.gnu.mingw.exe.debug.1363680803/append=true
-environment/project/cdt.managedbuild.config.gnu.mingw.exe.debug.1363680803/appendContributed=true
