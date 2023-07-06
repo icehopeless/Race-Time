@@ -11,13 +11,13 @@ void Game::InicializarGame() {
 	Init_Game = false;
 	KeyFinaleGame = false;
 	draw_cars = false;
-	bufferNItro.loadFromFile("assets/Sounds/Game/Nitrous.wav");
+	bufferNItro.loadFromFile("../assets/Sounds/Game/Nitrous.wav");
 	sound.setBuffer(bufferNItro);
 	sound.setVolume(1000);
-	Contador.loadFromFile("assets/Sounds/Game/GO.wav");
+	Contador.loadFromFile("../assets/Sounds/Game/GO.wav");
 	Go.setBuffer(Contador);
 	Go.setVolume(SOundGo);
-	font.loadFromFile("assets/Font/VintageTimes.ttf");
+	font.loadFromFile("../assets/Font/VintageTimes.ttf");
 	Contagem.setFont(font);
 	Contagem.setCharacterSize(500);
 	Contagem.setFillColor(sf::Color::Black);
@@ -50,21 +50,21 @@ void Game::CarsSelceteds(int CarP1, int CarP2) {
 }
 void Game::PistaRefrent() {
 	if (Nivelatual == 0) {
-		fundo.loadFromFile("assets/Game/map1.png");
+		fundo.loadFromFile("../assets/Game/map1.png");
 	} else if (Nivelatual == 1) {
-		fundo.loadFromFile("assets/Game/map2.png");
+		fundo.loadFromFile("../assets/Game/map2.png");
 	} else if (Nivelatual == 2) {
-		fundo.loadFromFile("assets/Game/map3.png");
+		fundo.loadFromFile("../assets/Game/map3.png");
 	} else if (Nivelatual == 3) {
 		KeyFinaleGame = true;
 	} else if (Nivelatual == 4) {
-		fundo.loadFromFile("assets/Game/map5.png");
+		fundo.loadFromFile("../assets/Game/map5.png");
 	} else if (Nivelatual == 5) {
-		fundo.loadFromFile("assets/Game/map6.png");
+		fundo.loadFromFile("../assets/Game/map6.png");
 	} else if (Nivelatual == 6) {
-		fundo.loadFromFile("assets/Game/map7.png");
+		fundo.loadFromFile("../assets/Game/map7.png");
 	} else if (Nivelatual == 7) {
-		fundo.loadFromFile("assets/Game/map8.png");
+		fundo.loadFromFile("../assets/Game/map8.png");
 	} else if (Nivelatual == 8) {
 		KeyFinaleGame = true;
 	} else if (Nivelatual == 9) {
@@ -400,7 +400,7 @@ void Game::Colisions(Carros *car) {
 
 void Game::nitroo(Carros *car, sf::RenderWindow *w) {
 
-	nitroTexture.loadFromFile("assets/Game/nitro.png");
+	nitroTexture.loadFromFile("../assets/Game/nitro.png");
 	operationsNitro(car);
 
 	carBounds = car->zero.getGlobalBounds();
@@ -441,7 +441,7 @@ void Game::operationsNitro(Carros *car) {
 
 /*void Game::nitroo(Carros *car, sf::RenderWindow *w){
 
- nitroTexture.loadFromFile("assets/Game/nitro.png");
+ nitroTexture.loadFromFile("../assets/Game/nitro.png");
  nitroSprite.setScale(0.3,0.3);
  nitroSprite.setTexture(nitroTexture);
  carBounds = car->zero.getGlobalBounds();
@@ -599,12 +599,12 @@ void Game::SetMoney(Carros *car, int *act1, int *act2) {
 	CounterFrame++;
 
 	if (test_Cont == true) {
-		money[0].loadFromFile("assets/Loja/1.png");
-		money[1].loadFromFile("assets/Loja/2.png");
-		money[2].loadFromFile("assets/Loja/3.png");
-		money[3].loadFromFile("assets/Loja/4.png");
-		money[4].loadFromFile("assets/Loja/5.png");
-		money[5].loadFromFile("assets/Loja/6.png");
+		money[0].loadFromFile("../assets/Loja/1.png");
+		money[1].loadFromFile("../assets/Loja/2.png");
+		money[2].loadFromFile("../assets/Loja/3.png");
+		money[3].loadFromFile("../assets/Loja/4.png");
+		money[4].loadFromFile("../assets/Loja/5.png");
+		money[5].loadFromFile("../assets/Loja/6.png");
 	}
 	if (CounterFrame == 20) {
 		if (Update_Texture == 5) {

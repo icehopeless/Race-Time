@@ -677,27 +677,27 @@ void Carros::SetCar() {
 void Carros::SetCar1() {
 	velocidadeP1();
 		if(CarP1 == 1){
-			car.loadFromFile("assets/Cars/Sprites/BlackOut.png");
+			car.loadFromFile("../assets/Cars/Sprites/BlackOut.png");
 			zero.setScale(1, 1);
 			zero.setRotation(180);
 		}
 		if(CarP1 == 2){
-			car.loadFromFile("assets/Cars/Sprites/TT.png");
+			car.loadFromFile("../assets/Cars/Sprites/TT.png");
 			zero.setScale(0.13, 0.13);
 			zero.setRotation(90);
 
 		}
 		if(CarP1 == 3){
-			car.loadFromFile("assets/Cars/Sprites/SkyLine.png");
+			car.loadFromFile("../assets/Cars/Sprites/SkyLine.png");
 			zero.setScale(0.08, 0.1);
 		}
 		if(CarP1 == 4){
-			car.loadFromFile("assets/Cars/Sprites/Trueno.png");
+			car.loadFromFile("../assets/Cars/Sprites/Trueno.png");
 			zero.setScale(0.1, 0.1);
 			zero.setRotation(180);
 		}
 		if(CarP1 == 5){
-			car.loadFromFile("assets/Cars/Sprites/Ferrari.png");
+			car.loadFromFile("../assets/Cars/Sprites/Ferrari.png");
 			zero.setScale(0.08, 0.08);
 			zero.setRotation(180);
 		}
@@ -783,26 +783,26 @@ void Carros::SetCar2() {
 	velocidadeP2();
 
 		if(CarP2 == 1){
-			car.loadFromFile("assets/Cars/Sprites/BlackOut.png");
+			car.loadFromFile("../assets/Cars/Sprites/BlackOut.png");
 			zero.setScale(1, 1);
 			zero.setRotation(180);
 		}
 		if(CarP2 == 2){
-			car.loadFromFile("assets/Cars/Sprites/TT.png");
+			car.loadFromFile("../assets/Cars/Sprites/TT.png");
 			zero.setScale(0.13, 0.13);
 			zero.setRotation(90);
 		}
 		if(CarP2 == 3){
-			car.loadFromFile("assets/Cars/Sprites/SkyLine.png");
+			car.loadFromFile("../assets/Cars/Sprites/SkyLine.png");
 			zero.setScale(0.08, 0.1);
 		}
 		if(CarP2 == 4){
-			car.loadFromFile("assets/Cars/Sprites/Trueno.png");
+			car.loadFromFile("../assets/Cars/Sprites/Trueno.png");
 			zero.setScale(0.1, 0.1);
 			zero.setRotation(180);
 		}
 		if(CarP2 == 5){
-			car.loadFromFile("assets/Cars/Sprites/Ferrari.png");
+			car.loadFromFile("../assets/Cars/Sprites/Ferrari.png");
 			zero.setScale(0.08, 0.08);
 			zero.setRotation(180);
 		}

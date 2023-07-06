@@ -14,18 +14,18 @@ void Menu::Start() {
 	window.create(sf::VideoMode(1280, 720), "Mystic Time",sf::Style::Titlebar | sf::Style::Close);
 	window.setPosition(sf::Vector2i(0, 0));
 	sf::Image Icon = sf::Image { };
-	Icon.loadFromFile("assets/Icon/Icon.jpg");
+	Icon.loadFromFile("../assets/Icon/Icon.jpg");
 	window.setIcon(Icon.getSize().x, Icon.getSize().y, Icon.getPixelsPtr());
 	counterResu = 3;
 	Volume.setPosition(450, 390);
 	VolumeS.setPosition(450, 390);
-	fundo.loadFromFile("assets/L.png");
+	fundo.loadFromFile("../assets/L.png");
 	Fundo.setTexture(fundo);
 	Sound = 4;
 	music.setVolume(Sound);
 	VolumeUp = false;
 	VolumeDown = false;
-	startButton.loadFromFile("assets/Loading.png");
+	startButton.loadFromFile("../assets/Loading.png");
 	startButtonS.setTexture(startButton);
 	startButtonS.setScale(0.9, 0.9);
 	startButtonS.setPosition(450, 550);
@@ -94,14 +94,14 @@ void Menu::StartMenu() {
 		 Mouse_Left = false;
 			settingButtonS.setColor(sf::Color::White);
 			startButtonS.setColor(sf::Color::White);
-		music.openFromFile("assets/Sounds/Menu/Home.wav");
+		music.openFromFile("../assets/Sounds/Menu/Home.wav");
 		music.play();
 		soundActive = true;
 	}
 
-	fundo.loadFromFile("assets/1.png");
+	fundo.loadFromFile("../assets/1.png");
 	Fundo.setTexture(fundo);
-	startButton.loadFromFile("assets/Start.png");
+	startButton.loadFromFile("../assets/Start.png");
 	startButtonS.setTexture(startButton,true);
 	startButtonS.setScale(0.6, 0.6);
 	startButtonS.setPosition(510, 400);
@@ -119,7 +119,7 @@ void Menu::StartMenu() {
 	texture5S.setColor(sf::Color::Transparent);
 	Reso.setFillColor(sf::Color::Transparent);
 	//***********************************************************
-	settingButton.loadFromFile("assets/Setting.png");
+	settingButton.loadFromFile("../assets/Setting.png");
 	settingButtonS.setTexture(settingButton,true);
 	settingButtonS.setScale(0.5, 0.5);
 	settingButtonS.setPosition(490, 550);
@@ -220,15 +220,15 @@ void Menu::eventsMenu() {
 
 void Menu::Setconfiguration() {
 
-	fundo.loadFromFile("assets/2.png");
-	texture3.loadFromFile("assets/Settings/Home.png");
+	fundo.loadFromFile("../assets/2.png");
+	texture3.loadFromFile("../assets/Settings/Home.png");
 	texture3S.setTexture(texture3,true);
 	texture3S.setScale(0.6, 0.6);
 	texture3S.setPosition(110, 580);
 
-	texture4.loadFromFile("assets/Settings/quit.png");
+	texture4.loadFromFile("../assets/Settings/quit.png");
 	texture4S.setTexture(texture4);
-	texture5.loadFromFile("assets/Settings/resolution.png");
+	texture5.loadFromFile("../assets/Settings/resolution.png");
 	texture5S.setTexture(texture5,true);
 
 	texture5S.setScale(0.3, 0.3);
@@ -239,14 +239,14 @@ void Menu::Setconfiguration() {
 	texture3S.setColor(sf::Color::White);
 	texture5S.setColor(sf::Color::White);
 
-	VolumeT.loadFromFile("assets/Settings/ButtonVol.png");
+	VolumeT.loadFromFile("../assets/Settings/ButtonVol.png");
 	VolumeS.setTexture(VolumeT);
 	VolumeS.setColor(sf::Color::White);
 	VolumeS.setScale(0.08, 0.08);
 	Volume.setRadius(32);
 
-	ArrowR.loadFromFile("assets/Settings/arrowR.png");
-	ArrowL.loadFromFile("assets/Settings/arrowL.png");
+	ArrowR.loadFromFile("../assets/Settings/arrowR.png");
+	ArrowL.loadFromFile("../assets/Settings/arrowL.png");
 	ArrowLS.setTexture(ArrowL,true);
 	ArrowRS.setTexture(ArrowR,true);
 
@@ -269,7 +269,7 @@ void Menu::Setconfiguration() {
 	CampMouse5.setSize(sf::Vector2f(30, 30));
 	CampMouse3.setSize(sf::Vector2f(350, 110));
 	CampMouse4.setSize(sf::Vector2f(300, 110));
-	font->loadFromFile("assets/Font/VintageTimes.ttf");
+	font->loadFromFile("../assets/Font/VintageTimes.ttf");
 
 	CampMouse6.setPosition(767, 267);
 	CampMouse5.setPosition(567, 267);
@@ -278,11 +278,11 @@ void Menu::Setconfiguration() {
 	Reso.setCharacterSize(30);
 	Reso.setFillColor(sf::Color::Cyan);
 	Reso.setPosition(615, 267);
-	SoundAumente.loadFromFile("assets/Settings/Sound_Menu.png");
+	SoundAumente.loadFromFile("../assets/Settings/Sound_Menu.png");
 	SoundSpriteR.setTexture(SoundAumente, true);
 	SoundSpriteR.setScale(0.05, 0.05);
 	SoundSpriteR.setPosition(900, 390);
-	SoundAbaixa.loadFromFile("assets/Settings/SOUND_Baixo.png");
+	SoundAbaixa.loadFromFile("../assets/Settings/SOUND_Baixo.png");
 	SoundSpriteL.setTexture(SoundAbaixa, true);
 	SoundSpriteL.setScale(0.22, 0.22);
 	SoundSpriteL.setPosition(250, 370);

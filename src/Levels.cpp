@@ -10,7 +10,7 @@ void Levels::inicializar_Levels() {
 	Counter_Selectd_Levels = 0;
 	counterVertical = 1;
 	counterKeyboard = 1;
-	textureLockeds.loadFromFile("assets/Loja/blocked.png");
+	textureLockeds.loadFromFile("../assets/Loja/blocked.png");
 	keyGame = false;
 	keyLevels = false;
 	iniciar_numeros();
@@ -18,7 +18,7 @@ void Levels::inicializar_Levels() {
 
 }
 void Levels::DesenharFundoLevels(sf::Sprite * Fundo){
-	fundo.loadFromFile("assets/4.png");
+	fundo.loadFromFile("../assets/4.png");
 	Fundo->setTexture(fundo, true);
 
 }
@@ -200,7 +200,7 @@ for(int c = 0; c < tam; c++){
 
 void Levels::iniciar_numeros() {
 
-	font.loadFromFile("assets/Font/VintageTimes.ttf");
+	font.loadFromFile("../assets/Font/VintageTimes.ttf");
 	Lv1.setFont(font);
 	Lv1.setCharacterSize(140);
 	Lv1.setFillColor(sf::Color::Cyan);
