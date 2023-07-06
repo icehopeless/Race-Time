@@ -675,6 +675,7 @@ void Menu::ChamarGame() {
 	carro.Reception(Nivelatual);
 	carro2.Reception(Nivelatual);
 	newgame.Return_Plac_result(&Win);
+	newgame.textingame();
 	KeyFinalGame = newgame.returnGameFinal();
 	if(KeyFinalGame == 1){
 		keyGame = false;

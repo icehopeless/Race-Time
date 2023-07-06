@@ -24,6 +24,7 @@ void Game::InicializarGame() {
 	meio.setSize(sf::Vector2f(850, 355));
 	meio.setPosition(215.0, 185.0);
 	PistaRefrent();
+	textingame();
 
 }
 
@@ -94,6 +95,10 @@ void Game::DrawGame(sf::RenderWindow *w) {
 	w->draw(nitroSprite3);
 	w->draw(nitroSprite4);
 	w->draw(meio);
+	w->draw(textp1);
+	w->draw(textp2);
+	w->draw(TimeGame);
+
 }
 
 void Game::DesenharFundoPista(sf::Sprite *Fundo) {
@@ -549,9 +554,49 @@ void Game::Checks2(Carros *car2) {
 
 }
 
+void Game::textingame(){
+
+
+		timepassado = clock.getElapsedTime();
+		textp1.setFont(font);
+		textp1.setString("Voltas: " + to_string(Voltas));
+		textp1.setCharacterSize(24);
+		textp1.setFillColor(sf::Color::Red);
+		textp1.setPosition(10, 20);
+
+		 ostringstream ss;
+		 ss << std::fixed << setprecision(0) << timepassado.asSeconds() -7;
+		 string stringtempo = ss.str();
+
+
+		 if (Contagem_Realizada){
+			 TimeGame.setFont(font);
+			 TimeGame.setString(stringtempo);
+			 TimeGame.setCharacterSize(40);
+			 TimeGame.setFillColor(sf::Color::Red);
+			 TimeGame.setPosition(650, 20);
+		}
+
+		textp2.setFont(font);
+		textp2.setString("Voltas: " + to_string(Voltas2));
+		textp2.setCharacterSize(24);
+		textp2.setFillColor(sf::Color::Red);
+		textp2.setPosition(1160, 20);
+
+
+		if(timepassado.asSeconds() >= 37){ //37 pois o time é ajustado inicialmente por -7
+			Init_Game = false;
+			KeyFinaleGame = true;
+
+		}
+
+
+}
+
 void Game::Return_Plac_result(int *p) {
 	*p = Result;
 }
+
 void Game::loopEventGame(Carros *loopcar) {
 	loopcar->Moviment_cars();
 	loopcar->EventsCar();
@@ -606,6 +651,7 @@ void Game::run_game() {
 				test_Cont = true;
 			}
 			sf::sleep(sf::milliseconds(0.0f));
+
 		}
 	} else {
 		l = 1;

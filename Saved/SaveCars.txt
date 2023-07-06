@@ -1,13 +1,13 @@
 P1
-110
+60
 1,unlocked
 2,unlocked
 3,unlocked
 4,unlocked
-5,Blocked
-P2,140
+5,unlocked
+P2,90
 1,unlocked
 2,unlocked
 3,Blocked
 4,unlocked
-5,Blocked
+5,unlocked

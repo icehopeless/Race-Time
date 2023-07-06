@@ -9,6 +9,7 @@
 #include<vector>
 #include <fstream>
 #include <random>
+#include <iomanip>
 using namespace std;
 class Carros{
 public:
@@ -26,7 +27,7 @@ public:
 	int Player;
 	int carSelect;
 	sf::Sprite zero;
-	float vel = 2;
+	float vel = 10;
 	int Track_referent;
 public:
 	void Moviment_cars();
@@ -228,11 +229,17 @@ private:
 	int CounterFrame = 0;
 	int cont_sprites = 0;
 	int Update_Texture =0;
+	sf::Clock clock;
+	sf::Time timepassado;
+	sf::Text TimeGame;
 	sf::Texture money[6];
 	vector<sf::Sprite> moedas;
 	sf::Sprite moeda;
 	sf::Font font;
 	sf::Text Contagem;
+	vector<sf::Text> placargame;
+	sf::Text textp1;
+	sf::Text textp2;
 	sf::Texture fundo;
 	sf::Texture carTexture;
 	sf::Texture nitroTexture;
@@ -327,6 +334,7 @@ public:
 	void Checks2(Carros * car2);
 	void Return_Plac_result(int *p);
 	void nitroo(Carros *vel, sf::RenderWindow *w);
+	void textingame();
 
 
 
