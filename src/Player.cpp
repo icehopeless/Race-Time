@@ -17,7 +17,6 @@ void Carros::Moviment_car1() {
 	bool camb3;
 	bool camb4;
 
-
 	if (CarP1 == 1) {
 		if (KeyA == true) {
 			zero.setPosition(zero.getPosition().x - vel,
@@ -339,7 +338,6 @@ void Carros::Moviment_car2() {
 	bool camb2;
 	bool camb3;
 	bool camb4;
-	cout << zero.getPosition().x << "|" << zero.getPosition().y << endl;
 
 	if (CarP2 == 1) {
 
@@ -703,23 +701,87 @@ void Carros::SetCar1() {
 			zero.setScale(0.08, 0.08);
 			zero.setRotation(180);
 		}
-		if(Track_referent == 0){
+
+		if(Track_referent == 0 and CarP1 == 1){
 			zero.setTexture(car,true);
 			zero.setPosition(900, 598);
 		}
-
-		if(Track_referent == 1){
+		if(Track_referent == 0 and CarP1 == 2){
 			zero.setTexture(car,true);
-			zero.setPosition(144, 519);
+			zero.setPosition(914, 534);
+			zero.setRotation(90);
+		}
+		if(Track_referent == 0 and CarP1 == 3){
+			zero.setTexture(car,true);
+			zero.setPosition(843, 552);
+		}
+		if(Track_referent == 0 and CarP1 == 4){
+			zero.setTexture(car,true);
+			zero.setPosition(909, 582);
+		}
+		if(Track_referent == 0 and CarP1 == 5){
+			zero.setTexture(car,true);
+			zero.setPosition(909, 608);
+		}
+
+		if(Track_referent == 1 and CarP1 == 1){
+			zero.setTexture(car,true);
+			zero.setPosition(84, 579);
+			zero.setRotation(270);
+		}
+		if(Track_referent == 1 and CarP1 == 2){
+			zero.setTexture(car,true);
+			zero.setPosition(144, 579);
 			zero.setRotation(180);
 		}
+		if(Track_referent == 1 and CarP1 == 3){
+			zero.setTexture(car,true);
+			zero.setPosition(84, 579);
+			zero.setRotation(90);
+		}
+		if(Track_referent == 1 and CarP1 == 4){
+			zero.setTexture(car,true);
+			zero.setPosition(84, 579);
+			zero.setRotation(270);
+		}
+		if(Track_referent == 1 and CarP1 == 5){
+			zero.setTexture(car,true);
+			zero.setPosition(84, 589);
+			zero.setRotation(270);
+		}
+
+
+		if(Track_referent == 2 and CarP1 == 1){
+					zero.setTexture(car,true);
+					zero.setPosition(796, 534);
+				}
+				if(Track_referent == 2 and CarP1 == 2){
+					zero.setTexture(car,true);
+					zero.setPosition(805, 469);
+					zero.setRotation(90);
+				}
+				if(Track_referent == 2 and CarP1 == 3){
+					zero.setTexture(car,true);
+					zero.setPosition(730, 470);
+				}
+				if(Track_referent == 2 and CarP1 == 4){
+					zero.setTexture(car,true);
+					zero.setPosition(790, 510);
+				}
+				if(Track_referent == 2 and CarP1 == 5){
+					zero.setTexture(car,true);
+					zero.setPosition(812, 535);
+				}
+
 
 
 
 }
 
 void Carros::SetCar2() {
+
 	velocidadeP2();
+
 		if(CarP2 == 1){
 			car.loadFromFile("assets/Cars/Sprites/BlackOut.png");
 			zero.setScale(1, 1);
@@ -744,9 +806,84 @@ void Carros::SetCar2() {
 			zero.setScale(0.08, 0.08);
 			zero.setRotation(180);
 		}
-		velocidadeP2();
-		zero.setTexture(car,true);
-		zero.setPosition(900, 663);
+
+
+		if(Track_referent == 0 and CarP2 == 1){
+			zero.setTexture(car,true);
+			zero.setPosition(900, 658);
+		}
+		if(Track_referent == 0 and CarP2 == 2){
+			zero.setTexture(car,true);
+			zero.setPosition(914, 604);
+			zero.setRotation(90);
+		}
+		if(Track_referent == 0 and CarP2 == 3){
+			zero.setTexture(car,true);
+			zero.setPosition(843, 602);
+		}
+		if(Track_referent == 0 and CarP2 == 4){
+			zero.setTexture(car,true);
+			zero.setPosition(909, 622);
+		}
+		if(Track_referent == 0 and CarP2 == 5){
+			zero.setTexture(car,true);
+			zero.setPosition(909, 658);
+		}
+
+
+		if(Track_referent == 1 and CarP2 == 1){
+			zero.setTexture(car,true);
+			zero.setPosition(144, 579);
+			zero.setRotation(270);
+		}
+
+		if(Track_referent == 1 and CarP2 == 2){
+			zero.setTexture(car,true);
+			zero.setPosition(204, 579);
+			zero.setRotation(180);
+		}
+
+		if(Track_referent == 1 and CarP2 == 3){
+			zero.setTexture(car,true);
+			zero.setPosition(182, 510);
+			zero.setRotation(90);
+		}
+
+		if(Track_referent == 1 and CarP2 == 4){
+			zero.setTexture(car,true);
+			zero.setPosition(144, 579);
+			zero.setRotation(270);
+		}
+
+		if(Track_referent == 1 and CarP2 == 5){
+			zero.setTexture(car,true);
+			zero.setPosition(144, 599);
+			zero.setRotation(270);
+		}
+
+
+		if(Track_referent == 2 and CarP2 == 1){
+					zero.setTexture(car,true);
+					zero.setPosition(796, 584);
+				}
+				if(Track_referent == 2 and CarP2 == 2){
+					zero.setTexture(car,true);
+					zero.setPosition(805, 539);
+					zero.setRotation(90);
+				}
+				if(Track_referent == 2 and CarP2 == 3){
+					zero.setTexture(car,true);
+					zero.setPosition(730, 540);
+				}
+				if(Track_referent == 2 and CarP2 == 4){
+					zero.setTexture(car,true);
+					zero.setPosition(790, 570);
+				}
+				if(Track_referent == 2 and CarP2 == 5){
+					zero.setTexture(car,true);
+					zero.setPosition(812, 585);
+				}
+
 
 
 }

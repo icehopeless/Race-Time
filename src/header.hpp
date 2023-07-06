@@ -7,9 +7,10 @@
 #include <SFML/Audio.hpp>
 #include <time.h>
 #include<vector>
+#include <iomanip>
+#include <chrono>
 #include <fstream>
 #include <random>
-#include <iomanip>
 using namespace std;
 class Carros{
 public:
@@ -27,7 +28,7 @@ public:
 	int Player;
 	int carSelect;
 	sf::Sprite zero;
-	float vel = 10;
+	float vel = 2;
 	int Track_referent;
 public:
 	void Moviment_cars();
@@ -142,6 +143,10 @@ public:
 	void ReadSaving();
 	void SaveCars();
 	void Visibile();
+	void returnValuesAccount(int * Account_1, int * Account_2){
+		this->Acount_1 += *Account_1;
+		this->Acount_2 += *Account_2;
+	}
 	void Preco_Carros();
 
 };
@@ -217,6 +222,9 @@ public:
 
 class Game{
 private:
+	sf::Clock clock;
+		sf::Time timepassado;
+		sf::Text TimeGame;
 	int time = 0;
 	int cont_speed = 0;
 	bool test_Cont = false;
@@ -229,17 +237,17 @@ private:
 	int CounterFrame = 0;
 	int cont_sprites = 0;
 	int Update_Texture =0;
-	sf::Clock clock;
-	sf::Time timepassado;
-	sf::Text TimeGame;
+	bool Money1 = false;
+	bool Money2 = false;
+	bool Money3 = false;
+	bool Money4 = false;
+	bool Money5 = false;
+	bool Money6 = false;
 	sf::Texture money[6];
-	vector<sf::Sprite> moedas;
-	sf::Sprite moeda;
+	sf::Sprite moeda[6];
+	sf::FloatRect posMoney[6];
 	sf::Font font;
 	sf::Text Contagem;
-	vector<sf::Text> placargame;
-	sf::Text textp1;
-	sf::Text textp2;
 	sf::Texture fundo;
 	sf::Texture carTexture;
 	sf::Texture nitroTexture;
@@ -267,6 +275,9 @@ private:
 	sf::RectangleShape Line;
 	sf::RectangleShape nitroshape;
 	sf::RectangleShape meio;
+
+	sf::Text textp1;
+	sf::Text textp2;
 	sf::FloatRect meiobounds;
 	sf::FloatRect ColisonBounds;
 	sf::FloatRect ColisonBounds2;
@@ -294,7 +305,10 @@ private:
 	sf::FloatRect nitroBounds2;
 	sf::FloatRect nitroBounds3;
 	sf::FloatRect nitroBounds4;
-
+	sf::SoundBuffer bufferNItro;
+	sf::Sound sound;
+	sf::SoundBuffer Contador;
+	sf::Sound Go;
 	int SOundGo;
 	bool Contagem_Realizada = false;
 	bool draw_cars;
@@ -305,8 +319,6 @@ private:
 	int CarP1;
 	int CarP2;
 	int Result;
-	sf::SoundBuffer Contador;
-	sf::Sound Go;
 	int l,x = 3;
 	int Volume;
 	int Nivelatual;
@@ -334,9 +346,8 @@ public:
 	void Checks2(Carros * car2);
 	void Return_Plac_result(int *p);
 	void nitroo(Carros *vel, sf::RenderWindow *w);
+	void SetMoney(Carros * car2, int * act1, int * act2);
 	void textingame();
-
-
 
 };
 class FinalGame{
@@ -389,6 +400,9 @@ public:
 class Menu {
 
 private:
+	bool Money_Active_Crescent = false;
+	int Acount_1 = 0;
+	int Acount_2 = 0;
 	Loja  loja;
 	Carros carro;
 	Carros carro2;

@@ -656,7 +656,8 @@ void Menu::loopEvents() {
 
 void Menu::ChamarGame() {
 	int KeyFinalGame;
-
+	carro.Reception(Nivelatual);
+	carro2.Reception(Nivelatual);
 	newgame.Setpista(Nivelatual);
 	newgame.run_game();
 
@@ -672,8 +673,8 @@ void Menu::ChamarGame() {
 	newgame.FinalPista(&Nivelatual);
 	newgame.nitroo(&carro2,&window);
 	newgame.nitroo(&carro, &window);
-	carro.Reception(Nivelatual);
-	carro2.Reception(Nivelatual);
+	newgame.SetMoney(&carro,&Acount_1,&Acount_2);
+	newgame.SetMoney(&carro2,&Acount_1,&Acount_2);
 	newgame.Return_Plac_result(&Win);
 	newgame.textingame();
 	KeyFinalGame = newgame.returnGameFinal();
@@ -691,10 +692,19 @@ void Menu::ChamarLoja() {
 	settingButtonS.setColor(sf::Color::Transparent);
 	loja.run_loja();
 	loja.DesenharFundoLoja(&Fundo);
+
+	if(Money_Active_Crescent == false){
+		loja.returnValuesAccount(&Acount_1, &Acount_2);
+		Money_Active_Crescent = true;
+
+	}
+
 	key = loja.returnKeyLoja();
 	loja.CarsSelecteds(&CarP1, &CarP2);
+
 	if(key == 1){
 		keyShop = false;
+		Money_Active_Crescent = false;
 		keyLevels = true;
 	}
 	SelecionadoEnter = false;

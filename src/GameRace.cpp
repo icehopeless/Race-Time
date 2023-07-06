@@ -1,6 +1,7 @@
 #include "header.hpp"
 
 void Game::InicializarGame() {
+	timepassado = clock.restart();
 	Voltas = 0;
 	Check_Lap = false;
 	Voltas2 = 0;
@@ -10,21 +11,32 @@ void Game::InicializarGame() {
 	Init_Game = false;
 	KeyFinaleGame = false;
 	draw_cars = false;
+	bufferNItro.loadFromFile("assets/Sounds/Game/Nitrous.wav");
+	sound.setBuffer(bufferNItro);
+	sound.setVolume(1000);
 	Contador.loadFromFile("assets/Sounds/Game/GO.wav");
 	Go.setBuffer(Contador);
 	Go.setVolume(SOundGo);
 	font.loadFromFile("assets/Font/VintageTimes.ttf");
 	Contagem.setFont(font);
 	Contagem.setCharacterSize(500);
-	Contagem.setFillColor(sf::Color::Cyan);
+	Contagem.setFillColor(sf::Color::Black);
 	Contagem.setPosition(500, 50);
 	KeyFinaleGame = false;
 	Result = 0;
 	meio.setFillColor(sf::Color::Transparent);
 	meio.setSize(sf::Vector2f(850, 355));
 	meio.setPosition(215.0, 185.0);
+	Money1 = false;
+	Money2 = false;
+	Money3 = false;
+	Money4 = false;
+	Money5 = false;
+	Money6 = false;
+	for(int i =0; i < 6; i++){
+		moeda[i].setColor(sf::Color::White);
+	}
 	PistaRefrent();
-	textingame();
 
 }
 
@@ -70,35 +82,23 @@ void Game::stopedMusic(sf::Music *music) {
 	music->stop();
 }
 void Game::DrawGame(sf::RenderWindow *w) {
-	w->draw(Contagem);
-	w->draw(cars1);
-	w->draw(cars2);
-	w->draw(nitroSprite);
-	w->draw(check);
-	w->draw(Line);
-	w->draw(colison1);
-	w->draw(colison2);
-	w->draw(colison3);
-	w->draw(colison4);
-	w->draw(colison5);
-	w->draw(colison6);
-	w->draw(colison7);
-	w->draw(colison8);
-	w->draw(colison9);
-	w->draw(colison10);
-	w->draw(colison9);
-	w->draw(colison8_1);
-	w->draw(colison8_2);
-	w->draw(colison8_3);
-	w->draw(colison8_4);
-	w->draw(nitroSprite2);
-	w->draw(nitroSprite3);
-	w->draw(nitroSprite4);
-	w->draw(meio);
 	w->draw(textp1);
 	w->draw(textp2);
 	w->draw(TimeGame);
+	w->draw(cars1);
+	w->draw(cars2);
+	w->draw(nitroSprite);
+	w->draw(nitroSprite2);
+	w->draw(nitroSprite3);
+	w->draw(nitroSprite4);
 
+
+	for (int i = 0; i < 6; i++) {
+		w->draw(moeda[i]);
+	}
+
+	w->draw(meio);
+	w->draw(Contagem);
 }
 
 void Game::DesenharFundoPista(sf::Sprite *Fundo) {
@@ -123,19 +123,19 @@ void Game::Start_Cars(Carros *carro, Carros *carro2) {
 
 void Game::ColisionsInCars(Carros *car1, Carros *car2) {
 	/*
-	carBounds1 = car1->zero.getGlobalBounds();
-	carBounds2 = car2->zero.getGlobalBounds();
+	 carBounds1 = car1->zero.getGlobalBounds();
+	 carBounds2 = car2->zero.getGlobalBounds();
 
-	if (carBounds1.intersects(carBounds2)) {
-		car1->zero.setPosition(car1->zero.getPosition().x,
-				car1->zero.getPosition().y + 0.1);
-	}
-	if (carBounds2.intersects(carBounds1)) {
-		car2->zero.setPosition(car2->zero.getPosition().x,
-				car2->zero.getPosition().y - 0.1);
-	}
-*
-*/
+	 if (carBounds1.intersects(carBounds2)) {
+	 car1->zero.setPosition(car1->zero.getPosition().x,
+	 car1->zero.getPosition().y + 0.1);
+	 }
+	 if (carBounds2.intersects(carBounds1)) {
+	 car2->zero.setPosition(car2->zero.getPosition().x,
+	 car2->zero.getPosition().y - 0.1);
+	 }
+	 *
+	 */
 }
 void Game::Colisions(Carros *car) {
 
@@ -176,7 +176,7 @@ void Game::Colisions(Carros *car) {
 		colison5.setRotation(90);
 		colison6.setRotation(90);
 		colison5.setPosition(262, 246);
-		colison6.setPosition(1060,246);
+		colison6.setPosition(1060, 246);
 		colison7.setPosition(260, 490);
 		colison8.setPosition(260, 186);
 		check.setSize(sf::Vector2f(239, 70));
@@ -205,179 +205,176 @@ void Game::Colisions(Carros *car) {
 	}
 
 	if (Nivelatual == 1) {
-			colison5.setSize(sf::Vector2f(329, 70));
-			colison6.setSize(sf::Vector2f(329, 70));
-			colison7.setSize(sf::Vector2f(746, 39));
-			colison8.setSize(sf::Vector2f(746, 39));
-			colison9.setSize(sf::Vector2f(329, 70));
-			colison10.setSize(sf::Vector2f(329, 70));
-			colison5.setRotation(90);
-			colison6.setRotation(90);
-			colison9.setRotation(90);
-			colison10.setRotation(90);
-			colison5.setPosition(1010, 180);
-			colison6.setPosition(1066, 180);
-			colison9.setPosition(285, 180);
-			colison10.setPosition(341, 180);
-			colison7.setPosition(260, 320);
-			colison8.setPosition(265, 206);
-			colison5.setFillColor(sf::Color::Blue);
-			colison6.setFillColor(sf::Color::Red);
-			colison7.setFillColor(sf::Color::Green);
-			colison8.setFillColor(sf::Color::Yellow);
-			colison10.setFillColor(sf::Color::Red);
-			colison9.setFillColor(sf::Color::Red);
-			check.setSize(sf::Vector2f(239, 78));
-			check.setRotation(90);
-			check.setPosition(810, 0);
-			Line.setSize(sf::Vector2f(239, 78));
-			Line.setRotation(180);
-			Line.setPosition(270, 500);
+		colison5.setSize(sf::Vector2f(329, 70));
+		colison6.setSize(sf::Vector2f(329, 70));
+		colison7.setSize(sf::Vector2f(746, 39));
+		colison8.setSize(sf::Vector2f(746, 39));
+		colison9.setSize(sf::Vector2f(329, 70));
+		colison10.setSize(sf::Vector2f(329, 70));
+		colison5.setRotation(90);
+		colison6.setRotation(90);
+		colison9.setRotation(90);
+		colison10.setRotation(90);
+		colison5.setPosition(1010, 180);
+		colison6.setPosition(1066, 180);
+		colison9.setPosition(285, 180);
+		colison10.setPosition(341, 180);
+		colison7.setPosition(260, 320);
+		colison8.setPosition(265, 206);
+		colison5.setFillColor(sf::Color::Blue);
+		colison6.setFillColor(sf::Color::Red);
+		colison7.setFillColor(sf::Color::Green);
+		colison8.setFillColor(sf::Color::Yellow);
+		colison10.setFillColor(sf::Color::Red);
+		colison9.setFillColor(sf::Color::Red);
+		check.setSize(sf::Vector2f(239, 78));
+		check.setRotation(90);
+		check.setPosition(810, 0);
+		Line.setSize(sf::Vector2f(239, 78));
+		Line.setRotation(180);
+		Line.setPosition(270, 500);
 
-			colison8_1.setSize(sf::Vector2f(369, 320));
-			colison8_1.setRotation(90);
-			colison8_1.setPosition(800, 480);
+		colison8_1.setSize(sf::Vector2f(369, 320));
+		colison8_1.setRotation(90);
+		colison8_1.setPosition(800, 480);
 
-			colison8_2.setSize(sf::Vector2f(369, 20));
-			colison8_2.setRotation(90);
-			colison8_2.setPosition(805, 480);
-			colison8_2.setFillColor(sf::Color::Cyan);
+		colison8_2.setSize(sf::Vector2f(369, 20));
+		colison8_2.setRotation(90);
+		colison8_2.setPosition(805, 480);
+		colison8_2.setFillColor(sf::Color::Cyan);
 
-			colison8_3.setSize(sf::Vector2f(369, 20));
-			colison8_3.setRotation(90);
-			colison8_3.setPosition(495, 480);
-			colison8_3.setFillColor(sf::Color::Cyan);
+		colison8_3.setSize(sf::Vector2f(369, 20));
+		colison8_3.setRotation(90);
+		colison8_3.setPosition(495, 480);
+		colison8_3.setFillColor(sf::Color::Cyan);
 
-			ColisonBounds8_1 = colison8_1.getGlobalBounds();
-			ColisonBounds8_2 = colison8_2.getGlobalBounds();
-			ColisonBounds8_3 = colison8_3.getGlobalBounds();
-			if (carBounds.intersects(ColisonBounds5)) {
-				car->zero.setPosition(car->zero.getPosition().x - car->vel,
-						car->zero.getPosition().y);
-			}
-			if (carBounds.intersects(ColisonBounds6)) {
-				car->zero.setPosition(car->zero.getPosition().x + car->vel,
-						car->zero.getPosition().y);
-			}
-
-			if (carBounds.intersects(ColisonBounds9)) {
-				car->zero.setPosition(car->zero.getPosition().x - car->vel,
-						car->zero.getPosition().y);
-			}
-			if (carBounds.intersects(ColisonBounds10)) {
-				car->zero.setPosition(car->zero.getPosition().x + car->vel,
-						car->zero.getPosition().y);
-			}
-			if (carBounds.intersects(ColisonBounds7)) {
-				car->zero.setPosition(car->zero.getPosition().x,
-						car->zero.getPosition().y + car->vel);
-			}
-			if (carBounds.intersects(ColisonBounds8)) {
-				car->zero.setPosition(car->zero.getPosition().x,
-						car->zero.getPosition().y - car->vel);
-			}
-			if (carBounds.intersects(ColisonBounds8_1)) {
-				car->zero.setPosition(car->zero.getPosition().x,
-						car->zero.getPosition().y - car->vel);
-			}
-			if (carBounds.intersects(ColisonBounds8_2)) {
-				car->zero.setPosition(car->zero.getPosition().x +car->vel,
-						car->zero.getPosition().y);
-			}
-			if (carBounds.intersects(ColisonBounds8_3)) {
-				car->zero.setPosition(car->zero.getPosition().x - car->vel,
-						car->zero.getPosition().y);
-			}
+		ColisonBounds8_1 = colison8_1.getGlobalBounds();
+		ColisonBounds8_2 = colison8_2.getGlobalBounds();
+		ColisonBounds8_3 = colison8_3.getGlobalBounds();
+		if (carBounds.intersects(ColisonBounds5)) {
+			car->zero.setPosition(car->zero.getPosition().x - car->vel,
+					car->zero.getPosition().y);
 		}
+		if (carBounds.intersects(ColisonBounds6)) {
+			car->zero.setPosition(car->zero.getPosition().x + car->vel,
+					car->zero.getPosition().y);
+		}
+
+		if (carBounds.intersects(ColisonBounds9)) {
+			car->zero.setPosition(car->zero.getPosition().x - car->vel,
+					car->zero.getPosition().y);
+		}
+		if (carBounds.intersects(ColisonBounds10)) {
+			car->zero.setPosition(car->zero.getPosition().x + car->vel,
+					car->zero.getPosition().y);
+		}
+		if (carBounds.intersects(ColisonBounds7)) {
+			car->zero.setPosition(car->zero.getPosition().x,
+					car->zero.getPosition().y + car->vel);
+		}
+		if (carBounds.intersects(ColisonBounds8)) {
+			car->zero.setPosition(car->zero.getPosition().x,
+					car->zero.getPosition().y - car->vel);
+		}
+		if (carBounds.intersects(ColisonBounds8_1)) {
+			car->zero.setPosition(car->zero.getPosition().x,
+					car->zero.getPosition().y - car->vel);
+		}
+		if (carBounds.intersects(ColisonBounds8_2)) {
+			car->zero.setPosition(car->zero.getPosition().x + car->vel,
+					car->zero.getPosition().y);
+		}
+		if (carBounds.intersects(ColisonBounds8_3)) {
+			car->zero.setPosition(car->zero.getPosition().x - car->vel,
+					car->zero.getPosition().y);
+		}
+	}
 	if (Nivelatual == 2) {
-				colison5.setSize(sf::Vector2f(239, 39));
-				colison6.setSize(sf::Vector2f(239, 39));
-				colison7.setSize(sf::Vector2f(746, 39));
-				colison8.setSize(sf::Vector2f(746, 39));
-				colison5.setRotation(90);
-				colison6.setRotation(90);
+		colison5.setSize(sf::Vector2f(239, 39));
+		colison6.setSize(sf::Vector2f(239, 39));
+		colison7.setSize(sf::Vector2f(746, 39));
+		colison8.setSize(sf::Vector2f(746, 39));
+		colison5.setRotation(90);
+		colison6.setRotation(90);
 
-				colison5.setPosition(300, 240);
-				colison6.setPosition(1023, 240);
-				colison7.setPosition(260, 430);
-				colison8.setPosition(260, 250);
+		colison5.setPosition(300, 240);
+		colison6.setPosition(1023, 240);
+		colison7.setPosition(260, 430);
+		colison8.setPosition(260, 250);
 
-				colison8_1.setPosition(480, 650);
-				colison8_2.setPosition(520, 610);
-				colison8_3.setPosition(470, 40);
-				colison8_4.setPosition(520, 70);
+		colison8_1.setPosition(480, 650);
+		colison8_2.setPosition(520, 610);
+		colison8_3.setPosition(470, 40);
+		colison8_4.setPosition(520, 70);
 
-				//order = x,y x,y
-				colison8_1.setSize(sf::Vector2f(410, 39));
-				colison8_2.setSize(sf::Vector2f(300, 39));
-				colison8_3.setSize(sf::Vector2f(410, 39));
-				colison8_4.setSize(sf::Vector2f(300, 39));
+		//order = x,y x,y
+		colison8_1.setSize(sf::Vector2f(410, 39));
+		colison8_2.setSize(sf::Vector2f(300, 39));
+		colison8_3.setSize(sf::Vector2f(410, 39));
+		colison8_4.setSize(sf::Vector2f(300, 39));
 
-				check.setSize(sf::Vector2f(239, 78));
-				check.setRotation(90);
-				check.setPosition(720, 10);
-				Line.setSize(sf::Vector2f(239, 78));
-				Line.setRotation(90);
-				Line.setPosition(720, 460);
+		check.setSize(sf::Vector2f(239, 78));
+		check.setRotation(90);
+		check.setPosition(720, 10);
+		Line.setSize(sf::Vector2f(239, 78));
+		Line.setRotation(90);
+		Line.setPosition(720, 460);
 
-				if (carBounds.intersects(ColisonBounds5)) {
-					car->zero.setPosition(car->zero.getPosition().x - car->vel,
-							car->zero.getPosition().y);
-				}
-				if (carBounds.intersects(ColisonBounds6)) {
-					car->zero.setPosition(car->zero.getPosition().x + car->vel,
-							car->zero.getPosition().y);
-				}
-				if (carBounds.intersects(ColisonBounds7)) {
-					car->zero.setPosition(car->zero.getPosition().x,
-							car->zero.getPosition().y + car->vel);
-				}
-				if (carBounds.intersects(ColisonBounds8)) {
-					car->zero.setPosition(car->zero.getPosition().x,
-							car->zero.getPosition().y - car->vel);
-				}
+		if (carBounds.intersects(ColisonBounds5)) {
+			car->zero.setPosition(car->zero.getPosition().x - car->vel,
+					car->zero.getPosition().y);
+		}
+		if (carBounds.intersects(ColisonBounds6)) {
+			car->zero.setPosition(car->zero.getPosition().x + car->vel,
+					car->zero.getPosition().y);
+		}
+		if (carBounds.intersects(ColisonBounds7)) {
+			car->zero.setPosition(car->zero.getPosition().x,
+					car->zero.getPosition().y + car->vel);
+		}
+		if (carBounds.intersects(ColisonBounds8)) {
+			car->zero.setPosition(car->zero.getPosition().x,
+					car->zero.getPosition().y - car->vel);
+		}
 
-				if (carBounds.intersects(ColisonBounds)) {
-								car->zero.setPosition(car->zero.getPosition().x,
-										car->zero.getPosition().y + car->vel);
-							}
+		if (carBounds.intersects(ColisonBounds)) {
+			car->zero.setPosition(car->zero.getPosition().x,
+					car->zero.getPosition().y + car->vel);
+		}
 
-							if (carBounds.intersects(ColisonBounds2)) {
-								car->zero.setPosition(car->zero.getPosition().x + car->vel,
-										car->zero.getPosition().y);
-							}
+		if (carBounds.intersects(ColisonBounds2)) {
+			car->zero.setPosition(car->zero.getPosition().x + car->vel,
+					car->zero.getPosition().y);
+		}
 
-							if (carBounds.intersects(ColisonBounds3)) {
-								car->zero.setPosition(car->zero.getPosition().x - car->vel,
-										car->zero.getPosition().y);
-							}
+		if (carBounds.intersects(ColisonBounds3)) {
+			car->zero.setPosition(car->zero.getPosition().x - car->vel,
+					car->zero.getPosition().y);
+		}
 
-							if (carBounds.intersects(ColisonBounds4)) {
-								car->zero.setPosition(car->zero.getPosition().x,
-										car->zero.getPosition().y - car->vel);
-							}
+		if (carBounds.intersects(ColisonBounds4)) {
+			car->zero.setPosition(car->zero.getPosition().x,
+					car->zero.getPosition().y - car->vel);
+		}
 
-							if (carBounds.intersects(ColisonBounds8_1)) {
-								car->zero.setPosition(car->zero.getPosition().x,
-										car->zero.getPosition().y - car->vel);
-						}
-						if (carBounds.intersects(ColisonBounds8_2)) {
-								car->zero.setPosition(car->zero.getPosition().x,
-										car->zero.getPosition().y - car->vel);
-						}
-						if (carBounds.intersects(ColisonBounds8_3)) {
-								car->zero.setPosition(car->zero.getPosition().x,
-										car->zero.getPosition().y + car->vel);
-						}
-						if (carBounds.intersects(ColisonBounds8_4)) {
-								car->zero.setPosition(car->zero.getPosition().x,
-										car->zero.getPosition().y + car->vel);
-							}
+		if (carBounds.intersects(ColisonBounds8_1)) {
+			car->zero.setPosition(car->zero.getPosition().x,
+					car->zero.getPosition().y - car->vel);
+		}
+		if (carBounds.intersects(ColisonBounds8_2)) {
+			car->zero.setPosition(car->zero.getPosition().x,
+					car->zero.getPosition().y - car->vel);
+		}
+		if (carBounds.intersects(ColisonBounds8_3)) {
+			car->zero.setPosition(car->zero.getPosition().x,
+					car->zero.getPosition().y + car->vel);
+		}
+		if (carBounds.intersects(ColisonBounds8_4)) {
+			car->zero.setPosition(car->zero.getPosition().x,
+					car->zero.getPosition().y + car->vel);
+		}
 
-			}
-
-
-
+	}
 
 	if (carBounds.intersects(ColisonBounds)) {
 		car->zero.setPosition(car->zero.getPosition().x,
@@ -408,39 +405,17 @@ void Game::nitroo(Carros *car, sf::RenderWindow *w) {
 
 	carBounds = car->zero.getGlobalBounds();
 	meiobounds = meio.getGlobalBounds();
-	std::random_device rdy;
-	std::mt19937 geny(rdy());
-	std::uniform_real_distribution<float> disy(0.0, w->getSize().y);
-	int ynitro = disy(geny);
-	ynitro = disy(geny);
 
-	std::random_device rdx;
-	std::mt19937 genx(rdx());
-	std::uniform_real_distribution<float> disx(0.0, w->getSize().x);
-	int xnitro = disx(genx);
-	xnitro = disx(genx);
-
-	nitroSprite.setScale(0.3, 0.3);
+	nitroSprite.setScale(0.2, 0.2);
 	nitroSprite.setTexture(nitroTexture);
-	nitroSprite.setPosition(xnitro, ynitro);
 	nitroBounds = nitroSprite.getGlobalBounds();
-
-	while (nitroBounds.intersects(meiobounds)
-			and nitroBounds.intersects(ColisonBounds)
-			and nitroBounds.intersects(ColisonBounds2)
-			and nitroBounds.intersects(ColisonBounds3)
-			and nitroBounds.intersects(ColisonBounds4)) {
-		xnitro = disx(genx);
-		ynitro = disy(geny);
-		nitroSprite.setPosition(xnitro, ynitro);
-		nitroBounds = nitroSprite.getGlobalBounds();
+	if(Nivelatual == 0){
+		nitroSprite.setPosition(929, 522);
 	}
 
 	moveNitro();
 
-
 }
-
 
 void Game::operationsNitro(Carros *car) {
 	carBounds = car->zero.getGlobalBounds();
@@ -453,7 +428,9 @@ void Game::operationsNitro(Carros *car) {
 		if (carBounds.intersects(nitroBounds)) {
 			car->vel += 0.1;
 			cont_speed++;
+			sound.play();
 			time = 0;
+
 		}
 		nitroSprite.setColor(sf::Color::White);
 	} else {
@@ -464,35 +441,33 @@ void Game::operationsNitro(Carros *car) {
 
 /*void Game::nitroo(Carros *car, sf::RenderWindow *w){
 
-	nitroTexture.loadFromFile("assets/Game/nitro.png");
-	nitroSprite.setScale(0.3,0.3);
-	nitroSprite.setTexture(nitroTexture);
-	carBounds = car->zero.getGlobalBounds();
-	meiobounds = meio.getGlobalBounds();
+ nitroTexture.loadFromFile("assets/Game/nitro.png");
+ nitroSprite.setScale(0.3,0.3);
+ nitroSprite.setTexture(nitroTexture);
+ carBounds = car->zero.getGlobalBounds();
+ meiobounds = meio.getGlobalBounds();
 
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_real_distribution<float> dis(0.0,w->getSize().y);
-    int ynitro = dis(gen);
-    ynitro = dis(gen);
+ std::random_device rd;
+ std::mt19937 gen(rd());
+ std::uniform_real_distribution<float> dis(0.0,w->getSize().y);
+ int ynitro = dis(gen);
+ ynitro = dis(gen);
 
-    nitroSprite.setPosition(300, ynitro);
+ nitroSprite.setPosition(300, ynitro);
 
-    while (nitroBounds.intersects(meiobounds)){
-    	 ynitro = dis(gen);
-    }
-
-
-    <<"|"<<ynitro <<endl;
-    fflush(stdin);
-
-	if(carBounds.intersects(nitroBounds)){
-		car->vel = car->vel+0.00007;
-	}
-}
-*/
+ while (nitroBounds.intersects(meiobounds)){
+ ynitro = dis(gen);
+ }
 
 
+ <<"|"<<ynitro <<endl;
+ fflush(stdin);
+
+ if(carBounds.intersects(nitroBounds)){
+ car->vel = car->vel+0.00007;
+ }
+ }
+ */
 
 void Game::moveNitro() {
 
@@ -554,49 +529,9 @@ void Game::Checks2(Carros *car2) {
 
 }
 
-void Game::textingame(){
-
-
-		timepassado = clock.getElapsedTime();
-		textp1.setFont(font);
-		textp1.setString("Voltas: " + to_string(Voltas));
-		textp1.setCharacterSize(24);
-		textp1.setFillColor(sf::Color::Red);
-		textp1.setPosition(10, 20);
-
-		 ostringstream ss;
-		 ss << std::fixed << setprecision(0) << timepassado.asSeconds() -7;
-		 string stringtempo = ss.str();
-
-
-		 if (Contagem_Realizada){
-			 TimeGame.setFont(font);
-			 TimeGame.setString(stringtempo);
-			 TimeGame.setCharacterSize(40);
-			 TimeGame.setFillColor(sf::Color::Red);
-			 TimeGame.setPosition(650, 20);
-		}
-
-		textp2.setFont(font);
-		textp2.setString("Voltas: " + to_string(Voltas2));
-		textp2.setCharacterSize(24);
-		textp2.setFillColor(sf::Color::Red);
-		textp2.setPosition(1160, 20);
-
-
-		if(timepassado.asSeconds() >= 37){ //37 pois o time é ajustado inicialmente por -7
-			Init_Game = false;
-			KeyFinaleGame = true;
-
-		}
-
-
-}
-
 void Game::Return_Plac_result(int *p) {
 	*p = Result;
 }
-
 void Game::loopEventGame(Carros *loopcar) {
 	loopcar->Moviment_cars();
 	loopcar->EventsCar();
@@ -631,12 +566,13 @@ void Game::run_game() {
 		if (SoundCont == false and KeyFinaleGame == false) {
 			Go.play();
 			SoundCont = true;
+
 		}
 		if (Contagem_Realizada == false and KeyFinaleGame == false) {
 			sf::sleep(sf::milliseconds(900.0f));
-			stringstream a;
-			a << x--;
-			Contagem.setString(a.str());
+			stringstream ss;
+			ss << x--;
+			Contagem.setString(ss.str());
 			if (x == -1) {
 				sf::sleep(sf::milliseconds(0.0f));
 				stringstream b;
@@ -651,10 +587,168 @@ void Game::run_game() {
 				test_Cont = true;
 			}
 			sf::sleep(sf::milliseconds(0.0f));
-
 		}
 	} else {
 		l = 1;
+	}
+
+}
+
+void Game::SetMoney(Carros *car, int *act1, int *act2) {
+
+	CounterFrame++;
+
+	if (test_Cont == true) {
+		money[0].loadFromFile("assets/Loja/1.png");
+		money[1].loadFromFile("assets/Loja/2.png");
+		money[2].loadFromFile("assets/Loja/3.png");
+		money[3].loadFromFile("assets/Loja/4.png");
+		money[4].loadFromFile("assets/Loja/5.png");
+		money[5].loadFromFile("assets/Loja/6.png");
+	}
+	if (CounterFrame == 20) {
+		if (Update_Texture == 5) {
+			Update_Texture = 0;
+		} else {
+			Update_Texture++;
+		}
+		CounterFrame = 0;
+	}
+
+	if (Nivelatual == 0 and test_Cont == true) {
+		moeda[0].setPosition(154, 154);
+		moeda[1].setPosition(154, 354);
+		moeda[2].setPosition(154, 554);
+		moeda[3].setPosition(1104, 154);
+		moeda[4].setPosition(1104, 354);
+		moeda[5].setPosition(1104, 554);
+	}
+	if (Nivelatual == 1) {
+		moeda[0].setPosition(154, 154);
+		moeda[1].setPosition(154, 354);
+		moeda[2].setPosition(154, 554);
+		moeda[3].setPosition(1104, 154);
+		moeda[4].setPosition(1104, 354);
+		moeda[5].setPosition(1104, 554);
+	}
+	if (Nivelatual == 2) {
+		moeda[0].setPosition(154, 154);
+			moeda[1].setPosition(154, 354);
+			moeda[2].setPosition(154, 554);
+			moeda[3].setPosition(1104, 154);
+			moeda[4].setPosition(1104, 354);
+			moeda[5].setPosition(1104, 554);
+	}
+
+	carBounds = car->zero.getGlobalBounds();
+	for (int i = 0; i < 6; i++) {
+		moeda[i].setScale(0.4, 0.4);
+		moeda[i].setTexture(money[Update_Texture], true);
+		posMoney[i] = moeda[i].getGlobalBounds();
+
+		if (carBounds.intersects(posMoney[i])) {
+
+			if (i == 0 and Money1 == false) {
+
+				if (car->Player == 1) {
+					*act1 = *act1 + 50;
+				}
+				if (car->Player == 2) {
+					*act2 = *act2 + 50;
+				}
+				moeda[i].setColor(sf::Color::Transparent);
+				Money1 = true;
+			}
+
+			if (i == 1 and Money2 == false) {
+				if (car->Player == 1) {
+					*act1 = *act1 + 50;
+				}
+				if (car->Player == 2) {
+					*act2 = *act2 + 50;
+				}
+				moeda[i].setColor(sf::Color::Transparent);
+				Money2 = true;
+			}
+
+			if (i == 2 and Money3 == false) {
+				if (car->Player == 1) {
+					*act1 = *act1 + 50;
+				}
+				if (car->Player == 2) {
+					*act2 = *act2 + 50;
+				}
+				moeda[i].setColor(sf::Color::Transparent);
+				Money3 = true;
+			}
+
+			if (i == 3 and Money4 == false) {
+				if (car->Player == 1) {
+					*act1 = *act1 + 50;
+				}
+				if (car->Player == 2) {
+					*act2 = *act2 + 50;
+				}
+				moeda[i].setColor(sf::Color::Transparent);
+				Money4 = true;
+			}
+
+			if (i == 4 and Money5 == false) {
+				if (car->Player == 1) {
+					*act1 = *act1 + 50;
+				}
+				if (car->Player == 2) {
+					*act2 = *act2 + 50;
+				}
+				moeda[i].setColor(sf::Color::Transparent);
+				Money5 = true;
+			}
+			if (i == 5 and Money6 == false) {
+				if (car->Player == 1) {
+					*act1 = *act1 + 50;
+				}
+				if (car->Player == 2) {
+					*act2 = *act2 + 50;
+				}
+				moeda[i].setColor(sf::Color::Transparent);
+				Money6 = true;
+			}
+		}
+	}
+
+}
+
+void Game::textingame() {
+	timepassado = clock.getElapsedTime();
+
+	textp1.setFont(font);
+	textp1.setString("Voltas: " + to_string(Voltas));
+	textp1.setCharacterSize(24);
+	textp1.setFillColor(sf::Color::Black);
+	textp1.setPosition(10, 10);
+
+	ostringstream ss;
+	ss << std::fixed << setprecision(0) << timepassado.asSeconds() - 5;
+	string stringtempo = ss.str();
+
+	if (Contagem_Realizada) {
+		TimeGame.setFont(font);
+		TimeGame.setString(stringtempo);
+		TimeGame.setCharacterSize(40);
+		TimeGame.setFillColor(sf::Color::Black);
+		TimeGame.setPosition(650, -5);
+	}
+
+	textp2.setFont(font);
+	textp2.setString("Voltas: " + to_string(Voltas2));
+	textp2.setCharacterSize(24);
+	textp2.setFillColor(sf::Color::Black);
+	textp2.setPosition(1160, 10);
+
+	if (timepassado.asSeconds() >= 65) { //37 pois o time é ajustado inicialmente por -7
+		KeyFinaleGame = true;
+
+
 	}
 
 }
