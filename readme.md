@@ -49,7 +49,7 @@ Diante do exposto, foi ultilizado a biblioteca Gráfica para a construção do j
 
 3. O jogo foi desenvolvido no <a href="https://www.eclipse.org/">Eclipse IDE</a>, logo, a pasta raiz do jogo é um workspace de formato referido no Eclipse. Recomendamos utilizá-lo para compilar e rodar o código. Caso utilize outra IDE, certifique-se que a Biblioteca SFML esteja incluida da maneira correta, caso contrário, o código não será compilado.
 
-4. Abra a pasta gerada após o download do projeto na sua IDE, acesse a pasta "Piratas_do_CPP" onde se encontra os arquivos .cpp e .hpp e compile o "main.cpp".
+4. Abra a pasta gerada após o download do projeto na sua IDE, acesse a pasta "Race-Time" onde se encontra os arquivos .cpp e .hpp e compile o "main.cpp".
 
 Segue abaixo como exemplo para compilar em outra IDE, tendo que compilar manualmente cada parte do código:
 
