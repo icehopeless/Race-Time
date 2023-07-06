@@ -12,24 +12,24 @@ void FinalGame::Final_game(){
 		keyLevels = false;
 		keyMenu = false;
 	}
-	fundo.loadFromFile("../assets/FinalGame/Final.png");
+	fundo.loadFromFile("assets/FinalGame/Final.png");
 
 
-	texture3.loadFromFile("../assets/FinalGame/save.png");
-	startButton.loadFromFile("../assets/FinalGame/Levels.png");
-	settingButton.loadFromFile("../assets/FinalGame/Home.png");
+	texture3.loadFromFile("assets/FinalGame/save.png");
+	startButton.loadFromFile("assets/FinalGame/Levels.png");
+	settingButton.loadFromFile("assets/FinalGame/Home.png");
 
 	startButtonS.setTexture(startButton,true);
 	settingButtonS.setTexture(settingButton,true);
 	texture3S.setTexture(texture3,true);
 
-	win.loadFromFile("../assets/FinalGame/1.png");
-	Lose.loadFromFile("../assets/FinalGame/2.png");
+	win.loadFromFile("assets/FinalGame/1.png");
+	Lose.loadFromFile("assets/FinalGame/2.png");
 
-	Text1.loadFromFile("../assets/FinalGame/Player.png");
+	Text1.loadFromFile("assets/FinalGame/Player.png");
 	Player_1.setTexture(Text1);
 
-	Text2.loadFromFile("../assets/FinalGame/Player.png");
+	Text2.loadFromFile("assets/FinalGame/Player.png");
 	Player_2.setTexture(Text1);
 
 	Player_1.setScale(0.3,0.3);
@@ -88,7 +88,7 @@ void FinalGame::DesenharFinal(sf::RenderWindow * w){
 void FinalGame::Music(sf::Music *music){
 
 	if(SoundCont == false){
-		music->openFromFile("../assets/Sounds/Game/FinalGame.wav");
+		music->openFromFile("assets/Sounds/Game/FinalGame.wav");
 		if(KeySound == false){
 			music->play();
 			KeySound  =true;

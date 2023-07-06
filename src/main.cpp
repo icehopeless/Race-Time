@@ -1,10 +1,5 @@
 #include "header.hpp"
-#include "FinalGame.cpp"
-#include "Levels.cpp"
-#include "GameRace.cpp"
-#include "Loja.cpp"
-#include "MenuRace.cpp"
-#include "Player.cpp"
+
 int main()
 {
 	Menu * start = new Menu();

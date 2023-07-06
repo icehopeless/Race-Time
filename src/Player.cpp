@@ -16,8 +16,7 @@ void Carros::Moviment_car1() {
 	bool camb2;
 	bool camb3;
 	bool camb4;
-	velocidadeP1();
-	velocidadeP2();
+
 	if (CarP1 == 1) {
 		if (KeyA == true) {
 			zero.setPosition(zero.getPosition().x - vel,
@@ -315,19 +314,19 @@ void Carros::Moviment_car1() {
 void Carros::velocidadeP1(){
 	switch(CarP1){
 		case 2:
-			this->vel = vel+0.00002;
+			this->vel = vel+0.002;
 		break;
 
 		case 3:
-			this->vel = vel+.0000003;
+			this->vel = vel+0.003;
 		break;
 
 		case 4:
-			this->vel = vel+0.000004;
+			this->vel = vel+0.004;
 		break;
 
 		case 5:
-			this->vel = vel+0.000005;
+			this->vel = vel+0.005;
 		break;
 	}
 }
@@ -339,7 +338,6 @@ void Carros::Moviment_car2() {
 	bool camb2;
 	bool camb3;
 	bool camb4;
-
 
 	if (CarP2 == 1) {
 
@@ -648,21 +646,24 @@ void Carros::Moviment_car2() {
 void Carros::velocidadeP2(){
 	switch(CarP2){
 		case 2:
-			this->vel = vel+0.000002;
+			this->vel += 0.002;
 		break;
 
 		case 3:
-			this->vel = vel+0.000003;
+			this->vel = vel+0.003;
 		break;
 
 		case 4:
-			this->vel = vel+0.000004;
+			this->vel = vel+0.004;
 		break;
 
 		case 5:
-			this->vel = vel+0.000005;
+			this->vel = vel+0.005;
 		break;
 	}
+}
+void Carros::Reception(int x){
+	this->Track_referent = x;
 }
 void Carros::SetCar() {
 	if(Player == 1){
@@ -674,34 +675,104 @@ void Carros::SetCar() {
 }
 
 void Carros::SetCar1() {
-
+	velocidadeP1();
 		if(CarP1 == 1){
-			car.loadFromFile("../assets/Cars/Sprites/BlackOut.png");
+			car.loadFromFile("assets/Cars/Sprites/BlackOut.png");
 			zero.setScale(1, 1);
 			zero.setRotation(180);
 		}
 		if(CarP1 == 2){
-			car.loadFromFile("../assets/Cars/Sprites/TT.png");
+			car.loadFromFile("assets/Cars/Sprites/TT.png");
 			zero.setScale(0.13, 0.13);
 			zero.setRotation(90);
 
 		}
 		if(CarP1 == 3){
-			car.loadFromFile("../assets/Cars/Sprites/SkyLine.png");
+			car.loadFromFile("assets/Cars/Sprites/SkyLine.png");
 			zero.setScale(0.08, 0.1);
 		}
 		if(CarP1 == 4){
-			car.loadFromFile("../assets/Cars/Sprites/Trueno.png");
+			car.loadFromFile("assets/Cars/Sprites/Trueno.png");
 			zero.setScale(0.1, 0.1);
 			zero.setRotation(180);
 		}
 		if(CarP1 == 5){
-			car.loadFromFile("../assets/Cars/Sprites/Ferrari.png");
+			car.loadFromFile("assets/Cars/Sprites/Ferrari.png");
 			zero.setScale(0.08, 0.08);
 			zero.setRotation(180);
 		}
-		zero.setTexture(car,true);
-		zero.setPosition(900, 598);
+
+		if(Track_referent == 0 and CarP1 == 1){
+			zero.setTexture(car,true);
+			zero.setPosition(900, 598);
+		}
+		if(Track_referent == 0 and CarP1 == 2){
+			zero.setTexture(car,true);
+			zero.setPosition(914, 534);
+			zero.setRotation(90);
+		}
+		if(Track_referent == 0 and CarP1 == 3){
+			zero.setTexture(car,true);
+			zero.setPosition(843, 552);
+		}
+		if(Track_referent == 0 and CarP1 == 4){
+			zero.setTexture(car,true);
+			zero.setPosition(909, 582);
+		}
+		if(Track_referent == 0 and CarP1 == 5){
+			zero.setTexture(car,true);
+			zero.setPosition(909, 608);
+		}
+
+		if(Track_referent == 1 and CarP1 == 1){
+			zero.setTexture(car,true);
+			zero.setPosition(84, 579);
+			zero.setRotation(270);
+		}
+		if(Track_referent == 1 and CarP1 == 2){
+			zero.setTexture(car,true);
+			zero.setPosition(144, 579);
+			zero.setRotation(180);
+		}
+		if(Track_referent == 1 and CarP1 == 3){
+			zero.setTexture(car,true);
+			zero.setPosition(84, 579);
+			zero.setRotation(90);
+		}
+		if(Track_referent == 1 and CarP1 == 4){
+			zero.setTexture(car,true);
+			zero.setPosition(84, 579);
+			zero.setRotation(270);
+		}
+		if(Track_referent == 1 and CarP1 == 5){
+			zero.setTexture(car,true);
+			zero.setPosition(84, 589);
+			zero.setRotation(270);
+		}
+
+
+		if(Track_referent == 2 and CarP1 == 1){
+					zero.setTexture(car,true);
+					zero.setPosition(796, 534);
+				}
+				if(Track_referent == 2 and CarP1 == 2){
+					zero.setTexture(car,true);
+					zero.setPosition(805, 469);
+					zero.setRotation(90);
+				}
+				if(Track_referent == 2 and CarP1 == 3){
+					zero.setTexture(car,true);
+					zero.setPosition(730, 470);
+				}
+				if(Track_referent == 2 and CarP1 == 4){
+					zero.setTexture(car,true);
+					zero.setPosition(790, 510);
+				}
+				if(Track_referent == 2 and CarP1 == 5){
+					zero.setTexture(car,true);
+					zero.setPosition(812, 535);
+				}
+
 
 
 
@@ -709,32 +780,110 @@ void Carros::SetCar1() {
 
 void Carros::SetCar2() {
 
+	velocidadeP2();
+
 		if(CarP2 == 1){
-			car.loadFromFile("../assets/Cars/Sprites/BlackOut.png");
+			car.loadFromFile("assets/Cars/Sprites/BlackOut.png");
 			zero.setScale(1, 1);
 			zero.setRotation(180);
 		}
 		if(CarP2 == 2){
-			car.loadFromFile("../assets/Cars/Sprites/TT.png");
+			car.loadFromFile("assets/Cars/Sprites/TT.png");
 			zero.setScale(0.13, 0.13);
 			zero.setRotation(90);
 		}
 		if(CarP2 == 3){
-			car.loadFromFile("../assets/Cars/Sprites/SkyLine.png");
+			car.loadFromFile("assets/Cars/Sprites/SkyLine.png");
 			zero.setScale(0.08, 0.1);
 		}
 		if(CarP2 == 4){
-			car.loadFromFile("../assets/Cars/Sprites/Trueno.png");
+			car.loadFromFile("assets/Cars/Sprites/Trueno.png");
 			zero.setScale(0.1, 0.1);
 			zero.setRotation(180);
 		}
 		if(CarP2 == 5){
-			car.loadFromFile("../assets/Cars/Sprites/Ferrari.png");
+			car.loadFromFile("assets/Cars/Sprites/Ferrari.png");
 			zero.setScale(0.08, 0.08);
 			zero.setRotation(180);
 		}
-		zero.setTexture(car,true);
-		zero.setPosition(900, 663);
+
+
+		if(Track_referent == 0 and CarP2 == 1){
+			zero.setTexture(car,true);
+			zero.setPosition(900, 658);
+		}
+		if(Track_referent == 0 and CarP2 == 2){
+			zero.setTexture(car,true);
+			zero.setPosition(914, 604);
+			zero.setRotation(90);
+		}
+		if(Track_referent == 0 and CarP2 == 3){
+			zero.setTexture(car,true);
+			zero.setPosition(843, 602);
+		}
+		if(Track_referent == 0 and CarP2 == 4){
+			zero.setTexture(car,true);
+			zero.setPosition(909, 622);
+		}
+		if(Track_referent == 0 and CarP2 == 5){
+			zero.setTexture(car,true);
+			zero.setPosition(909, 658);
+		}
+
+
+		if(Track_referent == 1 and CarP2 == 1){
+			zero.setTexture(car,true);
+			zero.setPosition(144, 579);
+			zero.setRotation(270);
+		}
+
+		if(Track_referent == 1 and CarP2 == 2){
+			zero.setTexture(car,true);
+			zero.setPosition(204, 579);
+			zero.setRotation(180);
+		}
+
+		if(Track_referent == 1 and CarP2 == 3){
+			zero.setTexture(car,true);
+			zero.setPosition(182, 510);
+			zero.setRotation(90);
+		}
+
+		if(Track_referent == 1 and CarP2 == 4){
+			zero.setTexture(car,true);
+			zero.setPosition(144, 579);
+			zero.setRotation(270);
+		}
+
+		if(Track_referent == 1 and CarP2 == 5){
+			zero.setTexture(car,true);
+			zero.setPosition(144, 599);
+			zero.setRotation(270);
+		}
+
+
+		if(Track_referent == 2 and CarP2 == 1){
+					zero.setTexture(car,true);
+					zero.setPosition(796, 584);
+				}
+				if(Track_referent == 2 and CarP2 == 2){
+					zero.setTexture(car,true);
+					zero.setPosition(805, 539);
+					zero.setRotation(90);
+				}
+				if(Track_referent == 2 and CarP2 == 3){
+					zero.setTexture(car,true);
+					zero.setPosition(730, 540);
+				}
+				if(Track_referent == 2 and CarP2 == 4){
+					zero.setTexture(car,true);
+					zero.setPosition(790, 570);
+				}
+				if(Track_referent == 2 and CarP2 == 5){
+					zero.setTexture(car,true);
+					zero.setPosition(812, 585);
+				}
+
 
 
 }
