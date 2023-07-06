@@ -40,7 +40,7 @@ A tela game representa a matriz, denominada com cenário do jogo. Ao lado há a 
 A tela final permite ao usúario jogar novamente, ou sair do jogo, isto é, fechar a tela.
 
 
-## Como Rodar? ⛵
+## Como Rodar? 
 Diante do exposto, foi ultilizado a biblioteca Gráfica para a construção do jogo, e para rodar, é preciso utilizar a versão correta em função do seu compilador minGW instalado, caso não tenha instalado, obtenha o <a href="https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/7.3.0/">MinGW</a>.
 
 1. Ao instalar o mingw, abra seu terminal e use o comando: "g++ -v" para verficar se o compilador está instalado.
@@ -64,7 +64,7 @@ mingw32-make
 5. Ao compilar, será gerado um executável com o nome "Race-Time.exe" na pasta Debug. Execute o para rodar o jogo ou outro executável criado pelo terminal
 
 
-## Autores⛵
+## Autores
 Desenvolvido visando a didática, responsável pela instituição CEFET-MG Campus Contagem - 06/07/2023
 
 ### Alunos Presentes: 
